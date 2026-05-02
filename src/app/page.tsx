@@ -103,8 +103,8 @@ export default function Dashboard() {
           <div className="space-y-4">
             {data?.teachers.map((teacher) => (
               <div key={teacher.id} className="flex items-center gap-4">
-                <div className="h-8 w-8 rounded-full bg-slate-100 flex items-center justify-center text-xs font-bold text-slate-500">
-                  {teacher.name.charAt(0)}
+                <div className="h-8 w-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400">
+                  <Users className="h-4 w-4" />
                 </div>
                 <div className="flex-1">
                   <div className="flex justify-between text-sm mb-1">

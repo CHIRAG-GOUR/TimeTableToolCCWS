@@ -8,7 +8,11 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Chronos | Smart Time-Table Generator",
-  description: "Generate optimized school schedules using advanced CP-SAT solver technology.",
+  description: "Generate optimized school schedules using advanced AI technology.",
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
+  },
 };
 
 export default function RootLayout({
