@@ -1,26 +1,116 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-brand-primary: #4f46e5;
+  --color-brand-secondary: #7c3aed;
+  
+  --color-bg-base: #f8fafc;
+  --color-bg-card: #ffffff;
+  --color-text-base: #0f172a;
+  --color-text-muted: #64748b;
+  --color-border-base: #e2e8f0;
+  
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg-base: #ffffff;
+    --bg-card: #ffffff;
+    --text-base: #0f172a;
+    --border-base: #e2e8f0;
+    --text-muted: #64748b;
+  }
+
+  body {
+    background-color: var(--bg-base);
+    color: var(--text-base);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Export Optimization */
+.exporting-view {
+  padding: 40px !important;
+  background-color: white !important;
+  border: none !important;
+  box-shadow: none !important;
+  width: fit-content !important; /* Allow it to expand to content width */
+  max-width: none !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  scrollbar-width: none !important; /* Firefox */
+}
+
+.exporting-view * {
+  overflow: visible !important; /* Force all nested scroll areas to expand */
+  max-height: none !important;
+  scrollbar-width: none !important; /* Firefox */
+}
+
+.exporting-view .group-hover\:opacity-100,
+.exporting-view .group-hover\:bg-white\/60,
+.exporting-view .no-scrollbar::-webkit-scrollbar,
+.exporting-view ::-webkit-scrollbar {
+  display: none !important;
+}
+
+.exporting-view table {
+  border-collapse: collapse !important;
+  width: auto !important; /* Don't force 100% if content is wider */
+  min-width: 1000px; /* Ensure a decent minimum width for the table */
+}
+
+.exporting-view th, .exporting-view td {
+  border: 1px solid #e2e8f0 !important;
+  position: relative !important;
+  inset: auto !important;
+  backdrop-filter: none !important;
+  background-color: white !important;
+  white-space: nowrap; /* Prevent text wrapping during capture */
+}
+
+.exporting-view .sticky {
+  position: static !important;
+}
+
+.glass {
+  @apply bg-white/80 backdrop-blur-md border border-white/40 shadow-sm;
+}
+
+.premium-card {
+  @apply bg-white rounded-2xl border border-slate-200 shadow-sm transition-all hover:shadow-md hover:border-orange-100;
+}
+
+.animate-in {
+  animation: animate-in 0.5s ease-out;
+}
+
+@keyframes animate-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-200 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-300;
 }
