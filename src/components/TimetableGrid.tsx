@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react';
 import { Period, TimetableEntry, Subject, Teacher } from '@/data/mockData';
-import { Download, FileText, Table as TableIcon } from 'lucide-react';
+import { Download, FileText, Table as TableIcon, Plus } from 'lucide-react';
 import { exportToPDF, exportToExcel } from '@/utils/exportUtils';
 
 interface TimetableGridProps {
@@ -110,10 +110,9 @@ export default function TimetableGrid({ days, periods, entries, subjects, teache
                     return (
                       <td 
                         key={`${day}-${period.id}`} 
-                        onClick={() => isEditMode && !isBreak && !entry && onEditCell?.(day, period.id)}
+                        className={`p-2 border-b border-slate-100 transition-all duration-300 relative ${isBreak ? 'bg-slate-50/80' : isEditMode ? 'cursor-pointer hover:bg-orange-50/20' : 'hover:bg-slate-50'}`}
                         onDragOver={isEditMode && !isBreak ? handleDragOver : undefined}
                         onDrop={isEditMode && !isBreak ? (e) => handleDrop(e, day, period.id) : undefined}
-                        className={`p-2 border-b border-slate-100 transition-all duration-300 ${isBreak ? 'bg-slate-50/80' : isEditMode ? 'cursor-pointer hover:bg-orange-50/30' : 'hover:bg-slate-50'}`}
                       >
                         {isBreak ? (
                           <div className="flex items-center justify-center py-4">
@@ -125,35 +124,48 @@ export default function TimetableGrid({ days, periods, entries, subjects, teache
                           <div 
                             draggable={isEditMode}
                             onDragStart={(e) => handleDragStart(e, entry.id)}
-                            className={`group relative h-full rounded-xl p-3 shadow-sm border border-slate-200 transition-all ${isEditMode ? 'cursor-move hover:shadow-md hover:border-orange-300 active:scale-95' : 'hover:shadow-md hover:border-slate-300'}`}
+                            className={`group relative h-full rounded-xl p-3 shadow-sm border border-slate-200 transition-all ${isEditMode ? 'cursor-move ring-2 ring-orange-500/20 hover:shadow-md hover:border-orange-400 active:scale-95' : 'hover:shadow-md hover:border-slate-300'}`}
                             style={{ 
                               backgroundColor: `${subject?.color}10`, 
                               borderLeft: `4px solid ${subject?.color}` 
                             }}
                           >
                             <p className="text-xs font-bold text-slate-900 mb-1">{subject?.name}</p>
-                            <p className="text-[10px] text-slate-500 font-semibold uppercase">
-                              {type === 'class' ? teacher?.name : entry.classId}
-                            </p>
+                            <div className="flex items-center justify-between">
+                              <p className="text-[10px] text-slate-500 font-semibold uppercase">
+                                {type === 'class' ? teacher?.name : entry.classId}
+                              </p>
+                              {isEditMode && (
+                                <button 
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    onEditCell?.(day, period.id);
+                                  }}
+                                  className="h-5 w-5 flex items-center justify-center rounded-full bg-orange-600 text-white hover:bg-orange-700 transition-colors shadow-sm"
+                                  title="Edit slot"
+                                >
+                                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="h-2.5 w-2.5">
+                                    <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                  </svg>
+                                </button>
+                              )}
+                            </div>
                             
-                            {/* Hover Details */}
+                            {/* Drag Feedback Indicator */}
                             {isEditMode && (
-                              <div 
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  onEditCell?.(day, period.id);
-                                }}
-                                className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-white/60 backdrop-blur-[2px] rounded-xl flex items-center justify-center transition-opacity cursor-pointer"
-                              >
-                                <span className="text-[10px] text-white font-bold px-3 py-1 bg-orange-600 rounded-lg shadow-sm">
-                                  EDIT
-                                </span>
-                              </div>
+                              <div className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-orange-500 border-2 border-white shadow-sm opacity-0 group-hover:opacity-100 transition-opacity" />
                             )}
                           </div>
                         ) : (
-                          <div className="h-16 flex items-center justify-center group">
-                             <div className="h-1 w-4 rounded-full bg-slate-100 group-hover:w-8 transition-all group-hover:bg-slate-200" />
+                          <div 
+                            className={`h-16 flex items-center justify-center group ${isEditMode ? 'bg-slate-50/50 rounded-xl border-2 border-dashed border-slate-100 hover:border-orange-200 hover:bg-orange-50/30' : ''}`}
+                            onClick={() => isEditMode && !isBreak && onEditCell?.(day, period.id)}
+                          >
+                             {isEditMode ? (
+                               <Plus className="h-4 w-4 text-slate-300 group-hover:text-orange-400 group-hover:scale-125 transition-all" />
+                             ) : (
+                               <div className="h-1 w-4 rounded-full bg-slate-100 group-hover:w-8 transition-all group-hover:bg-slate-200" />
+                             )}
                           </div>
                         )}
                       </td>

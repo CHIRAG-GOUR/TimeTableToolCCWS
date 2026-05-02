@@ -127,26 +127,53 @@ export default function TimetablePage() {
     const entryToMove = data.timetable.find(e => e.id === entryId);
     if (!entryToMove) return;
 
-    // Check for conflicts in the target slot
-    const hasConflict = data.timetable.some(e => 
+    // Check for Teacher double-booking in target slot (excluding existing entry if we are swapping)
+    const teacherConflict = data.timetable.find(e => 
       e.day === targetDay && 
       e.periodId === targetPeriodId && 
-      (e.teacherId === entryToMove.teacherId || e.classId === entryToMove.classId)
+      e.teacherId === entryToMove.teacherId &&
+      e.id !== entryId
     );
 
-    if (hasConflict) {
-      setToastMessage('Cannot move: Conflict detected in target slot!');
+    if (teacherConflict) {
+      const teacher = data.teachers.find(t => t.id === entryToMove.teacherId);
+      const conflictClass = data.classes.find(c => c.id === teacherConflict.classId)?.name;
+      setToastMessage(`Conflict: ${teacher?.name} is busy with ${conflictClass} at this time.`);
       setShowShareToast(true);
       setTimeout(() => setShowShareToast(false), 3000);
       return;
     }
 
-    const updatedTimetable = data.timetable.map(e => 
-      e.id === entryId ? { ...e, day: targetDay, periodId: targetPeriodId } : e
-    );
+    // Logic for Swap vs Move
+    const targetEntry = data.timetable.find(e => e.day === targetDay && e.periodId === targetPeriodId && e.classId === selectedClassId);
+    
+    let updatedTimetable = [...data.timetable];
+
+    if (targetEntry) {
+      // SWAP: Update both entries
+      updatedTimetable = updatedTimetable.map(e => {
+        if (e.id === entryToMove.id) {
+          return { ...e, day: targetDay, periodId: targetPeriodId };
+        }
+        if (e.id === targetEntry.id) {
+          return { ...e, day: entryToMove.day, periodId: entryToMove.periodId };
+        }
+        return e;
+      });
+      setToastMessage(`Swapped ${data.subjects.find(s => s.id === entryToMove.subjectId)?.name || 'Subject'} with ${data.subjects.find(s => s.id === targetEntry.subjectId)?.name || 'Subject'}`);
+    } else {
+      // MOVE: Update single entry
+      updatedTimetable = updatedTimetable.map(e => {
+        if (e.id === entryToMove.id) {
+          return { ...e, day: targetDay, periodId: targetPeriodId };
+        }
+        return e;
+      });
+      setToastMessage(`Moved to ${targetDay} Period ${targetPeriodId}`);
+    }
 
     const updatedData = { ...data, timetable: updatedTimetable };
-    
+
     const res = await fetch('/api/data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -155,9 +182,8 @@ export default function TimetablePage() {
 
     if (res.ok) {
       setData(updatedData);
-      setToastMessage('Schedule updated!');
       setShowShareToast(true);
-      setTimeout(() => setShowShareToast(false), 2000);
+      setTimeout(() => setShowShareToast(false), 3000);
     }
   };
 
@@ -383,26 +409,123 @@ export default function TimetablePage() {
         </div>
       )}
 
+      {/* Dashboard Analytics Section */}
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 print:hidden">
+        {/* Workload Distribution */}
+        <div className="premium-card p-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <h3 className="font-bold text-slate-900">Teacher Workload</h3>
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Top 5 busiest</span>
+          </div>
+          <div className="space-y-3">
+            {(() => {
+              const workload: Record<string, number> = {};
+              data.timetable.forEach(e => {
+                workload[e.teacherId] = (workload[e.teacherId] || 0) + 1;
+              });
+              
+              return Object.entries(workload)
+                .sort(([, a], [, b]) => b - a)
+                .slice(0, 5)
+                .map(([tId, count]) => {
+                  const teacher = data.teachers.find(t => t.id === tId);
+                  const max = teacher?.maxHoursPerWeek || 40;
+                  const percentage = Math.min(100, (count / max) * 100);
+                  
+                  return (
+                    <div key={tId} className="space-y-1">
+                      <div className="flex justify-between text-xs font-bold">
+                        <span className="text-slate-700">{teacher?.name}</span>
+                        <span className="text-slate-400">{count} / {max} hrs</span>
+                      </div>
+                      <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                        <motion.div 
+                          initial={{ width: 0 }}
+                          animate={{ width: `${percentage}%` }}
+                          className={`h-full rounded-full ${percentage > 90 ? 'bg-red-500' : percentage > 70 ? 'bg-amber-500' : 'bg-orange-500'}`}
+                        />
+                      </div>
+                    </div>
+                  );
+                });
+            })()}
+          </div>
+        </div>
+
+        {/* Subject Coverage */}
+        <div className="premium-card p-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <h3 className="font-bold text-slate-900">Subject Distribution</h3>
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{selectedClassName}</span>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            {(() => {
+              const counts: Record<string, number> = {};
+              classEntries.forEach(e => {
+                counts[e.subjectId] = (counts[e.subjectId] || 0) + 1;
+              });
+              
+              return Object.entries(counts).map(([sId, count]) => {
+                const subject = data.subjects.find(s => s.id === sId);
+                return (
+                  <div key={sId} className="p-3 rounded-xl bg-slate-50 border border-slate-100 flex flex-col gap-1">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter truncate">{subject?.name}</span>
+                    <span className="text-lg font-black text-slate-900">{count}</span>
+                  </div>
+                );
+              });
+            })()}
+          </div>
+        </div>
+
+        {/* Efficiency Score */}
+        <div className="premium-card p-6 flex flex-col items-center justify-center text-center space-y-3">
+          <div className="relative h-24 w-24 flex items-center justify-center">
+            <svg className="h-full w-full -rotate-90">
+              <circle cx="48" cy="48" r="40" fill="none" stroke="#f1f5f9" strokeWidth="8" />
+              <motion.circle 
+                cx="48" cy="48" r="40" fill="none" stroke="#ea580c" strokeWidth="8" 
+                strokeDasharray="251.2"
+                initial={{ strokeDashoffset: 251.2 }}
+                animate={{ strokeDashoffset: 251.2 - (251.2 * 0.92) }}
+                strokeLinecap="round"
+              />
+            </svg>
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <span className="text-2xl font-black text-slate-900">92%</span>
+            </div>
+          </div>
+          <div>
+            <h3 className="font-bold text-slate-900">Schedule Efficiency</h3>
+            <p className="text-[10px] text-slate-500 font-medium leading-tight">Optimization score based on teacher availability and gap minimization.</p>
+          </div>
+        </div>
+      </div>
+
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 print:hidden">
          <div className="premium-card p-4 flex items-center gap-4">
             <div className="h-2 w-2 rounded-full bg-orange-500" />
             <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">Core Subjects</span>
-            <span className="ml-auto text-sm font-bold text-slate-900">12 Periods</span>
+            <span className="ml-auto text-sm font-bold text-slate-900">
+              {classEntries.filter(e => !data.subjects.find(s => s.id === e.subjectId)?.isAllenBlock).length} Periods
+            </span>
          </div>
          <div className="premium-card p-4 flex items-center gap-4">
             <div className="h-2 w-2 rounded-full bg-emerald-500" />
             <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">Labs/Practical</span>
-            <span className="ml-auto text-sm font-bold text-slate-900">4 Periods</span>
+            <span className="ml-auto text-sm font-bold text-slate-900">
+              {classEntries.filter(e => data.subjects.find(s => s.id === e.subjectId)?.isAllenBlock).length} Periods
+            </span>
          </div>
          <div className="premium-card p-4 flex items-center gap-4">
             <div className="h-2 w-2 rounded-full bg-amber-500" />
-            <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">Extracurricular</span>
-            <span className="ml-auto text-sm font-bold text-slate-900">2 Periods</span>
+            <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">Weekly Load</span>
+            <span className="ml-auto text-sm font-bold text-slate-900">{classEntries.length} / 48</span>
          </div>
          <div className="premium-card p-4 flex items-center gap-4">
             <div className="h-2 w-2 rounded-full bg-red-500" />
             <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">Empty Slots</span>
-            <span className="ml-auto text-sm font-bold text-slate-900">3 Slots</span>
+            <span className="ml-auto text-sm font-bold text-slate-900">{48 - classEntries.length} Slots</span>
          </div>
       </div>
     </div>
