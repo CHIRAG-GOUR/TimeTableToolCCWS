@@ -10,7 +10,8 @@ import {
   Share2,
   Filter,
   Info,
-  CheckCircle2
+  CheckCircle2,
+  AlertTriangle
 } from 'lucide-react';
 import { MockData, TimetableEntry } from '@/data/mockData';
 import TimetableGrid from '@/components/TimetableGrid';
