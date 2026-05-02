@@ -1,89 +1,49 @@
-import { toPng } from 'html-to-image';
-import jsPDF from 'jspdf';
+import { jsPDF } from 'jspdf';
+import * as htmlToImage from 'html-to-image';
 import * as XLSX from 'xlsx';
-import { Period, TimetableEntry, Subject, Teacher } from '@/data/mockData';
+import { TimetableEntry, Subject, Teacher, Period } from '@/data/mockData';
 
-export const exportToImage = async (elementId: string, fileName: string) => {
+export const exportToImage = async (elementId: string, filename: string) => {
   const element = document.getElementById(elementId);
   if (!element) return;
 
-  element.classList.add('exporting-view');
-  
   try {
-    // Wait a tiny bit for the class to apply
-    await new Promise(resolve => setTimeout(resolve, 100));
-    
-    // Capture full dimensions
-    const width = element.scrollWidth;
-    const height = element.scrollHeight;
-
-    const dataUrl = await toPng(element, {
-      width: width,
-      height: height,
-      style: {
-        transform: 'scale(1)',
-        transformOrigin: 'top left',
-        width: `${width}px`,
-        height: `${height}px`,
-      },
-      quality: 0.95,
+    const dataUrl = await htmlToImage.toPng(element, {
       backgroundColor: '#ffffff',
-      cacheBust: true,
+      quality: 1,
+      pixelRatio: 2,
     });
-    
+
     const link = document.createElement('a');
-    link.download = `${fileName}.png`;
+    link.download = `${filename}.png`;
     link.href = dataUrl;
     link.click();
   } catch (error) {
-    console.error('Error exporting image:', error);
-  } finally {
-    element.classList.remove('exporting-view');
+    console.error('Error generating image:', error);
   }
 };
 
-export const exportToPDF = async (elementId: string, fileName: string) => {
+export const exportToPDF = async (elementId: string, filename: string) => {
   const element = document.getElementById(elementId);
   if (!element) return;
 
-  element.classList.add('exporting-view');
-  
   try {
-    await new Promise(resolve => setTimeout(resolve, 100));
-    
-    const width = element.scrollWidth;
-    const height = element.scrollHeight;
-
-    const dataUrl = await toPng(element, {
-      width: width,
-      height: height,
-      style: {
-        transform: 'scale(1)',
-        transformOrigin: 'top left',
-        width: `${width}px`,
-        height: `${height}px`,
-      },
-      quality: 0.95,
+    const dataUrl = await htmlToImage.toPng(element, {
       backgroundColor: '#ffffff',
+      quality: 1,
+      pixelRatio: 2,
     });
-    
-    // Create an image object to get dimensions
-    const img = new Image();
-    img.src = dataUrl;
-    await new Promise(resolve => img.onload = resolve);
 
     const pdf = new jsPDF({
-      orientation: img.width > img.height ? 'landscape' : 'portrait',
+      orientation: 'landscape',
       unit: 'px',
-      format: [img.width, img.height]
+      format: [element.offsetWidth * 1.5, element.offsetHeight * 1.5],
     });
-    
-    pdf.addImage(dataUrl, 'PNG', 0, 0, img.width, img.height);
-    pdf.save(`${fileName}.pdf`);
+
+    pdf.addImage(dataUrl, 'PNG', 0, 0, element.offsetWidth * 1.5, element.offsetHeight * 1.5);
+    pdf.save(`${filename}.pdf`);
   } catch (error) {
-    console.error('Error exporting PDF:', error);
-  } finally {
-    element.classList.remove('exporting-view');
+    console.error('Error generating PDF:', error);
   }
 };
 
@@ -93,32 +53,27 @@ export const exportToExcel = (
   entries: TimetableEntry[],
   subjects: Subject[],
   teachers: Teacher[],
-  className: string
+  filename: string
 ) => {
-  const header = ['Period', ...days];
-  const rows = periods.map(period => {
-    const row: any[] = [`${period.name} (${period.startTime}-${period.endTime})`];
+  const data = periods.map(period => {
+    const row: any = { 'Period': `${period.name} (${period.startTime}-${period.endTime})` };
     days.forEach(day => {
       const entry = entries.find(e => e.day === day && e.periodId === period.id);
       if (period.type !== 'Class') {
-        row.push(period.name);
+        row[day] = period.name;
       } else if (entry) {
         const subject = subjects.find(s => s.id === entry.subjectId);
         const teacher = teachers.find(t => t.id === entry.teacherId);
-        row.push(`${subject?.name || 'Unknown'}\n(${teacher?.name || 'N/A'})`);
+        row[day] = `${subject?.name || ''} (${teacher?.name || ''})`;
       } else {
-        row.push('-');
+        row[day] = '-';
       }
     });
     return row;
   });
 
-  const worksheet = XLSX.utils.aoa_to_sheet([header, ...rows]);
+  const worksheet = XLSX.utils.json_to_sheet(data);
   const workbook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(workbook, worksheet, 'Timetable');
-  
-  // Set column widths
-  worksheet['!cols'] = [{ wch: 20 }, ...days.map(() => ({ wch: 15 }))];
-
-  XLSX.writeFile(workbook, `${className}_Timetable.xlsx`);
+  XLSX.writeFile(workbook, `${filename}.xlsx`);
 };

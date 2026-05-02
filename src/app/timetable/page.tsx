@@ -121,6 +121,46 @@ export default function TimetablePage() {
     }
   };
 
+  const handleMoveEntry = async (entryId: string, targetDay: string, targetPeriodId: string) => {
+    if (!data) return;
+
+    const entryToMove = data.timetable.find(e => e.id === entryId);
+    if (!entryToMove) return;
+
+    // Check for conflicts in the target slot
+    const hasConflict = data.timetable.some(e => 
+      e.day === targetDay && 
+      e.periodId === targetPeriodId && 
+      (e.teacherId === entryToMove.teacherId || e.classId === entryToMove.classId)
+    );
+
+    if (hasConflict) {
+      setToastMessage('Cannot move: Conflict detected in target slot!');
+      setShowShareToast(true);
+      setTimeout(() => setShowShareToast(false), 3000);
+      return;
+    }
+
+    const updatedTimetable = data.timetable.map(e => 
+      e.id === entryId ? { ...e, day: targetDay, periodId: targetPeriodId } : e
+    );
+
+    const updatedData = { ...data, timetable: updatedTimetable };
+    
+    const res = await fetch('/api/data', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedData)
+    });
+
+    if (res.ok) {
+      setData(updatedData);
+      setToastMessage('Schedule updated!');
+      setShowShareToast(true);
+      setTimeout(() => setShowShareToast(false), 2000);
+    }
+  };
+
   if (loading || !data) return (
     <div className="flex h-[60vh] items-center justify-center">
       <div className="h-12 w-12 animate-spin rounded-full border-4 border-orange-500 border-t-transparent" />
@@ -248,8 +288,10 @@ export default function TimetablePage() {
           subjects={data.subjects}
           teachers={data.teachers}
           type="class"
+          title={`${selectedClassName} Timetable`}
           isEditMode={isEditMode}
           onEditCell={handleEditCell}
+          onMoveEntry={handleMoveEntry}
         />
       </div>
 
@@ -265,6 +307,30 @@ export default function TimetablePage() {
               <h3 className="text-xl font-bold text-slate-900">Manual Slot Override</h3>
               <p className="text-sm text-slate-500">{editCell.day} - {data.bellSchedule.find(p => p.id === editCell.pId)?.name}</p>
             </div>
+
+            {/* Conflict Warning */}
+            {(() => {
+              const conflict = data.timetable.find(e => 
+                e.day === editCell.day && 
+                e.periodId === editCell.pId && 
+                e.teacherId === editForm.teacherId && 
+                e.teacherId !== '' &&
+                e.classId !== selectedClassId
+              );
+              
+              if (conflict) {
+                const conflictClass = data.classes.find(c => c.id === conflict.classId)?.name;
+                return (
+                  <div className="bg-red-50 border border-red-100 p-3 rounded-xl flex items-start gap-3">
+                    <AlertTriangle className="h-4 w-4 text-red-600 shrink-0 mt-0.5" />
+                    <p className="text-xs text-red-700 font-medium">
+                      <b>Conflict:</b> Teacher is already assigned to <b>{conflictClass}</b> during this period.
+                    </p>
+                  </div>
+                );
+              }
+              return null;
+            })()}
 
             <div className="space-y-4">
               <div className="space-y-2">
@@ -301,7 +367,14 @@ export default function TimetablePage() {
               </button>
               <button 
                 onClick={saveManualEdit}
-                className="flex-1 h-12 rounded-xl bg-orange-600 text-white font-bold hover:bg-orange-500 shadow-lg shadow-orange-600/20 transition-all"
+                disabled={data.timetable.some(e => 
+                  e.day === editCell.day && 
+                  e.periodId === editCell.pId && 
+                  e.teacherId === editForm.teacherId && 
+                  e.teacherId !== '' &&
+                  e.classId !== selectedClassId
+                )}
+                className="flex-1 h-12 rounded-xl bg-orange-600 text-white font-bold hover:bg-orange-500 shadow-lg shadow-orange-600/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-orange-600"
               >
                 SAVE CHANGES
               </button>

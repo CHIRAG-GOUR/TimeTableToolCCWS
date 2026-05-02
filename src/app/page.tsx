@@ -9,9 +9,25 @@ import {
   AlertTriangle, 
   CheckCircle2,
   TrendingUp,
-  Clock
+  Clock,
+  PieChart as PieChartIcon,
+  BarChart as BarChartIcon
 } from 'lucide-react';
 import { MockData } from '@/data/mockData';
+import { 
+  BarChart, 
+  Bar, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid, 
+  Tooltip, 
+  ResponsiveContainer, 
+  Cell,
+  PieChart,
+  Pie
+} from 'recharts';
+
+const COLORS = ['#f97316', '#0ea5e9', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'];
 
 const container = {
   hidden: { opacity: 0 },
@@ -41,7 +57,7 @@ export default function Dashboard() {
       });
   }, []);
 
-  if (loading) {
+  if (loading || !data) {
     return (
       <div className="flex h-[60vh] items-center justify-center">
         <div className="h-12 w-12 animate-spin rounded-full border-4 border-orange-500 border-t-transparent" />
@@ -49,12 +65,34 @@ export default function Dashboard() {
     );
   }
 
+  // Calculate stats
   const stats = [
-    { name: 'Total Classes', value: data?.classes.length || 0, icon: School, color: 'text-blue-600', bg: 'bg-blue-50' },
-    { name: 'Total Teachers', value: data?.teachers.length || 0, icon: Users, color: 'text-purple-600', bg: 'bg-purple-50' },
-    { name: 'Subjects Taught', value: data?.subjects.length || 0, icon: BookOpen, color: 'text-amber-600', bg: 'bg-amber-50' },
+    { name: 'Total Classes', value: data.classes.length, icon: School, color: 'text-blue-600', bg: 'bg-blue-50' },
+    { name: 'Total Teachers', value: data.teachers.length, icon: Users, color: 'text-purple-600', bg: 'bg-purple-50' },
+    { name: 'Subjects Taught', value: data.subjects.length, icon: BookOpen, color: 'text-amber-600', bg: 'bg-amber-50' },
     { name: 'Active Conflicts', value: 0, icon: AlertTriangle, color: 'text-red-600', bg: 'bg-red-50' },
   ];
+
+  // Calculate Teacher Workload Data
+  const teacherWorkloadData = data.teachers.map(teacher => {
+    const assignedPeriods = data.timetable.filter(e => e.teacherId === teacher.id).length;
+    return {
+      name: teacher.name.split(' ').pop(), // Just last name for brevity
+      assigned: assignedPeriods,
+      max: teacher.maxHoursPerWeek,
+      fullName: teacher.name
+    };
+  });
+
+  // Calculate Subject Distribution Data
+  const subjectCounts: Record<string, number> = {};
+  data.timetable.forEach(e => {
+    const subject = data.subjects.find(s => s.id === e.subjectId);
+    if (subject) {
+      subjectCounts[subject.name] = (subjectCounts[subject.name] || 0) + 1;
+    }
+  });
+  const subjectDistributionData = Object.entries(subjectCounts).map(([name, value]) => ({ name, value }));
 
   return (
     <div className="space-y-8 animate-in">
@@ -96,30 +134,55 @@ export default function Dashboard() {
           transition={{ delay: 0.4 }}
           className="premium-card col-span-4 p-6"
         >
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-lg font-semibold text-slate-900">Teacher Workload Summary</h2>
-            <button className="text-sm font-medium text-orange-600 hover:text-orange-500 transition-colors">View Details</button>
-          </div>
-          <div className="space-y-4">
-            {data?.teachers.map((teacher) => (
-              <div key={teacher.id} className="flex items-center gap-4">
-                <div className="h-8 w-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400">
-                  <Users className="h-4 w-4" />
-                </div>
-                <div className="flex-1">
-                  <div className="flex justify-between text-sm mb-1">
-                    <span className="text-slate-700 font-medium">{teacher.name}</span>
-                    <span className="text-slate-500 text-xs">12 / {teacher.maxHoursPerWeek} hrs</span>
-                  </div>
-                  <div className="h-2 w-full rounded-full bg-slate-100 overflow-hidden">
-                    <div 
-                      className="h-full bg-orange-500 rounded-full" 
-                      style={{ width: `${(12 / teacher.maxHoursPerWeek) * 100}%` }}
-                    />
-                  </div>
-                </div>
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 rounded-xl bg-orange-50 flex items-center justify-center">
+                <BarChartIcon className="h-5 w-5 text-orange-600" />
               </div>
-            ))}
+              <h2 className="text-lg font-bold text-slate-900">Teacher Workload Distribution</h2>
+            </div>
+            <button className="text-sm font-bold text-orange-600 hover:text-orange-500 transition-colors">Analyze</button>
+          </div>
+          
+          <div className="h-[300px] w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={teacherWorkloadData}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                <XAxis 
+                  dataKey="name" 
+                  axisLine={false} 
+                  tickLine={false} 
+                  tick={{ fill: '#64748b', fontSize: 10, fontWeight: 600 }}
+                  dy={10}
+                />
+                <YAxis 
+                  axisLine={false} 
+                  tickLine={false} 
+                  tick={{ fill: '#64748b', fontSize: 10, fontWeight: 600 }}
+                />
+                <Tooltip 
+                  cursor={{ fill: '#f8fafc' }}
+                  content={({ active, payload }) => {
+                    if (active && payload && payload.length) {
+                      const d = payload[0].payload;
+                      return (
+                        <div className="bg-slate-900 text-white p-3 rounded-xl shadow-2xl border border-slate-800">
+                          <p className="text-xs font-bold mb-1">{d.fullName}</p>
+                          <p className="text-[10px] text-slate-400">Assigned: <span className="text-orange-400">{d.assigned} hrs</span></p>
+                          <p className="text-[10px] text-slate-400">Capacity: {d.max} hrs</p>
+                        </div>
+                      );
+                    }
+                    return null;
+                  }}
+                />
+                <Bar dataKey="assigned" radius={[6, 6, 0, 0]} barSize={32}>
+                  {teacherWorkloadData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.assigned > entry.max ? '#ef4444' : '#f97316'} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
           </div>
         </motion.div>
 
@@ -129,31 +192,76 @@ export default function Dashboard() {
           transition={{ delay: 0.5 }}
           className="premium-card col-span-3 p-6"
         >
-          <h2 className="text-lg font-semibold text-slate-900 mb-6">Quick Status</h2>
-          <div className="space-y-6">
-            <div className="flex items-start gap-4">
-              <div className="h-10 w-10 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0">
-                <CheckCircle2 className="h-5 w-5 text-emerald-600" />
+          <div className="flex items-center gap-3 mb-8">
+            <div className="h-10 w-10 rounded-xl bg-blue-50 flex items-center justify-center">
+              <PieChartIcon className="h-5 w-5 text-blue-600" />
+            </div>
+            <h2 className="text-lg font-bold text-slate-900">Subject Mix</h2>
+          </div>
+
+          <div className="h-[240px] w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={subjectDistributionData}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={60}
+                  outerRadius={80}
+                  paddingAngle={5}
+                  dataKey="value"
+                >
+                  {subjectDistributionData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} stroke="none" />
+                  ))}
+                </Pie>
+                <Tooltip 
+                   content={({ active, payload }) => {
+                    if (active && payload && payload.length) {
+                      return (
+                        <div className="bg-white p-3 rounded-xl shadow-xl border border-slate-100">
+                          <p className="text-xs font-bold text-slate-900">{payload[0].name}</p>
+                          <p className="text-xs text-slate-500">{payload[0].value} Periods</p>
+                        </div>
+                      );
+                    }
+                    return null;
+                  }}
+                />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+
+          <div className="mt-4 grid grid-cols-2 gap-2">
+            {subjectDistributionData.slice(0, 6).map((s, i) => (
+              <div key={s.name} className="flex items-center gap-2">
+                <div className="h-2 w-2 rounded-full" style={{ backgroundColor: COLORS[i % COLORS.length] }} />
+                <span className="text-[10px] font-bold text-slate-500 truncate uppercase tracking-tighter">{s.name}</span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="premium-card col-span-7 p-6"
+        >
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="h-12 w-12 rounded-2xl bg-emerald-50 flex items-center justify-center">
+                <CheckCircle2 className="h-6 w-6 text-emerald-600" />
               </div>
               <div>
-                <p className="text-sm font-semibold text-slate-900">Generation Ready</p>
-                <p className="text-xs text-slate-500 mt-1 leading-relaxed">All teachers have subjects assigned and class requirements are met.</p>
+                <p className="text-sm font-bold text-slate-900">System Integrity: 100%</p>
+                <p className="text-xs text-slate-500">All constraints satisfied for current generated schedule.</p>
               </div>
             </div>
-
-            <div className="flex items-start gap-4">
-              <div className="h-10 w-10 rounded-xl bg-amber-50 flex items-center justify-center shrink-0">
-                <Clock className="h-5 w-5 text-amber-600" />
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-slate-900">Last Generated</p>
-                <p className="text-xs text-slate-500 mt-1 leading-relaxed">May 01, 2026 - 03:45 PM</p>
-              </div>
+            <div className="flex gap-2">
+              <button className="px-4 py-2 rounded-xl bg-slate-50 text-xs font-bold text-slate-600 hover:bg-slate-100 transition-all">Re-validate All</button>
+              <button className="px-4 py-2 rounded-xl bg-orange-600 text-white text-xs font-bold shadow-lg shadow-orange-600/20 hover:bg-orange-500 transition-all">Download Report</button>
             </div>
-
-            <button className="w-full mt-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold text-slate-700 hover:bg-slate-100 transition-all">
-              Download Latest Report
-            </button>
           </div>
         </motion.div>
       </div>

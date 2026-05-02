@@ -142,6 +142,48 @@ export default function Navbar() {
 }
 
 function NewEntryModal({ isOpen, onClose, data, entry, setEntry, onSubmit }: any) {
+  const [conflicts, setConflicts] = useState<{ type: 'teacher' | 'class', message: string }[]>([]);
+
+  useEffect(() => {
+    if (!data || !entry.day || !entry.periodId) return;
+
+    const newConflicts: { type: 'teacher' | 'class', message: string }[] = [];
+
+    // Check Teacher Conflict
+    if (entry.teacherId) {
+      const teacherConflict = data.timetable.find((e: any) => 
+        e.day === entry.day && 
+        e.periodId === entry.periodId && 
+        e.teacherId === entry.teacherId
+      );
+      if (teacherConflict) {
+        const teacher = data.teachers.find((t: any) => t.id === entry.teacherId);
+        newConflicts.push({ 
+          type: 'teacher', 
+          message: `${teacher?.name} is already teaching Class ${teacherConflict.classId} at this time.` 
+        });
+      }
+    }
+
+    // Check Class Conflict
+    if (entry.classId) {
+      const classConflict = data.timetable.find((e: any) => 
+        e.day === entry.day && 
+        e.periodId === entry.periodId && 
+        e.classId === entry.classId
+      );
+      if (classConflict) {
+        const subject = data.subjects.find((s: any) => s.id === classConflict.subjectId);
+        newConflicts.push({ 
+          type: 'class', 
+          message: `Class ${entry.classId} already has ${subject?.name} scheduled at this time.` 
+        });
+      }
+    }
+
+    setConflicts(newConflicts);
+  }, [entry, data]);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -171,6 +213,25 @@ function NewEntryModal({ isOpen, onClose, data, entry, setEntry, onSubmit }: any
                 <X className="h-6 w-6" />
               </button>
             </div>
+
+            {/* Conflict Warnings */}
+            <AnimatePresence>
+              {conflicts.length > 0 && (
+                <motion.div 
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  className="mb-8 space-y-2 overflow-hidden"
+                >
+                  {conflicts.map((c, i) => (
+                    <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-red-50 border border-red-100 text-red-600">
+                      <AlertCircle className="h-5 w-5 shrink-0" />
+                      <p className="text-xs font-bold leading-tight">{c.message}</p>
+                    </div>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             <div className="grid gap-8 sm:grid-cols-2">
               <div className="space-y-3">
@@ -259,9 +320,14 @@ function NewEntryModal({ isOpen, onClose, data, entry, setEntry, onSubmit }: any
               </button>
               <button 
                 onClick={onSubmit}
-                className="flex-2 px-10 py-5 rounded-3xl bg-orange-600 text-white font-bold text-sm shadow-2xl shadow-orange-600/30 hover:bg-orange-500 transition-all uppercase tracking-widest"
+                disabled={conflicts.length > 0}
+                className={`flex-2 px-10 py-5 rounded-3xl font-bold text-sm shadow-2xl transition-all uppercase tracking-widest ${
+                  conflicts.length > 0 
+                    ? 'bg-slate-200 text-slate-400 cursor-not-allowed shadow-none' 
+                    : 'bg-orange-600 text-white shadow-orange-600/30 hover:bg-orange-500'
+                }`}
               >
-                Save Entry
+                {conflicts.length > 0 ? 'Fix Conflicts' : 'Save Entry'}
               </button>
             </div>
           </motion.div>
@@ -270,3 +336,4 @@ function NewEntryModal({ isOpen, onClose, data, entry, setEntry, onSubmit }: any
     </AnimatePresence>
   );
 }
+
