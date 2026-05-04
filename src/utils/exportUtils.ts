@@ -102,9 +102,15 @@ export const exportToPDF = async (
   pdf.setFont('helvetica', 'normal');
   pdf.text(`${className}`, pageWidth / 2, 24, { align: 'center' });
 
+  const firstPeriod = periods[0];
+  const lastPeriod = periods[periods.length - 1];
+  const timeRange = firstPeriod && lastPeriod 
+    ? `${firstPeriod.startTime} – ${lastPeriod.endTime}`
+    : '9:30 AM – 4:30 PM';
+
   pdf.setFontSize(8);
   pdf.setTextColor(120, 120, 120);
-  pdf.text('Academic Year 2026-27  |  Junior Schedule (9:30 AM – 4:30 PM)', pageWidth / 2, 30, { align: 'center' });
+  pdf.text(`Academic Year 2026-27  |  Junior Schedule (${timeRange})`, pageWidth / 2, 30, { align: 'center' });
   pdf.setTextColor(0, 0, 0);
 
   // ── Build table data ──
@@ -237,7 +243,7 @@ export const exportToExcel = (
   // Create worksheet from array of arrays (gives us control over layout)
   const titleRows: string[][] = [
     [filename.toUpperCase()],
-    ['Academic Year 2026-27 | Junior Schedule (9:30 AM – 4:30 PM)'],
+    [`Academic Year 2026-27 | Junior Schedule (${periods[0]?.startTime || '9:30 AM'} – ${periods[periods.length - 1]?.endTime || '4:30 PM'})`],
     [], // blank separator
     headerRow,
     ...dataRows,

@@ -78,11 +78,6 @@ function parseBellSchedule(workbook: xlsx.WorkBook): Period[] {
 
   console.log(`[ServerParser] Raw bell entries found: ${rawEntries.length}`);
 
-  // ── Step 2: Build junior schedule (9:30 AM to 4:30 PM, exactly 8 teaching periods) ──
-  // Junior day: Mindfulness → 3P,4P → LUNCH → 5P,6P,7P → FRUIT BREAK → 8P,9P,10P
-  // That's 8 teaching periods (3P through 10P), with breaks NOT counted as periods.
-
-  const JUNIOR_START = 9 * 60 + 30;  // 9:30 AM
   const MIN_TEACHING = 40;            // Minimum 40 min per teaching period
   const periods: Period[] = [];
   const seenIds = new Set<string>();
@@ -99,7 +94,7 @@ function parseBellSchedule(workbook: xlsx.WorkBook): Period[] {
     e.label.toUpperCase().includes('II-VII') && 
     (e.label.toUpperCase().includes('0P') || e.label.toUpperCase().includes('MINDFULNESS'))
   );
-  if (mindfulness && mindfulness.startMins >= JUNIOR_START) {
+  if (mindfulness) {
     periods.push({ id: 'mindfulness', name: 'Mindfulness', startTime: mindfulness.start, endTime: mindfulness.end, type: 'Break' });
   }
 

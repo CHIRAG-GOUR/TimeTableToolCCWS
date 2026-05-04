@@ -219,7 +219,9 @@ export default function TimetablePage() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between print:hidden">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-slate-900">{selectedClassName} Timetable</h1>
-          <p className="text-xs text-slate-400 font-medium mt-0.5">Academic Year 2026-27 • Junior Schedule (9:30 AM – 4:30 PM)</p>
+          <p className="text-xs text-slate-400 font-medium mt-0.5">
+            Academic Year 2026-27 • Junior Schedule ({data.bellSchedule[0]?.startTime || '9:30 AM'} – {data.bellSchedule[data.bellSchedule.length - 1]?.endTime || '4:30 PM'})
+          </p>
         </div>
         
         <div className="flex items-center gap-2">
