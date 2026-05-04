@@ -279,6 +279,7 @@ export default function TimetablePage() {
           entries={classEntries}
           subjects={data.subjects}
           teachers={data.teachers}
+          classes={data.classes}
           type="class"
           title={`${selectedClassName} — Weekly Schedule`}
           isEditMode={isEditMode}

@@ -55,10 +55,69 @@ export default function TeachersPage() {
 
   const handleQuickAdd = async () => {
     if (!data || !viewingTeacherId || !quickEntry.classId || !quickEntry.subjectId || !quickEntry.periodId) return;
-    const entry: TimetableEntry = { id: `m-${Date.now()}`, teacherId: viewingTeacherId, ...quickEntry };
-    const updatedData = { ...data, timetable: [...data.timetable, entry] };
+    
+    const existingIndex = data.timetable.findIndex(e => 
+      e.teacherId === viewingTeacherId && 
+      e.day === quickEntry.day && 
+      e.periodId === quickEntry.periodId
+    );
+    
+    let updatedTimetable;
+    if (existingIndex >= 0) {
+      updatedTimetable = [...data.timetable];
+      updatedTimetable[existingIndex] = { ...updatedTimetable[existingIndex], ...quickEntry };
+    } else {
+      const entry: TimetableEntry = { id: `m-${Date.now()}`, teacherId: viewingTeacherId, ...quickEntry };
+      updatedTimetable = [...data.timetable, entry];
+    }
+
+    const updatedData = { ...data, timetable: updatedTimetable };
     const res = await fetch('/api/data', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(updatedData) });
     if (res.ok) { setData(updatedData); setIsQuickAdding(false); }
+  };
+
+  const handleDeleteEntry = async () => {
+    if (!data || !viewingTeacherId || !quickEntry.day || !quickEntry.periodId) return;
+    
+    const updatedTimetable = data.timetable.filter(e => 
+      !(e.teacherId === viewingTeacherId && e.day === quickEntry.day && e.periodId === quickEntry.periodId)
+    );
+
+    const updatedData = { ...data, timetable: updatedTimetable };
+    const res = await fetch('/api/data', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(updatedData) });
+    if (res.ok) { setData(updatedData); setIsQuickAdding(false); }
+  };
+
+  const handleEditCell = (day: string, periodId: string) => {
+    const entry = data?.timetable.find(e => 
+      e.teacherId === viewingTeacherId && e.day === day && e.periodId === periodId
+    );
+    if (entry) {
+      setQuickEntry({
+        classId: entry.classId,
+        subjectId: entry.subjectId,
+        day: entry.day,
+        periodId: entry.periodId
+      });
+    } else {
+      setQuickEntry({
+        classId: '',
+        subjectId: '',
+        day: day,
+        periodId: periodId
+      });
+    }
+    setIsQuickAdding(true);
+  };
+
+  const handleMoveEntry = async (entryId: string, targetDay: string, targetPeriodId: string) => {
+    if (!data) return;
+    const updatedTimetable = data.timetable.map(e => 
+      e.id === entryId ? { ...e, day: targetDay, periodId: targetPeriodId } : e
+    );
+    const updatedData = { ...data, timetable: updatedTimetable };
+    const res = await fetch('/api/data', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(updatedData) });
+    if (res.ok) setData(updatedData);
   };
 
   if (loading || !data) return (
@@ -228,7 +287,19 @@ export default function TeachersPage() {
                 </div>
               </div>
               <div className="flex-1 overflow-auto p-6">
-                <TimetableGrid days={data.days} periods={data.bellSchedule} entries={teacherEntries} subjects={data.subjects} teachers={data.teachers} type="teacher" />
+                <TimetableGrid 
+                  days={data.days} 
+                  periods={data.bellSchedule} 
+                  entries={teacherEntries} 
+                  subjects={data.subjects} 
+                  teachers={data.teachers} 
+                  classes={data.classes}
+                  type="teacher" 
+                  isEditMode={true}
+                  onEditCell={handleEditCell}
+                  onMoveEntry={handleMoveEntry}
+                  title={`${viewingTeacher?.name} — Schedule`}
+                />
               </div>
             </motion.div>
           </div>
@@ -278,7 +349,12 @@ export default function TeachersPage() {
 
               <div className="mt-10 flex gap-3">
                 <button onClick={() => setIsQuickAdding(false)} className="flex-1 px-4 py-3 rounded-xl bg-slate-100 text-slate-600 font-bold text-sm hover:bg-slate-200 transition-all">Discard</button>
-                <button onClick={handleQuickAdd} className="flex-2 px-4 py-3 rounded-xl bg-orange-600 text-white font-bold text-sm shadow-lg shadow-orange-600/20 hover:bg-orange-500 transition-all">Add to Schedule</button>
+                {data.timetable.some(e => e.teacherId === viewingTeacherId && e.day === quickEntry.day && e.periodId === quickEntry.periodId) && (
+                  <button onClick={handleDeleteEntry} className="px-4 py-3 rounded-xl bg-red-50 text-red-600 font-bold text-sm hover:bg-red-100 transition-all border border-red-100">Remove</button>
+                )}
+                <button onClick={handleQuickAdd} className="flex-2 px-4 py-3 rounded-xl bg-orange-600 text-white font-bold text-sm shadow-lg shadow-orange-600/20 hover:bg-orange-500 transition-all">
+                  {data.timetable.some(e => e.teacherId === viewingTeacherId && e.day === quickEntry.day && e.periodId === quickEntry.periodId) ? 'Update Slot' : 'Add to Schedule'}
+                </button>
               </div>
             </motion.div>
           </div>

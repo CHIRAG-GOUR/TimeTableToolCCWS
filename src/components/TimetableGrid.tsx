@@ -11,6 +11,7 @@ interface TimetableGridProps {
   entries: TimetableEntry[];
   subjects: Subject[];
   teachers: Teacher[];
+  classes?: { id: string, name: string }[];
   type?: 'class' | 'teacher' | 'room';
   title?: string;
   isEditMode?: boolean;
@@ -43,7 +44,7 @@ const DAY_FILLER_MAP: Record<string, string> = {
   Saturday: 'Games',
 };
 
-export default function TimetableGrid({ days, periods, entries, subjects, teachers, type, title, onEditCell, onMoveEntry, isEditMode }: TimetableGridProps) {
+export default function TimetableGrid({ days, periods, entries, subjects, teachers, classes, type, title, onEditCell, onMoveEntry, isEditMode }: TimetableGridProps) {
   const gridRef = useRef<HTMLDivElement>(null);
   const gridId = `timetable-grid-${type || 'default'}-${Date.now()}`;
 
@@ -53,6 +54,7 @@ export default function TimetableGrid({ days, periods, entries, subjects, teache
 
   const getSubject = (id: string) => subjects.find(s => s.id === id);
   const getTeacher = (id: string) => teachers.find(t => t.id === id);
+  const getClass = (id: string) => classes?.find(c => c.id === id);
 
   const handleExportPDF = () => {
     exportToPDF(gridId, `${title || 'Timetable'}`, {
@@ -192,7 +194,7 @@ export default function TimetableGrid({ days, periods, entries, subjects, teache
                             >
                               <p className="text-[11px] font-bold text-slate-800 leading-tight mb-0.5 truncate">{subject.name}</p>
                               <p className="text-[9px] text-slate-500 font-medium truncate">
-                                {type === 'class' ? teacher?.name : entry.classId}
+                                {type === 'class' ? teacher?.name : (getClass(entry.classId)?.name || entry.classId)}
                               </p>
                               {isEditMode && (
                                 <button 
