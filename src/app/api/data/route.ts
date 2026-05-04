@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getDataStore, updateDataStore, MockData } from '@/data/mockData';
+import { getDataStore, updateDataStore, MockData, initialMockData } from '@/data/mockData';
 
 export async function GET() {
   try {
@@ -28,6 +28,17 @@ export async function POST(request: Request) {
 
     updateDataStore(newData);
     return NextResponse.json({ success: true, data: getDataStore() });
+  } catch (error: any) {
+    return NextResponse.json(
+      { success: false, error: error.message || 'Internal Server Error' },
+      { status: 500 }
+    );
+  }
+}
+export async function DELETE() {
+  try {
+    updateDataStore(JSON.parse(JSON.stringify(initialMockData)));
+    return NextResponse.json({ success: true, message: 'Data store reset successfully' });
   } catch (error: any) {
     return NextResponse.json(
       { success: false, error: error.message || 'Internal Server Error' },

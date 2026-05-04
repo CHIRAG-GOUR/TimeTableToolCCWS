@@ -11,7 +11,9 @@ import {
   TrendingUp,
   Clock,
   PieChart as PieChartIcon,
-  BarChart as BarChartIcon
+  BarChart as BarChartIcon,
+  Link2,
+  RefreshCw
 } from 'lucide-react';
 import { MockData } from '@/data/mockData';
 import { 
@@ -46,6 +48,7 @@ const item = {
 
 export default function Dashboard() {
   const [data, setData] = useState<MockData | null>(null);
+  const [gsUrl, setGsUrl] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -101,17 +104,107 @@ export default function Dashboard() {
           <h1 className="text-3xl font-bold tracking-tight text-slate-900">Dashboard Overview</h1>
           <p className="mt-2 text-slate-500">Welcome back, Admin. Here's what's happening today.</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="relative">
+            <input 
+              type="text" 
+              placeholder="Paste Google Sheet Link"
+              className="h-12 w-64 pl-10 pr-4 rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-900 transition-all text-sm"
+              onChange={(e) => setGsUrl(e.target.value)}
+            />
+            <Link2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          </div>
+          
+          <button 
+            type="button"
+            onClick={async (e) => {
+              e.preventDefault();
+              if (!gsUrl) return alert('Please paste a Google Sheet link first');
+              try {
+                const sheetIdMatch = gsUrl.match(/\/d\/([a-zA-Z0-9-_]+)/);
+                if (!sheetIdMatch) return alert('Invalid Google Sheet URL');
+                
+                const btn = e.currentTarget as HTMLButtonElement;
+                const originalText = btn.innerHTML;
+                btn.textContent = 'SYNCING...';
+
+                const res = await fetch('/api/sync', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ sheetId: sheetIdMatch[1] })
+                });
+
+                const result = await res.json();
+
+                if (!res.ok || !result.success) {
+                  btn.innerHTML = originalText;
+                  return alert('Sync failed: ' + (result.error || 'Unknown error'));
+                }
+
+                setData(result.data);
+                btn.innerHTML = originalText;
+                alert(`Synced successfully! ${result.data.teachers.length} teachers, ${result.data.classes.length} classes, ${result.data.assignments.length} assignments loaded.`);
+              } catch (err: any) {
+                alert('Sync error: ' + err.message);
+              }
+            }}
+            className="h-12 px-6 rounded-xl bg-white border border-slate-200 text-slate-900 font-bold flex items-center justify-center gap-2 hover:bg-slate-50 transition-all shadow-sm"
+          >
+            <RefreshCw className="w-4 h-4" />
+            SYNC SHEET
+          </button>
+
+          <button 
+            onClick={async () => {
+              if (!confirm('Are you sure you want to clear all data? This will reset the counts to 0.')) return;
+              try {
+                const res = await fetch('/api/data', { method: 'DELETE' });
+                if (res.ok) {
+                  window.location.reload();
+                }
+              } catch (err) {
+                alert('Error resetting data');
+              }
+            }}
+            className="h-12 px-6 rounded-xl bg-white border border-red-100 text-red-600 font-bold flex items-center justify-center gap-2 hover:bg-red-50 transition-all shadow-sm"
+          >
+            <RefreshCw className="w-4 h-4" />
+            RESET
+          </button>
+
           <label className="cursor-pointer h-12 px-6 rounded-xl bg-slate-900 text-white font-bold flex items-center justify-center gap-2 hover:bg-slate-800 transition-colors shadow-lg shadow-slate-900/20">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
               <polyline points="17 8 12 3 7 8" />
               <line x1="12" y1="3" x2="12" y2="15" />
             </svg>
-            IMPORT SCHOOL DATA
-            <input type="file" accept=".xlsx, .xls, .csv" className="hidden" onChange={(e) => {
-              // TODO: Implement parsing when the user provides the Excel schema
-              alert('File selected! Please share the Excel file format with me so I can write the parser.');
+            UPLOAD EXCEL
+            <input type="file" accept=".xlsx, .xls, .csv" className="hidden" onChange={async (e) => {
+              const file = e.target.files?.[0];
+              if (!file) return;
+              try {
+                // Dynamically import to avoid SSR issues if any
+                const { parseExcelData } = await import('@/utils/excelParser');
+                const parsedData = await parseExcelData(file);
+                
+                // POST to backend
+                const res = await fetch('/api/data', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(parsedData)
+                });
+                
+                if (res.ok) {
+                  const result = await res.json();
+                  setData(result.data);
+                  alert('School data successfully imported and analyzed!');
+                } else {
+                  const error = await res.json();
+                  alert('Failed to save imported data: ' + error.error);
+                }
+              } catch (err: any) {
+                alert('Error parsing file: ' + err.message);
+              }
             }} />
           </label>
         </div>

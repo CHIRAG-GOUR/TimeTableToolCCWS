@@ -25,6 +25,7 @@ export default function TeachersPage() {
   const [viewingTeacherId, setViewingTeacherId] = useState<string | null>(null);
   const [isAddingTeacher, setIsAddingTeacher] = useState(false);
   const [newTeacher, setNewTeacher] = useState({ name: '', maxHours: 28 });
+  const [searchQuery, setSearchQuery] = useState('');
   
   // Quick Add Entry for Teacher Modal
   const [isQuickAdding, setIsQuickAdding] = useState(false);
@@ -104,12 +105,19 @@ export default function TeachersPage() {
         <input 
           type="text" 
           placeholder="Search by name or subject..." 
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
           className="bg-transparent border-none text-sm text-slate-900 focus:ring-0 w-full placeholder:text-slate-400"
         />
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {data.teachers.map((teacher) => {
+        {data.teachers
+          .filter(t => 
+            t.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+            t.subjects.some(s => s.toLowerCase().includes(searchQuery.toLowerCase()))
+          )
+          .map((teacher) => {
           const workload = data.timetable.filter(e => e.teacherId === teacher.id).length;
           return (
             <motion.div 
@@ -128,7 +136,17 @@ export default function TeachersPage() {
               </div>
 
               <h3 className="text-lg font-bold text-slate-900">{teacher.name}</h3>
-              <p className="text-xs text-slate-500 mt-1">Faculty Member</p>
+              <div className="flex flex-wrap gap-1 mt-1">
+                {teacher.subjects.length > 0 ? (
+                  teacher.subjects.map(s => (
+                    <span key={s} className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-medium">
+                      {s}
+                    </span>
+                  ))
+                ) : (
+                  <span className="text-xs text-slate-500">Faculty Member</span>
+                )}
+              </div>
 
               <div className="mt-6 space-y-3 flex-1">
                 <div className="flex justify-between text-xs">
