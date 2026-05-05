@@ -62,18 +62,36 @@ function parseBellSchedule(workbook: xlsx.WorkBook): Period[] {
   const rawEntries: { label: string; start: string; end: string; startMins: number; endMins: number; duration: number }[] = [];
 
   for (const row of rows) {
-    const cellVal = String(row[0] || '').trim();
-    if (!cellVal) continue;
-    // Only match period-like labels in column 0
-    if (!cellVal.match(/^(\d+P|FIRST\s+0P|LUNCH|FRUIT|WE\s*TIME)/i)) continue;
-    const timingCell = String(row[1] || '').trim();
-    const timeMatch = timingCell.match(/(\d{1,2}[:.]\d{2})\s*[-–]\s*(\d{1,2}[:.]\d{2})/);
-    if (!timeMatch) continue;
-    const start = timeMatch[1].replace('.', ':');
-    const end = timeMatch[2].replace('.', ':');
-    const startMins = timeToMinutes(start);
-    const endMins = timeToMinutes(end);
-    rawEntries.push({ label: cellVal, start, end, startMins, endMins, duration: endMins - startMins });
+    // Search ALL columns for a period label (1P, 2P, etc.)
+    let labelIndex = -1;
+    let timingIndex = -1;
+
+    for (let i = 0; i < row.length; i++) {
+      const cellVal = String(row[i] || '').trim();
+      if (cellVal.match(/^(\d+P|FIRST\s+0P|LUNCH|FRUIT|WE\s*TIME)/i)) {
+        labelIndex = i;
+        // The timing is usually in the next non-empty column
+        for (let j = i + 1; j < Math.min(i + 5, row.length); j++) {
+          const tCell = String(row[j] || '').trim();
+          if (tCell.match(/(\d{1,2}[:.]\d{2})\s*[-–]\s*(\d{1,2}[:.]\d{2})/)) {
+            timingIndex = j;
+            break;
+          }
+        }
+        if (labelIndex !== -1 && timingIndex !== -1) {
+          const label = String(row[labelIndex]).trim();
+          const timingCell = String(row[timingIndex]).trim();
+          const timeMatch = timingCell.match(/(\d{1,2}[:.]\d{2})\s*[-–]\s*(\d{1,2}[:.]\d{2})/);
+          if (timeMatch) {
+            const start = timeMatch[1].replace('.', ':');
+            const end = timeMatch[2].replace('.', ':');
+            const startMins = timeToMinutes(start);
+            const endMins = timeToMinutes(end);
+            rawEntries.push({ label, start, end, startMins, endMins, duration: endMins - startMins });
+          }
+        }
+      }
+    }
   }
 
   console.log(`[ServerParser] Raw bell entries found: ${rawEntries.length}`);
@@ -138,16 +156,11 @@ function parseBellSchedule(workbook: xlsx.WorkBook): Period[] {
     }
   }
 
-  // Lunch (between 4P and 5P)
-  const lunchEntry = rawEntries.find(e => e.label.toUpperCase().includes('LUNCH') && !e.label.toUpperCase().includes('FRUIT'));
-  if (lunchEntry) {
-    periods.push({ id: 'lunch', name: 'LUNCH', startTime: lunchEntry.start, endTime: lunchEntry.end, type: 'Lunch' });
-  }
+  // Lunch (Fixed)
+  periods.push({ id: 'lunch', name: 'LUNCH', startTime: '11:20', endTime: '11:40', type: 'Lunch' });
 
-  // Fruit Break (between 7P and 8P — before Period 6,7,8 in our 1-8 numbering)
-  if (fruitEntry) {
-    periods.push({ id: 'fruit-break', name: 'FRUIT BREAK', startTime: fruitEntry.start, endTime: fruitEntry.end, type: 'FruitBreak' });
-  }
+  // Fruit Break (Fixed)
+  periods.push({ id: 'fruit-break', name: 'FRUIT BREAK', startTime: '02:00', endTime: '02:10', type: 'FruitBreak' });
 
   // Sort everything by start time
   periods.sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
@@ -165,6 +178,144 @@ function parseBellSchedule(workbook: xlsx.WorkBook): Period[] {
   }
 
   return periods;
+}
+
+// ── Parse HOBBY DAYS from the bell schedule sheet ──
+interface HobbySlot { periodId: string; grades: string[]; days: string[]; }
+
+function parseHobbyDays(workbook: xlsx.WorkBook): HobbySlot[] {
+  // Find the bell schedule sheet
+  const possibleNames = ['Bell Schedule', 'Bell_Schedule', 'School_Timings', 'Timings'];
+  let timingSheet: xlsx.WorkSheet | null = null;
+  for (const name of possibleNames) {
+    if (workbook.Sheets[name]) { timingSheet = workbook.Sheets[name]; break; }
+  }
+  if (!timingSheet) {
+    const match = workbook.SheetNames.find(s =>
+      s.toUpperCase().includes('BELL') || s.toUpperCase().includes('TIMING')
+    );
+    if (match) timingSheet = workbook.Sheets[match];
+  }
+  if (!timingSheet) return [];
+
+  const rows = xlsx.utils.sheet_to_json(timingSheet, { header: 1, defval: '' }) as any[][];
+  const slots: HobbySlot[] = [];
+
+  // Find the row with "HOBBY DAYS" header
+  let hobbyHeaderRow = -1;
+  let periodCol = -1, mwfCol = -1, ttsCol = -1;
+
+  for (let i = 0; i < rows.length; i++) {
+    const rowStr = rows[i].map((c: any) => String(c).toUpperCase().trim()).join('|');
+    if (rowStr.includes('HOBBY DAY') || rowStr.includes('HOBBY DAYS')) {
+      // The header with column labels is usually the next row or this row
+      // Check if this row has PERIOD/M/W/F columns
+      const cells = rows[i].map((c: any) => String(c).toUpperCase().trim());
+      const hasPeriod = cells.some(c => c.includes('PERIOD'));
+      if (hasPeriod) {
+        hobbyHeaderRow = i;
+      } else if (i + 1 < rows.length) {
+        hobbyHeaderRow = i + 1;
+      }
+      break;
+    }
+  }
+
+  if (hobbyHeaderRow === -1) {
+    // Try finding column headers directly: PERIOD + M/W/F + T/T/S in same row
+    for (let i = 0; i < rows.length; i++) {
+      const cells = rows[i].map((c: any) => String(c).toUpperCase().trim());
+      const hasP = cells.some(c => c === 'PERIOD');
+      const hasMWF = cells.some(c => c.includes('M/W/F') || c.includes('MWF'));
+      const hasTTS = cells.some(c => c.includes('T/T/S') || c.includes('TTS'));
+      if (hasP && hasMWF && hasTTS) {
+        hobbyHeaderRow = i;
+        break;
+      }
+    }
+  }
+
+  if (hobbyHeaderRow === -1) {
+    console.log('[ServerParser] No HOBBY DAYS section found in bell schedule');
+    return [];
+  }
+
+  // Map column indices from header row
+  const hdrCells = rows[hobbyHeaderRow].map((c: any) => String(c).toUpperCase().trim());
+  hdrCells.forEach((c: string, idx: number) => {
+    if (c === 'PERIOD' && periodCol === -1) periodCol = idx;
+    if ((c.includes('M/W/F') || c.includes('MWF')) && mwfCol === -1) mwfCol = idx;
+    if ((c.includes('T/T/S') || c.includes('TTS')) && ttsCol === -1) ttsCol = idx;
+  });
+
+  // If column headers weren't on hobby header row, look within nearby rows
+  if (periodCol === -1) {
+    // Use positional defaults based on the HOBBY DAYS section (columns D,F,G in the screenshot)
+    for (let i = hobbyHeaderRow; i >= Math.max(0, hobbyHeaderRow - 2); i--) {
+      const cells = rows[i].map((c: any) => String(c).toUpperCase().trim());
+      cells.forEach((c: string, idx: number) => {
+        if (c === 'PERIOD' && periodCol === -1) periodCol = idx;
+        if ((c.includes('M/W/F') || c.includes('MWF')) && mwfCol === -1) mwfCol = idx;
+        if ((c.includes('T/T/S') || c.includes('TTS')) && ttsCol === -1) ttsCol = idx;
+      });
+    }
+  }
+
+  console.log(`[ServerParser] Hobby Days header at row ${hobbyHeaderRow}. Cols: period=${periodCol}, mwf=${mwfCol}, tts=${ttsCol}`);
+
+  if (periodCol === -1 || (mwfCol === -1 && ttsCol === -1)) return [];
+
+  const mwfDays = ['Monday', 'Wednesday', 'Friday'];
+  const ttsDays = ['Tuesday', 'Thursday', 'Saturday'];
+
+  // Read data rows after the header
+  for (let i = hobbyHeaderRow + 1; i < rows.length; i++) {
+    const pCell = String(rows[i][periodCol] || '').trim().toUpperCase();
+    if (!pCell.match(/^\d+P$/)) {
+      if (pCell && !pCell.includes('PERIOD')) continue;
+      if (!pCell) break; // Empty = end of section
+      continue;
+    }
+
+    const periodId = pCell.toLowerCase(); // e.g. "4p"
+    const mwfGrades = mwfCol >= 0 ? String(rows[i][mwfCol] || '').trim().toUpperCase() : '';
+    const ttsGrades = ttsCol >= 0 ? String(rows[i][ttsCol] || '').trim().toUpperCase() : '';
+
+    // Parse grade strings like "II", "IX-X", "V" into grade prefixes
+    const parseGrades = (g: string): string[] => {
+      if (!g) return [];
+      const gradeOrder = ['II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
+      const parts = g.replace(/\s+AND\s+/g, ',').replace(/\s*&\s*/g, ',').split(/[,;]/).map(s => s.trim());
+      const result: string[] = [];
+      for (const p of parts) {
+        if (!p) continue;
+        if (p.includes('-')) {
+          const [s, e] = p.split('-').map(x => x.trim());
+          const si = gradeOrder.indexOf(s);
+          const ei = gradeOrder.indexOf(e);
+          if (si !== -1 && ei !== -1) {
+            for (let j = si; j <= ei; j++) result.push(gradeOrder[j]);
+          } else {
+            result.push(p);
+          }
+        } else if (gradeOrder.includes(p)) {
+          result.push(p);
+        }
+      }
+      return result;
+    };
+
+    if (mwfGrades) {
+      slots.push({ periodId, grades: parseGrades(mwfGrades), days: mwfDays });
+    }
+    if (ttsGrades) {
+      slots.push({ periodId, grades: parseGrades(ttsGrades), days: ttsDays });
+    }
+  }
+
+  console.log(`[ServerParser] Parsed ${slots.length} hobby slot rules:`);
+  slots.forEach(s => console.log(`  ${s.periodId}: grades [${s.grades.join(',')}] on [${s.days.join(',')}]`));
+  return slots;
 }
 
 export async function POST(request: Request) {
@@ -203,7 +354,18 @@ export async function POST(request: Request) {
       assignments: [],
       timetable: [],
       days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      hobbyDays: [],
+      hobbyDays: (() => {
+        const hobbySlots = parseHobbyDays(workbook);
+        const result: { periodId: string; day: string; classRange: string }[] = [];
+        for (const slot of hobbySlots) {
+          for (const day of slot.days) {
+            for (const grade of slot.grades) {
+              result.push({ periodId: slot.periodId, day, classRange: grade });
+            }
+          }
+        }
+        return result;
+      })(),
       subjectRatios: [],
       hardConstraints: [...initialMockData.hardConstraints]
     };
@@ -223,7 +385,7 @@ export async function POST(request: Request) {
       const rows = xlsx.utils.sheet_to_json(workbook.Sheets[classesSheetName], { header: 1, defval: '' }) as any[][];
       rows.forEach(row => {
         const className = String(row[1] || '').trim().toUpperCase().replace('-', ' ');
-        if (className && className.match(/^(II|III|IV|V)\s[A-Z]$/i)) {
+        if (className && className.match(/^([IVX]+)\s[A-Z]$/i)) {
           if (!classMap.has(className)) {
             classMap.set(className, { id: 'c-' + className.toLowerCase().replace(/\s+/g, '-'), name: className });
           }
@@ -307,65 +469,90 @@ export async function POST(request: Request) {
       return Array.from(result);
     };
 
-    // ── 2. Teachers from Synopsis sheet ──
-    let teacherSheetName = sheetNames.find(s => s.toUpperCase().includes('SYNOPSIS'));
-    if (!teacherSheetName) {
-      teacherSheetName = sheetNames.find(s => {
-        const up = s.toUpperCase();
-        return up.includes('CLASS II-V') || (up.includes('TEACHER') && up.includes('TIMING')) || (up.includes('TEACHER') && up.includes('MASTER'));
-      });
+    // ── 2. Teachers – dynamic sheet detection ──
+    let teacherSheetsToProcess: string[] = [];
+
+    // Try explicit name matches first
+    const explicitSheet = sheetNames.find(s => {
+      const up = s.toUpperCase();
+      return up.includes('SYNOPSIS') || (up.includes('TEACHER') && up.includes('MASTER')) || up.includes('CLASS II-V');
+    });
+    if (explicitSheet) {
+      teacherSheetsToProcess.push(explicitSheet);
+    } else {
+      // Dynamic scan: find sheets with teacher/subject/class column headers
+      for (const sn of sheetNames) {
+        const up = sn.toUpperCase();
+        if (up.includes('TIMING') || up.includes('BELL') || sn === classesSheetName) continue;
+        const sRows = xlsx.utils.sheet_to_json(workbook.Sheets[sn], { header: 1, defval: '' }) as any[][];
+        for (let i = 0; i < Math.min(sRows.length, 15); i++) {
+          const rowStr = sRows[i].map((c: any) => String(c).toUpperCase().trim()).join('|');
+          const hasTeacher = rowStr.includes('TEACHER') || rowStr.includes('NAME') || rowStr.includes('INSTRUCTOR');
+          const hasSubject = rowStr.includes('SUBJECT') || rowStr.includes('COURSE');
+          const hasClass = rowStr.includes('CLASS') || rowStr.includes('SECTION') || rowStr.includes('GRADE');
+          if ((hasTeacher && hasSubject) || (hasTeacher && hasClass) || (hasSubject && hasClass)) {
+            teacherSheetsToProcess.push(sn);
+            break;
+          }
+        }
+      }
+      // Ultimate fallback: first non-excluded sheet
+      if (teacherSheetsToProcess.length === 0) {
+        const fb = sheetNames.find(s => {
+          const up = s.toUpperCase();
+          return !up.includes('TIMING') && !up.includes('BELL') && s !== classesSheetName;
+        });
+        if (fb) teacherSheetsToProcess.push(fb);
+      }
     }
 
-    const teacherSheet = teacherSheetName ? workbook.Sheets[teacherSheetName] : null;
-
-    if (teacherSheet) {
+    for (const teacherSheetName of teacherSheetsToProcess) {
       console.log(`[ServerParser] Using teacher sheet: ${teacherSheetName}`);
+      const teacherSheet = workbook.Sheets[teacherSheetName];
       const rows = xlsx.utils.sheet_to_json(teacherSheet, { header: 1, defval: '' }) as any[][];
 
-      let headerRowIndex = -1;
       let colIndices = { subject: -1, teacher: -1, classes: -1, total: -1 };
+      let inDataBlock = false;
+      const commonSubjects = ['ENGLISH', 'MATHS', 'SCIENCE', 'HINDI', 'READING', 'COMPUTER', 'DRAWING', 'LIBRARY', 'GAMES', 'DANCE', 'MUSIC', 'ROBOTICS', 'SST', 'G.K.', 'HOBBY', 'ZUMBA'];
 
-      for (let i = 0; i < Math.min(rows.length, 15); i++) {
-        const row = rows[i].map((c: any) => String(c).toUpperCase().trim());
+      rows.forEach((rowRaw, rowIndex) => {
+        const row = rowRaw.map((c: any) => String(c).toUpperCase().trim());
         const rowStr = row.join('|');
+
+        // Check if this row is a header
         if (rowStr.includes('SUBJECT') && (rowStr.includes('TEACHER') || rowStr.includes('NAME'))) {
-          headerRowIndex = i;
+          colIndices = { subject: -1, teacher: -1, classes: -1, total: -1 };
           row.forEach((c: string, idx: number) => {
             if (c === 'SUBJECT') colIndices.subject = idx;
+            else if (c.includes('SUBJECT') && colIndices.subject === -1) colIndices.subject = idx;
+            
             if (c.includes('TEACHER') && c.includes('NAME')) colIndices.teacher = idx;
             else if (c.includes('TEACHER') && colIndices.teacher === -1) colIndices.teacher = idx;
             else if (c === 'NAME' && colIndices.teacher === -1) colIndices.teacher = idx;
+            
             if (c.includes('CLASS') || c.includes('SECTION')) colIndices.classes = idx;
             if (c.includes('TOTAL') || c.includes('PERIOD')) colIndices.total = idx;
           });
           if (colIndices.subject === -1) colIndices.subject = row.findIndex((c: string) => c.includes('SUBJECT'));
-          if (colIndices.teacher === -1) colIndices.teacher = row.findIndex((c: string) => c.includes('NAME'));
-          console.log(`[ServerParser] Header at row ${i}:`, colIndices);
-          break;
+          if (colIndices.teacher === -1) colIndices.teacher = row.findIndex((c: string) => c.includes('NAME') || c.includes('TEACHER'));
+          inDataBlock = true;
+          return;
         }
-      }
 
-      if (headerRowIndex === -1 || colIndices.teacher === -1) {
-        colIndices = { subject: 1, teacher: 2, classes: 3, total: 4 };
-        headerRowIndex = 1;
-      }
+        if (!inDataBlock) return;
+        if (colIndices.teacher === -1 || colIndices.subject === -1 || colIndices.classes === -1) return;
 
-      const commonSubjects = ['ENGLISH', 'MATHS', 'SCIENCE', 'HINDI', 'READING', 'COMPUTER', 'DRAWING', 'LIBRARY', 'GAMES', 'DANCE', 'MUSIC', 'ROBOTICS', 'SST', 'G.K.', 'HOBBY', 'ZUMBA'];
-
-      rows.forEach((row, rowIndex) => {
-        if (rowIndex <= headerRowIndex) return;
-
-        let teacherName = String(row[colIndices.teacher] || '').trim().toUpperCase();
-        let subjectsStr = String(row[colIndices.subject] || '').trim().toUpperCase();
-        const classesStr = String(row[colIndices.classes] || '').trim();
-        const total = parseInt(String(row[colIndices.total] || '0')) || 0;
+        let teacherName = String(rowRaw[colIndices.teacher] || '').trim().toUpperCase();
+        let subjectsStr = String(rowRaw[colIndices.subject] || '').trim().toUpperCase();
+        const classesStr = String(rowRaw[colIndices.classes] || '').trim();
+        const total = parseInt(String(rowRaw[colIndices.total] || '0')) || 0;
 
         if (!teacherName || teacherName === 'TEACHERS NAME' || teacherName === 'SUBJECT' || teacherName === 'NAME') return;
         if (teacherName.includes('S.NO') || teacherName === 'S.NO.') return;
         if (subjectsStr === 'SUBJECT') return;
 
         if (commonSubjects.includes(teacherName)) {
-          const otherVal = String(row[colIndices.subject] || '').trim().toUpperCase();
+          const otherVal = String(rowRaw[colIndices.subject] || '').trim().toUpperCase();
           if (otherVal.includes('MS.') || otherVal.includes('MR.') || otherVal.includes('MRS.')) {
             [teacherName, subjectsStr] = [otherVal, teacherName];
           } else {
@@ -404,18 +591,88 @@ export async function POST(request: Request) {
           });
         }
       });
-    } else {
+    }
+
+    if (teacherSheetsToProcess.length === 0) {
       console.log('[ServerParser] No teacher sheet found!');
     }
 
-    // ── 3. Finalize ──
-    finalData.teachers = Array.from(teacherMap.values());
-    finalData.classes = Array.from(classMap.values()).sort((a: any, b: any) => {
-      const [gA, sA] = a.name.split(' ');
-      const [gB, sB] = b.name.split(' ');
-      if (gradeOrder.indexOf(gA) !== gradeOrder.indexOf(gB)) return gradeOrder.indexOf(gA) - gradeOrder.indexOf(gB);
-      return sA.localeCompare(sB);
+    // ── 2.5 Auto-Inject Missing Activities (Slot List Rules) ──
+    const slotRules = [
+      { sub: 'HOBBY', periods: (c: string) => 3 }, // Includes Dance/Music/Theatre
+      { sub: 'GAMES', periods: (c: string) => c === 'II' ? 2 : 1 },
+      { sub: 'LIBRARY', periods: (c: string) => 1 },
+      { sub: 'DRAWING', periods: (c: string) => ['II', 'III', 'IV', 'V'].includes(c) ? 1 : 0 },
+      { sub: 'ROBOTICS', periods: (c: string) => ['II', 'III', 'IV', 'V'].includes(c) ? 1 : 0 },
+    ];
+
+    const genericTeachers = new Map<string, string>(); // subName -> teacherId
+
+    Array.from(classMap.values()).forEach(cls => {
+      const grade = cls.name.split(' ')[0];
+      if (!['II', 'III', 'IV', 'V'].includes(grade)) return;
+
+      slotRules.forEach(rule => {
+        const requiredPeriods = rule.periods(grade);
+        if (requiredPeriods > 0) {
+          const subId = 'sub-' + rule.sub.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-');
+          
+          // Ensure subject exists
+          if (!subjectMap.has(rule.sub)) {
+            subjectMap.set(rule.sub, { id: subId, name: rule.sub, color: getSubjectColor(rule.sub), isAllenBlock: false });
+          }
+
+          // Check if class already has this assignment
+          const hasAssignment = finalData.assignments.some(a => a.classId === cls.id && a.subjectId === subId);
+          
+          if (!hasAssignment) {
+            let genericTId = genericTeachers.get(rule.sub);
+            if (!genericTId) {
+              const teacherName = `[Generic] ${rule.sub} Teacher`;
+              genericTId = 't-generic-' + rule.sub.toLowerCase();
+              genericTeachers.set(rule.sub, genericTId);
+              teacherMap.set(genericTId, {
+                id: genericTId,
+                name: teacherName,
+                maxHoursPerWeek: 40,
+                subjects: [rule.sub]
+              });
+            }
+
+            finalData.assignments.push({
+              id: `asgn-${genericTId}-${subId}-${cls.id}-auto`,
+              classId: cls.id,
+              subjectId: subId,
+              teacherId: genericTId,
+              periodsPerWeek: requiredPeriods
+            });
+          }
+        }
+      });
     });
+
+    // ── 3. Finalize ──
+    const allowedGrades = ['II', 'III', 'IV', 'V'];
+    
+    finalData.teachers = Array.from(teacherMap.values());
+    
+    // Filter classes to only Grade II-V
+    finalData.classes = Array.from(classMap.values())
+      .filter((c: any) => {
+        const grade = c.name.split(' ')[0];
+        return allowedGrades.includes(grade);
+      })
+      .sort((a: any, b: any) => {
+        const [gA, sA] = a.name.split(' ');
+        const [gB, sB] = b.name.split(' ');
+        if (gradeOrder.indexOf(gA) !== gradeOrder.indexOf(gB)) return gradeOrder.indexOf(gA) - gradeOrder.indexOf(gB);
+        return sA.localeCompare(sB);
+      });
+
+    // Filter assignments to only those belonging to the filtered classes
+    const classIds = new Set(finalData.classes.map(c => c.id));
+    finalData.assignments = finalData.assignments.filter(a => classIds.has(a.classId));
+    
     finalData.subjects = Array.from(subjectMap.values());
 
     console.log(`[ServerParser] Result: ${finalData.teachers.length} teachers, ${finalData.classes.length} classes, ${finalData.subjects.length} subjects, ${finalData.assignments.length} assignments`);

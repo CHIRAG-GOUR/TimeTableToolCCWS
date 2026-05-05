@@ -235,54 +235,110 @@ export async function parseExcelData(file: File): Promise<MockData> {
                 for (let i = startIndex; i <= endIndex; i++) result.add(officialClasses[i]);
               } else {
                 if (officialClasses.includes(part)) result.add(part);
+                else if (part) result.add(part);
               }
             } else {
               if (officialClasses.includes(part)) result.add(part);
+              else if (part) result.add(part);
             }
           }
           return Array.from(result);
         };
 
         // ── 2. Teachers Master ──────────────────────────────────────────
-        const teacherSheet = teacherSheetName ? workbook.Sheets[teacherSheetName] : null;
+        let teacherSheetsToProcess: string[] = [];
         
-        if (teacherSheet) {
-          console.log(`[Parser] Found Teacher Sheet: ${teacherSheetName}`);
+        // Find sheets by exact name match first
+        const explicitSheet = sheetNames.find(s => {
+          const up = s.toUpperCase();
+          return up.includes('SYNOPSIS') || (up.includes('TEACHER') && up.includes('MASTER')) || (up.includes('CLASS II-V'));
+        });
+        
+        if (explicitSheet) {
+          teacherSheetsToProcess.push(explicitSheet);
+        } else {
+          // Dynamic Scan: find any sheet that isn't timing/classes and has teacher/subject columns
+          for (const sheetName of sheetNames) {
+            const up = sheetName.toUpperCase();
+            if (up.includes('TIMING') || sheetName === classesSheetName) continue;
+            
+            const sheet = workbook.Sheets[sheetName];
+            const rows = xlsx.utils.sheet_to_json(sheet, { header: 1, defval: '' }) as any[][];
+            
+            let isTeacherSheet = false;
+            for (let i = 0; i < Math.min(rows.length, 15); i++) {
+              const rowStr = rows[i].map(c => String(c).toUpperCase().trim()).join('|');
+              const hasTeacher = rowStr.includes('TEACHER') || rowStr.includes('NAME') || rowStr.includes('INSTRUCTOR') || rowStr.includes('FACULTY');
+              const hasSubject = rowStr.includes('SUBJECT') || rowStr.includes('COURSE') || rowStr.includes('TOPIC');
+              const hasClass = rowStr.includes('CLASS') || rowStr.includes('SECTION') || rowStr.includes('GRADE');
+              
+              if ((hasTeacher && hasSubject) || (hasTeacher && hasClass) || (hasSubject && hasClass)) {
+                isTeacherSheet = true;
+                break;
+              }
+            }
+            if (isTeacherSheet) {
+              teacherSheetsToProcess.push(sheetName);
+            }
+          }
+          
+          // Ultimate Fallback: Just take the first sheet that isn't excluded
+          if (teacherSheetsToProcess.length === 0) {
+            const fallbackSheets = sheetNames.filter(s => {
+              const up = s.toUpperCase();
+              return !up.includes('TIMING') && s !== classesSheetName;
+            });
+            if (fallbackSheets.length > 0) teacherSheetsToProcess.push(fallbackSheets[0]);
+          }
+        }
+
+        for (const teacherSheetName of teacherSheetsToProcess) {
+          console.log(`[Parser] Processing Teacher Sheet: ${teacherSheetName}`);
+          const teacherSheet = workbook.Sheets[teacherSheetName];
           const rows = xlsx.utils.sheet_to_json(teacherSheet, { header: 1, defval: '' }) as any[][];
           
           let headerRowIndex = -1;
           let colIndices = { subject: -1, teacher: -1, classes: -1, total: -1 };
 
-          // Find the header row with more precision
+          // Find the header row dynamically
           for (let i = 0; i < Math.min(rows.length, 15); i++) {
             const row = rows[i].map(c => String(c).toUpperCase().trim());
-            const rowStr = row.join('|');
             
-            if (rowStr.includes('SUBJECT') && (rowStr.includes('TEACHER') || rowStr.includes('NAME'))) {
+            const hasTeacher = row.some(c => c.includes('TEACHER') || c.includes('NAME') || c.includes('INSTRUCTOR') || c.includes('FACULTY'));
+            const hasSubject = row.some(c => c.includes('SUBJECT') || c.includes('COURSE') || c.includes('TOPIC'));
+            const hasClass = row.some(c => c.includes('CLASS') || c.includes('SECTION') || c.includes('GRADE'));
+            
+            if (hasTeacher || hasSubject || hasClass) {
               headerRowIndex = i;
               row.forEach((c, idx) => {
-                if (c === 'SUBJECT') colIndices.subject = idx;
-                if (c.includes('TEACHER') && c.includes('NAME')) colIndices.teacher = idx;
-                else if (c.includes('TEACHER') && colIndices.teacher === -1) colIndices.teacher = idx;
-                else if (c === 'NAME' && colIndices.teacher === -1) colIndices.teacher = idx;
-                
-                if (c.includes('CLASS') || c.includes('SECTION')) colIndices.classes = idx;
-                if (c.includes('TOTAL') || c.includes('PERIOD')) colIndices.total = idx;
+                if (c.includes('SUBJECT') || c.includes('COURSE') || c.includes('TOPIC')) {
+                  if (colIndices.subject === -1) colIndices.subject = idx;
+                }
+                if (c.includes('TEACHER') || c.includes('NAME') || c.includes('INSTRUCTOR') || c.includes('FACULTY')) {
+                  if (colIndices.teacher === -1) colIndices.teacher = idx;
+                }
+                if (c.includes('CLASS') || c.includes('SECTION') || c.includes('GRADE')) {
+                  if (colIndices.classes === -1) colIndices.classes = idx;
+                }
+                if (c.includes('TOTAL') || c.includes('PERIOD') || c.includes('HOURS') || c.includes('COUNT')) {
+                  if (colIndices.total === -1) colIndices.total = idx;
+                }
               });
-              
-              // If we still miss some, try looser matches
-              if (colIndices.subject === -1) colIndices.subject = row.findIndex(c => c.includes('SUBJECT'));
-              if (colIndices.teacher === -1) colIndices.teacher = row.findIndex(c => c.includes('NAME'));
-              
-              console.log(`[Parser] Header detected at row ${i}. Indices:`, colIndices);
+              console.log(`[Parser] Header detected at row ${i} in ${teacherSheetName}. Indices:`, colIndices);
               break;
             }
           }
 
-          if (headerRowIndex === -1 || colIndices.teacher === -1) {
-            console.warn('[Parser] Falling back to default column indices.');
+          if (headerRowIndex === -1 || (colIndices.teacher === -1 && colIndices.subject === -1)) {
+            console.warn(`[Parser] Falling back to default column indices for ${teacherSheetName}.`);
             colIndices = { subject: 1, teacher: 2, classes: 3, total: 4 };
             headerRowIndex = 1;
+          } else {
+            // Fill missing with logical defaults
+            if (colIndices.teacher === -1) colIndices.teacher = 2;
+            if (colIndices.subject === -1) colIndices.subject = 1;
+            if (colIndices.classes === -1) colIndices.classes = 3;
+            if (colIndices.total === -1) colIndices.total = 4;
           }
 
           rows.forEach((row, rowIndex) => {
@@ -294,29 +350,23 @@ export async function parseExcelData(file: File): Promise<MockData> {
             const totalVal = row[colIndices.total];
             const total = parseInt(String(totalVal || '0')) || 0;
 
-            // Skip rows that look like headers or contain no real data
             if (!teacherName || teacherName === 'TEACHERS NAME' || teacherName === 'SUBJECT' || teacherName === 'NAME') return;
-            if (teacherName.includes('S.NO') || teacherName === 'S.NO.') return;
+            if (teacherName.includes('S.NO') || teacherName === 'S.NO.' || teacherName.match(/^[0-9]+$/)) return;
             if (subjectsStr === 'SUBJECT') return;
 
-            // If teacher name looks like a subject, columns might be swapped
-            const commonSubjects = ['ENGLISH', 'MATHS', 'SCIENCE', 'HINDI', 'READING', 'COMPUTER', 'DRAWING', 'LIBRARY', 'GAMES', 'DANCE', 'MUSIC', 'ROBOTICS', 'SST', 'G.K.', 'HOBBY', 'ZUMBA'];
-            if (commonSubjects.includes(teacherName)) {
+            const commonSubjects = ['ENGLISH', 'MATHS', 'SCIENCE', 'HINDI', 'READING', 'COMPUTER', 'DRAWING', 'LIBRARY', 'GAMES', 'DANCE', 'MUSIC', 'ROBOTICS', 'SST', 'G.K.', 'HOBBY', 'ZUMBA', 'EVS'];
+            if (commonSubjects.some(sub => teacherName.includes(sub)) && !teacherName.includes('MR') && !teacherName.includes('MS')) {
               const otherVal = String(row[colIndices.subject] || '').trim().toUpperCase();
-              if (otherVal.includes('MS.') || otherVal.includes('MR.') || otherVal.includes('MRS.')) {
+              if (otherVal && (otherVal.includes('MS.') || otherVal.includes('MR.') || otherVal.includes('MRS.') || otherVal.split(' ').length > 1)) {
                 [teacherName, subjectsStr] = [otherVal, teacherName];
-              } else {
-                return; // Skip this row — it's not a real teacher row
+              } else if (otherVal && teacherName) {
+                [teacherName, subjectsStr] = [otherVal, teacherName];
               }
             }
 
-            // Skip if teacher name is empty after all checks
             if (!teacherName || !subjectsStr) return;
 
-            // Generate teacher ID
             const tId = 't-' + teacherName.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/(^-|-$)/g, '');
-
-            // Split subjects by comma, slash, or ampersand
             const subjects = subjectsStr.split(/[,/&]/).map(s => s.trim().toUpperCase()).filter(Boolean);
 
             if (!teacherMap.has(tId)) {
@@ -331,7 +381,6 @@ export async function parseExcelData(file: File): Promise<MockData> {
               subjects.forEach(s => {
                 if (!t.subjects.includes(s)) t.subjects.push(s);
               });
-              // Update max hours if this row has a higher total
               if (total > 0) t.maxHoursPerWeek = Math.max(t.maxHoursPerWeek, total);
             }
 
@@ -353,6 +402,13 @@ export async function parseExcelData(file: File): Promise<MockData> {
 
                 foundClasses.forEach(cName => {
                   const classId = 'c-' + cName.toLowerCase().replace(/\s+/g, '-');
+                  
+                  // Ensure class exists in map if dynamically found
+                  if (!classMap.has(cName)) {
+                    classMap.set(cName, { id: classId, name: cName });
+                    if (!officialClasses.includes(cName)) officialClasses.push(cName);
+                  }
+                  
                   finalData.assignments.push({
                     id: `asgn-${tId}-${subId}-${classId}`,
                     classId,

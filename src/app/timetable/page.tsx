@@ -241,6 +241,35 @@ export default function TimetablePage() {
             <Download className="h-3.5 w-3.5" />
           </button>
           <button 
+            onClick={async () => {
+              if (!data || data.classes.length === 0) return;
+              setToastMessage('Downloading all PDFs...');
+              setShowShareToast(true);
+              for (let i = 0; i < data.classes.length; i++) {
+                const cls = data.classes[i];
+                const entries = data.timetable.filter(e => e.classId === cls.id);
+                if (entries.length === 0) continue;
+                await exportToPDF('timetable-capture-area', `${cls.name}_Timetable`, {
+                  days: data.days,
+                  periods: data.bellSchedule,
+                  entries,
+                  subjects: data.subjects,
+                  teachers: data.teachers,
+                  className: cls.name,
+                });
+                // Small delay between downloads
+                await new Promise(r => setTimeout(r, 400));
+              }
+              setToastMessage(`Downloaded ${data.classes.length} class timetables!`);
+              setTimeout(() => setShowShareToast(false), 3000);
+            }}
+            className="flex h-9 px-3 items-center justify-center rounded-lg bg-white border border-slate-200 text-slate-500 hover:text-slate-900 shadow-sm transition-all font-bold text-[11px] gap-1.5"
+            title="Download All Classes as PDF"
+          >
+            <Download className="h-3.5 w-3.5" />
+            ALL PDFs
+          </button>
+          <button 
             onClick={() => setIsShareModalOpen(true)}
             className="flex h-9 w-9 items-center justify-center rounded-lg bg-orange-600 text-white shadow-md shadow-orange-600/20 hover:bg-orange-500 transition-all"
             title="Share"

@@ -14,8 +14,10 @@ import {
   X,
   School,
   BookOpen,
-  Clock
+  Clock,
+  Download
 } from 'lucide-react';
+import { exportTeacherPDF } from '@/utils/exportUtils';
 import { MockData, Teacher, TimetableEntry } from '@/data/mockData';
 import TimetableGrid from '@/components/TimetableGrid';
 
@@ -136,13 +138,32 @@ export default function TeachersPage() {
           <h1 className="text-3xl font-bold tracking-tight text-slate-900">Teacher Management</h1>
           <p className="mt-2 text-slate-500">Manage faculty workload and individual schedules.</p>
         </div>
-        <button 
-          onClick={() => setIsAddingTeacher(true)}
-          className="flex items-center gap-2 rounded-xl bg-orange-600 px-6 py-2 text-sm font-bold text-white shadow-lg shadow-orange-600/20 hover:bg-orange-500 transition-all"
-        >
-          <Plus className="h-4 w-4" />
-          Add Teacher
-        </button>
+        <div className="flex items-center gap-2">
+          <button 
+            onClick={async () => {
+              if (!data || data.teachers.length === 0) return;
+              for (const teacher of data.teachers) {
+                const entries = data.timetable.filter(e => e.teacherId === teacher.id);
+                await exportTeacherPDF(
+                  teacher.name, data.days, data.bellSchedule, entries,
+                  data.subjects, data.classes, `${teacher.name}_Timetable`
+                );
+                await new Promise(r => setTimeout(r, 400));
+              }
+            }}
+            className="flex items-center gap-2 rounded-xl bg-white border border-slate-200 px-4 py-2 text-sm font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-all shadow-sm"
+          >
+            <Download className="h-4 w-4" />
+            All Teacher PDFs
+          </button>
+          <button 
+            onClick={() => setIsAddingTeacher(true)}
+            className="flex items-center gap-2 rounded-xl bg-orange-600 px-6 py-2 text-sm font-bold text-white shadow-lg shadow-orange-600/20 hover:bg-orange-500 transition-all"
+          >
+            <Plus className="h-4 w-4" />
+            Add Teacher
+          </button>
+        </div>
       </div>
 
       <div className="bg-emerald-50 border border-emerald-100 rounded-2xl p-5 flex gap-4">
@@ -224,11 +245,22 @@ export default function TeachersPage() {
 
               <div className="mt-6 flex items-center justify-between pt-4 border-t border-slate-100">
                 <div className="flex gap-2">
+                   <button
+                     onClick={(e) => {
+                       e.stopPropagation();
+                       const entries = data.timetable.filter(en => en.teacherId === teacher.id);
+                       exportTeacherPDF(
+                         teacher.name, data.days, data.bellSchedule, entries,
+                         data.subjects, data.classes, `${teacher.name}_Timetable`
+                       );
+                     }}
+                     className="h-7 w-7 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 hover:text-orange-600 transition-colors"
+                     title="Download PDF"
+                   >
+                     <Download className="h-3.5 w-3.5" />
+                   </button>
                    <div className="h-7 w-7 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 hover:text-slate-600 transition-colors">
                      <Mail className="h-3.5 w-3.5" />
-                   </div>
-                   <div className="h-7 w-7 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 hover:text-slate-600 transition-colors">
-                     <Phone className="h-3.5 w-3.5" />
                    </div>
                 </div>
                 <div className="flex items-center gap-1 text-xs font-bold text-orange-600 group-hover:gap-2 transition-all">
@@ -282,6 +314,19 @@ export default function TeachersPage() {
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
+                   <button
+                     onClick={() => {
+                       if (!viewingTeacher) return;
+                       exportTeacherPDF(
+                         viewingTeacher.name, data.days, data.bellSchedule, teacherEntries,
+                         data.subjects, data.classes, `${viewingTeacher.name}_Timetable`
+                       );
+                     }}
+                     className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-600 text-xs font-bold hover:bg-slate-50 transition-all"
+                   >
+                     <Download className="h-4 w-4" />
+                     PDF
+                   </button>
                    <button onClick={() => setIsQuickAdding(true)} className="flex items-center gap-2 px-4 py-2 rounded-xl bg-orange-600 text-white text-xs font-bold hover:bg-orange-500 transition-all shadow-lg shadow-orange-600/20"><Plus className="h-4 w-4" />ADD SLOT</button>
                    <button onClick={() => setViewingTeacherId(null)} className="p-2 rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-slate-600"><X className="h-5 w-5" /></button>
                 </div>

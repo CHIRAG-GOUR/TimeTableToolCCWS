@@ -209,7 +209,7 @@ export default function TimetableGrid({ days, periods, entries, subjects, teache
                               )}
                             </div>
                           ) : (
-                            /* Empty slot → fill with Hobby or Games */
+                            /* Empty slot → show as free */
                             (() => {
                               if (isEditMode) {
                                 return (
@@ -221,13 +221,10 @@ export default function TimetableGrid({ days, periods, entries, subjects, teache
                                   </div>
                                 );
                               }
-                              // Auto-fill: alternate Hobby/Games by day
-                              const fillerType = DAY_FILLER_MAP[day] || 'Hobby';
-                              const style = FILLER_STYLES[fillerType];
                               return (
-                                <div className={`rounded-lg p-2.5 border border-l-[3px] ${style.bg} ${style.border} border-opacity-30`}>
-                                  <p className={`text-[11px] font-bold leading-tight mb-0.5 ${style.text}`}>{style.label}</p>
-                                  <p className="text-[9px] text-slate-400 font-medium">Activity</p>
+                                <div className="rounded-lg p-2.5 border border-l-[3px] bg-slate-50/50 border-l-slate-200 border-slate-100">
+                                  <p className="text-[11px] font-bold leading-tight mb-0.5 text-slate-300">Empty</p>
+                                  <p className="text-[9px] text-slate-300 font-medium">—</p>
                                 </div>
                               );
                             })()

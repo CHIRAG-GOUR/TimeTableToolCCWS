@@ -1,0 +1,423 @@
+
+Fetching DEMO SHEET...
+============================================================
+DEMO SHEET
+Sheets: Bell Schedule, Synopsis - Teacher Timings, Class Teachers, Slot List - 2 - 10, Hard_Constraints, Club Time Table
+============================================================
+
+--- Bell Schedule --- (1000 rows)
+  Row 0: CAMBRIDGE COURT WORLD SCHOOL
+  Row 1: SESSION 2026-27 (21/02/2026)
+  Row 2: BELL SCHEDULE | HOBBY DAYS
+  Row 3: PERIOD | TIMINGS | DURATION | PERIOD | TIMINGS | M/W/F | T/T/S
+  Row 4: FIRST 0P(VIII-XII)
+(Mindfulness) | 08:00-08:15 | 15 | 4P | 10:30-11:20 | II | III
+  Row 5: 1P | 08:15-09:00 | 45 | 8P | 02:00-02:50 | VIII | IX-X
+  Row 6: 2P | 09:00-09:50 | 50 | 9P | 02:50-03:40 | V | IV
+  Row 7: FIRST 0P(II-VII)
+(Mindfulness) | 09:30-09:50 | 20 | 10P | 03:40-04:30 | VI | VII
+  Row 8: 3P | 09:50-10:30 | 40 | ARRIVAL TIMINGS | DEPARTURE TIMINGS
+  Row 9: 4P | 10:30-11:20 | 50 | VIII -XII | 0.3263888888888889 | XI & XII
+(SCIENCE) | 0.08333333333333333
+  Row 10: LUNCH | 11:20-11:40 | 20 | II -VII | 0.3958333333333333 | XI & XII
+(SCIENCE - INT.) | 0.08333333333333333
+  Row 11: 5P | 11:40-12:25 | 45 | LUNCH TIMINGS | XI & XII
+(COM .& HUM.) | 0.08333333333333333
+  Row 12: 6P | 12:25-01:10 | 45 | II TO XII | 11:20-11:40 | VIII -X | 0.125
+  Row 13: 7P | 01:10-02:00 | 50 | II TO VII | 0.1875
+  Row 14: FRUIT LUNCH
+II TO VII | 02:00-02:10 | 10 | INTERGRATED TIMING | INTERGRATED LUNCH TIMING
+  Row 15: 8P | 02:00-02:50 | 50 | VIII-X | 09:00-12:20 | IX-X | 11:00-11:20
+  Row 16: 9P | 02:50-03:40 | 50 | XI-XII | 08:15-12:25 | XI-XII | 11:40-12:00
+  Row 17: 10P | 03:40-04:30 | 50
+  Row 18: We Time (II-VII) | 04:20-04:30 | 10
+  Row 19: ASSEMBLY(II-XII) 2026-27
+  Row 20: II | TUESDAY | 3P | VI &VII | MONDAY | 3P
+  Row 21: III | WEDNESDAY | 3P | VIII-X | FRIDAY | 1P
+  Row 22: IV | FRIDAY | 3P | XI-XII | THURSDAY | 1P
+  Row 23: V | THURSDAY | 3P
+
+--- Synopsis - Teacher Timings --- (1000 rows)
+  Row 7: CLASS II-V (SYNOPSIS) (2026-27)    (TEACHERS TIMINGS - 08.45-04.30) (6/4/26)
+  Row 8: S.NO. | SUBJECT | TEACHERS NAME | CLASSES & SECTION | TOTAL | C. T. | OTHER
+  Row 9: 1 | ENGLISH | MS. SHALINI SINGH | II A, II B | 18 | ARRANGEMENTS
+(08:45:03:30)
+  Row 10: 2 | ENGLISH | MS. ANJALI MEENA | II C, II D, II E | 28 | II D
+  Row 11: 3 | ENGLISH | MS. LAVYA SINGH | II F, II G, II H | 28 | II G
+  Row 12: 4 | ENGLISH | MS. NEHA KHILWANI | III A, III B, III C, III E | 26 | III B | LIT. CLUB- II & III
+  Row 13: 5 | ENGLISH | MS. MONIKA ARORA | III D, III F, III G, III H | 29 | III D
+  Row 14: 6 | ENGLISH | MS. SURBHI GUPTA | III I, IV A, IV B, IV C | 28
+  Row 15: 7 | ENGLISH | MS. MEENA BHATI | IV D, IV E, IV F, IV G | 28
+  Row 16: 8 | ENGLISH | MS. BIMLA CHOUDHARY | IV H, IV I,VA, VB | 30 | IV H | LIT. CLUB- IV
+  Row 17: 9 | ENGLISH | MS. DURGA CHATWANI | V C, V D | 14
+  Row 18: 10 | ENGLISH | MS. SHWETA KAUSHIK | V E, V F, V G, V H | 30 | V G | LIT. CLUB- V
+  Row 19: 11 | READING | MS. NIMMY NANCY | II & III | 35 | II B
+  Row 20: 12 | MATHS | MS. BHAWNA SHARMA | II A, II B, II C | 31 | II C
+  Row 21: 13 | MATHS | MS. AARTI KHANDAL | II D, II E, II F | 31 | II E
+  Row 22: 14 | MATHS | MS. DEEPA BHAGTANI | II G, II H | 23 | II H | MATHS CLUB -II (2 CLUBS AS PER STRENGTH)
+  Row 23: 15 | MATHS | MS. RIYA SHEKHAWAT | III A, III B, III C | 29 | III A | MATHS CLUB-III
+  Row 24: 16 | MATHS | MS. MAHIMA KHANDELWAL | III F, III G | 19 | III G
+  Row 25: 17 | MATHS | MS. AARUSHI ANSHU | III D, III E, III H | 29 | III H | MATHS CLUB-III
+  Row 26: 18 | MATHS | MS. KASHISH MEGHNANI | III I, IV A, IV B | 26 | III I
+  Row 27: 19 | MATHS | MS. SAKSHI SIKRI | IV C, IV D, IV E | 26 | IV D | MATHS CLUB-IV
+  Row 28: 20 | MATHS | MS. JAYA GANGWANI | IV F, IV G, IV H | 26 | IV G | MATHS CLUB-IV
+  Row 29: 21 | MATHS | MS. KAJAL SEJWANI | IV I, V A, V B | 26 | IV I | MATHS CLUB-V
+
+--- Class Teachers --- (1000 rows)
+  Row 9: CLASS TEACHERS -2026-27 (II-XII)
+  Row 10: S.N. | CLASS | CLASS TEACHER
+  Row 11: 1 | II-A | MS. LEELA TAILOR
+  Row 12: 2 | II-B | MS. NIMMY NANCY
+  Row 13: 3 | II-C | MS. BHAWNA SHARMA
+  Row 14: 4 | II-D | MS. ANJALI MEENA
+  Row 15: 5 | II-E | MS. AARTI KHANDAL
+  Row 16: 6 | II-F | MS. AAYUSHI VYAS
+  Row 17: 7 | II-G | MS. LAVYA SINGH
+  Row 18: 8 | II-H | MS. DEEPA BHAGTANI
+  Row 19: 9 | III-A | MS. RIYA SHEKHAWAT
+  Row 20: 10 | III-B | MS. NEHA KHILWANI
+  Row 21: 11 | III-C | MS. RASHMI BHARDWAJ
+  Row 22: 12 | III-D | MS. MONIKA ARORA
+  Row 23: 13 | III-E | MS. PRIYANKA PANDEY
+  Row 24: 14 | III-F | MS. DIVYA SHARMA
+  Row 25: 15 | III-G | MS. MAHIMA KHANDELWAL
+  Row 26: 16 | III-H | MS. AARUSHI ANSHU
+  Row 27: 17 | III-I | MS. KASHISH MEGHNANI
+  Row 28: 18 | IV-A | MS. ALKA SURI
+  Row 29: 19 | IV-B | MS. VIDHYA BHARTI
+
+--- Slot List - 2 - 10 --- (1000 rows)
+  Row 7: SLOT LIST- II to X (2026-27)
+  Row 8: VI to X | II to V
+  Row 9: SUBJECT | X | IX | VIII | VII | VI | SUBJECT | V | IV | III | II
+  Row 10: ENGLISH | 7 | 7 | 7 | 6 | 6 | ENGLISH | 7 | 7 | 7 | 9
+  Row 11: HINDI | 7 | 6 | 6 | 6 | 6 | HINDI | 6 | 6 | 6 | 9
+  Row 12: SANS/FR. | - | - | 3 | 3 | 3 | MATHS | 8 | 8 | 9 | 10
+  Row 13: MATHS | 10 | 10 | 9 | 8 | 8 | SKILIZEE | 1 | 1 | 1 | 1
+  Row 14: SKILIZEE | - | 1 | 1 | 1 | 1 | SCIENCE | 6 | 6 | 7 | -
+  Row 15: SCI./(P/C/B) | 9 | 9 | 8 | 7 | 7 | SST. | 6 | 6 | - | -
+  Row 16: SST. (H/C/G/E) | 7 | 7 | 6 | 6 | 6 | COMPUTER | 2 | 2 | 2 | 1
+  Row 17: COMPUTER | 2 | 2 | 2 | 2 | 2 | LIFE SKILL | - | - | - | 1
+  Row 18: G.K. | - | - | - | - | - | G.K. /NEWS | - | - | 1 | 1
+  Row 19: ROBOTICS | - | - | - | 1 | 1 | READING | - | - | 2 | 2
+  Row 20: DRAWING | - | - | - | 1 | 1 | ROBOTIC | 1 | 1 | 1 | 1
+  Row 21: LIBRARY | 1 | 1 | 1 | 1 | 1 | DRAWING | 1 | 1 | 1 | 1
+  Row 22: DANCE /MUSIC/ 
+THEATRE | - | - | - | 1 | 1 | LIBRARY | 1 | 1 | 1 | 1
+  Row 23: GAMES | 1 | 1 | 1 | 1 | 1 | DANCE | 1 | 1 | 1 | 1
+  Row 24: HOBBY/
+CLUB | 3 | 3 | 3 | 3 | 3 | MUSIC | - | - | 1 | 1
+  Row 25: ASSEMBLY | 1 | 1 | 1 | 1 | 1 | GAMES | 1 | 1 | 1 | 2
+  Row 26: TOTAL | 48 | 48 | 48 | 48 | 48 | HOBBY /CLUB | 3 | 3 | 3 | 3
+  Row 27: CLASS | PHY. | CHE. | BIO. | GEO | HIS./
+ECO. | ASSEMBLY | 1 | 1 | 1 | 1
+  Row 28: VII | 2 | 2 | 3 | 2 | 4 | ZUMBA/
+SWIMMING | 1 | 1 | 1 | 1
+  Row 29: VIII | 3 | 2 | 3 | 2 | 4 | PRESEN. SKILL | 2 | 2 | 2 | 2
+
+--- Hard_Constraints --- (1000 rows)
+  Row 8: CONDITIONS
+  Row 9: 1 | In a day max to max only 5P
+  Row 10: 2 | Periods can be in combination of 3+2 with gap of 2 to 3 period in between
+  Row 11: 3 | Avoid to have last period Maths and Science
+  Row 12: 4 | Everyday 1 period non Academic
+  Row 13: 5 | Games and Hobby should not be on same day
+  Row 14: 6 | Dance / Music / Hobby Period should not be on same day
+  Row 15: 7 | Two same subject should not be consequtive
+  Row 16: 8 | More then 2 period of same subject can not be on same day
+  Row 17: 9 | Just after lunch games should not be given
+  Row 18: 10 | At a time 2 Zumba period Should not be given
+  Row 19: 11 | Zumba period should not be given in 8p and 10 p
+  Row 20: 12 | II -VII classes should be alloted in between 3P to 10 Period
+  Row 21: 13 | Hobby classes should be allotted as per mentioned days and timings only
+  Row 22: 14 | Assembly and  Club Classes should be added as per the mentioned slot
+
+--- Club Time Table --- (1000 rows)
+  Row 6: CLUB TIME TABLE-II-XII SESSION 2026-27 -(28/3/2026)
+  Row 7: CLASS | PERIOD | TIMINGS | DAY | LITERARY CLUB
+(ENGLISH)
+(II-XII) | TECHNOCRATS 
+(SCIENCE )
+(II-XII) | PYTHON /FINANCE 
+(MATHS) -(II-X)/
+FINANCIAL LITERACY(XI-XII) | QUIZZADERS / 
+(G.K.)-(II-X)
+BRAINIACS(XI-XII) | ROBOTICS
+(III-X)/
+ENTERPRENEURS CREW (XI-XII) | THEATRE CLUB(V-X)/
+RIGHTEOUS 
+CLUB(XI-XII) | CYBERSONIC 
+(IT-CLUB)
+VIII-X | TED-ED CLUB (VIII-X)/
+DEBATORS SOCIETY (XI-XII) | ECO CLUB(VIII-X)/
+AWARENESS CLUB (XI-XII) | COOKERY (VIII-X)/
+CREATIVE CREW
+(XI-XII)
+  Row 8: II | 4P | 10:30-
+11:20 | MONDAY | MS. NEHA 
+KHILWANI | MS. AYUSHI VYAS | MS. BHAVNA SHARMA | MS. DIVYA SHARMA | - | - | - | - | - | -
+  Row 9: III | 4P | 10:30-
+11:20 | TUESDAY | MS. NEHA KHILWANI | MS. PRIYANKA 
+PANDEY | MS.RIYA SHEKHAWAT / MS. ARUSHI ANSHU | MS. DIVYA SHARMA | MS SAKSHI SHARMA | - | - | - | - | -
+  Row 10: IV | 9P | 2.50- 3.40 | TUESDAY | MS.BIMLA CHOUDHARY | MS.MAHIMA MATHUR | MS.JAYA GANGWANI
+MS. SAKSHI SIKRI | MS. DIVYA SHARMA | MS SAKSHI SHARMA | - | - | - | - | -
+  Row 11: V | 9P | 2.50- 3.40 | MONDAY | MS. SHWETA KAUSHIK | MS.AYUSHI MONGIA | MS. KAJAL SEJWANI | MS. DIVYA SHARMA | MR. JATIN KUMAR | MR. VIKRAM/
+MR. RAVI 
+SHARMA | - | - | - | -
+  Row 12: VI | 10 P | 03:40-04:30 | MONDAY | MS.ANKITA BASU | MS. SHREEJA
+NAIR | MS. PRIYA JAIN | MS. AKANKSHA MATHUR/
+MS. KOSHLYA KUMAWAT | MR. JATIN KUMAR | MR. VIKRAM/
+MR. RAVI 
+SHARMA | - | - | - | -
+  Row 13: VII | 10 P | 03:40-04:30 | TUESDAY | MS. NEHA JACOB | MS.JAYA BHATIYA | MS. SHRUTI SACHDEVA | MS. AKANKSHA MATHUR/
+MS. KOSHLYA KUMAWAT | MR. JATIN KUMAR | MR. VIKRAM/
+MR. RAVI 
+SHARMA | - | - | - | -
+  Row 14: VIII | 8P | 02:00 - 2.50 | MONDAY | MS. POORVA JOSHI | MS. MEENAKSHI RATHORE | MS. BHAVNA SHARMA | MS. AKANKSHA MATHUR/
+MS. KOSHLYA KUMAWAT | MR. JATIN KUMAR | MR. VIKRAM/
+MR. RAVI 
+SHARMA | MS. RICHA SAXENA | MS. SHIPIKA JAIN | MS. CHINKY 
+YADAV | MS. ANKITA MEHAR
+  Row 15: IX-X | 8P | 02:00 - 2.50 | TUESDAY | MS. SHIKHA BEDI | MS. NISHA SHARMA | MS. EKTA JAISINGH | MS. AKANKSHA MATHUR/
+MS. KOSHLYA KUMAWAT | MR. JATIN KUMAR | MR. VIKRAM/
+MR. RAVI 
+SHARMA | MS. RICHA SAXENA | MS. SHIPIKA JAIN | MS. SWATI MEHTA | MS. ANKITA MEHAR
+  Row 16: XI-XII | 1P | 08:15-09:00 | THURSDAY | MS. SHILPI DUTTA | MR. ABHISHEK SHARMA | MS. TEJASWANI SHARMA
+/MR. ANKIT JAIN | MR. AJAY SINGH SAHU | MS. MANSI TANEJA | - | - | MS. MEENAKSHI BORDIA | MR. SANDEEP TRIPATHI | MS. SHIVANI RAJE
+
+Fetching SCHOOL ORIGINAL SHEET...
+============================================================
+SCHOOL ORIGINAL SHEET
+Sheets: School_Timings, Teachers_Master, Classes_Master, Subject_Mapping, Venue_Constraints, Hard_Constraints, Teacher_Constraints, Preferences, Submission_Checklist
+============================================================
+
+--- School_Timings --- (1000 rows)
+  Row 0: Period No. | Period Name | Start Time | End Time | Duration | Type | CAMBRIDGE COURT WORLD SCHOOL
+  Row 1: 0P | Mindfulness / Assembly | 07:45 AM | 08:00 AM | 15 mins | Break / Assembly | SESSION 2026-27 (21/02/2026)
+  Row 2: 1P | 1st Period | 08:00 AM | 08:45 AM | 45 mins | Class | BELL SCHEDULE | HOBBY DAYS
+  Row 3: 2P | 2nd Period | 08:45 AM | 09:30 AM | 45 mins | Class | PERIOD | TIMINGS | DURATION | PERIOD | TIMINGS | M/W/F | T/T/S
+  Row 4: 3P | 3rd Period | 09:30 AM | 10:15 AM | 45 mins | Class | FIRST 0P(VIII-XII)
+(Mindfulness) | 08:00-08:15 | 15 | 4P | 10:30-11:20 | II | III
+  Row 5: Break | Morning Break | 10:15 AM | 10:30 AM | 15 mins | Break | 1P | 08:15-09:00 | 45 | 8P | 02:00-02:50 | VIII | IX-X
+  Row 6: 4P | 4th Period | 10:30 AM | 11:15 AM | 45 mins | Class | 2P | 09:00-09:50 | 50 | 9P | 02:50-03:40 | V | IV
+  Row 7: Lunch | Lunch Break | 11:15 AM | 11:45 AM | 30 mins | Lunch | FIRST 0P(II-VII)
+(Mindfulness) | 09:30-09:50 | 20 | 10P | 03:40-04:30 | VI | VII
+  Row 8: 5P | 5th Period | 11:45 AM | 12:30 PM | 45 mins | Class | 3P | 09:50-10:30 | 40 | ARRIVAL TIMINGS | DEPARTURE TIMINGS
+  Row 9: 6P | 6th Period | 12:30 PM | 01:15 PM | 45 mins | Class | 4P | 10:30-11:20 | 50 | VIII -XII | 0.3263888888888889 | XI & XII
+(SCIENCE) | 0.08333333333333333
+  Row 10: 7P | 7th Period | 01:15 PM | 02:00 PM | 45 mins | Class | LUNCH | 11:20-11:40 | 20 | II -VII | 0.3958333333333333 | XI & XII
+(SCIENCE - INT.) | 0.08333333333333333
+  Row 11: 8P | 8th Period | 02:00 PM | 02:45 PM | 45 mins | Class | 5P | 11:40-12:25 | 45 | LUNCH TIMINGS | XI & XII
+(COM .& HUM.) | 0.08333333333333333
+  Row 12: 6P | 12:25-01:10 | 45 | II TO XII | 11:20-11:40 | VIII -X | 0.125
+  Row 13: 7P | 01:10-02:00 | 50 | II TO VII | 0.1875
+  Row 14: FRUIT LUNCH
+II TO VII | 02:00-02:10 | 10 | INTERGRATED TIMING | INTERGRATED LUNCH TIMING
+  Row 15: 8P | 02:00-02:50 | 50 | VIII-X | 09:00-12:20 | IX-X | 11:00-11:20
+  Row 16: 9P | 02:50-03:40 | 50 | XI-XII | 08:15-12:25 | XI-XII | 11:40-12:00
+  Row 17: 10P | 03:40-04:30 | 50
+  Row 18: We Time (II-VII) | 04:20-04:30 | 10
+  Row 19: ASSEMBLY(II-XII) 2026-27
+  Row 20: II | TUESDAY | 3P | VI &VII | MONDAY | 3P
+  Row 21: III | WEDNESDAY | 3P | VIII-X | FRIDAY | 1P
+  Row 22: IV | FRIDAY | 3P | XI-XII | THURSDAY | 1P
+  Row 23: V | THURSDAY | 3P
+
+--- Teachers_Master --- (1000 rows)
+  Row 0: Teacher ID | Teacher Name | Designation | Primary Subject(s) | Secondary Subject(s) | Max Periods / Week | Preferred Classes | Off-Days / Constraints | Employment Type | Initials
+  Row 1: T001 | Ms. Shalini Singh | PGT English | English | Spoken English | 32 | IX–XII | Not available Friday 6P–8P | Full-Time
+  Row 2: T002 | Mr. Anjanee Kumar | PGT Mathematics | Mathematics | Statistics | 36 | IX–XII | Full-time | Full-Time
+  Row 3: T003 | Mr. Abhishek Sharma | Lab Faculty | Physics Lab | Science Practical | 24 | XI–XII | Requires Lab Access | Full-Time
+  Row 7: CLASS II-V (SYNOPSIS) (2026-27)    (TEACHERS TIMINGS - 08.45-04.30) (6/4/26)
+  Row 8: S.NO. | SUBJECT | TEACHERS NAME | CLASSES & SECTION | TOTAL | C. T. | OTHER
+  Row 9: 1 | ENGLISH | MS. SHALINI SINGH | II A, II B | 18 | ARRANGEMENTS
+(08:45:03:30)
+  Row 10: 2 | ENGLISH | MS. ANJALI MEENA | II C, II D, II E | 28 | II D
+  Row 11: 3 | ENGLISH | MS. LAVYA SINGH | II F, II G, II H | 28 | II G
+  Row 12: 4 | ENGLISH | MS. NEHA KHILWANI | III A, III B, III C, III E | 26 | III B | LIT. CLUB- II & III
+  Row 13: 5 | ENGLISH | MS. MONIKA ARORA | III D, III F, III G, III H | 29 | III D
+  Row 14: 6 | ENGLISH | MS. SURBHI GUPTA | III I, IV A, IV B, IV C | 28
+  Row 15: 7 | ENGLISH | MS. MEENA BHATI | IV D, IV E, IV F, IV G | 28
+  Row 16: 8 | ENGLISH | MS. BIMLA CHOUDHARY | IV H, IV I,VA, VB | 30 | IV H | LIT. CLUB- IV
+  Row 17: 9 | ENGLISH | MS. DURGA CHATWANI | V C, V D | 14
+  Row 18: 10 | ENGLISH | MS. SHWETA KAUSHIK | V E, V F, V G, V H | 30 | V G | LIT. CLUB- V
+  Row 19: 11 | READING | MS. NIMMY NANCY | II & III | 35 | II B
+  Row 20: 12 | MATHS | MS. BHAWNA SHARMA | II A, II B, II C | 31 | II C
+  Row 21: 13 | MATHS | MS. AARTI KHANDAL | II D, II E, II F | 31 | II E
+  Row 22: 14 | MATHS | MS. DEEPA BHAGTANI | II G, II H | 23 | II H | MATHS CLUB -II (2 CLUBS AS PER STRENGTH)
+  Row 23: 15 | MATHS | MS. RIYA SHEKHAWAT | III A, III B, III C | 29 | III A | MATHS CLUB-III
+  Row 24: 16 | MATHS | MS. MAHIMA KHANDELWAL | III F, III G | 19 | III G
+  Row 25: 17 | MATHS | MS. AARUSHI ANSHU | III D, III E, III H | 29 | III H | MATHS CLUB-III
+  Row 26: 18 | MATHS | MS. KASHISH MEGHNANI | III I, IV A, IV B | 26 | III I
+  Row 27: 19 | MATHS | MS. SAKSHI SIKRI | IV C, IV D, IV E | 26 | IV D | MATHS CLUB-IV
+  Row 28: 20 | MATHS | MS. JAYA GANGWANI | IV F, IV G, IV H | 26 | IV G | MATHS CLUB-IV
+  Row 29: 21 | MATHS | MS. KAJAL SEJWANI | IV I, V A, V B | 26 | IV I | MATHS CLUB-V
+
+--- Classes_Master --- (982 rows)
+  Row 0: Field | Details
+  Row 1: Class Name
+  Row 2: Section
+  Row 3: Stream (if applicable)
+  Row 4: Class Teacher
+  Row 5: Total Students
+  Row 6: Classroom Number
+  Row 9: CLASS TEACHERS -2026-27 (II-XII)
+  Row 10: S.N. | CLASS | CLASS TEACHER
+  Row 11: 1 | II-A | MS. LEELA TAILOR
+  Row 12: 2 | II-B | MS. NIMMY NANCY
+  Row 13: 3 | II-C | MS. BHAWNA SHARMA
+  Row 14: 4 | II-D | MS. ANJALI MEENA
+  Row 15: 5 | II-E | MS. AARTI KHANDAL
+  Row 16: 6 | II-F | MS. AAYUSHI VYAS
+  Row 17: 7 | II-G | MS. LAVYA SINGH
+  Row 18: 8 | II-H | MS. DEEPA BHAGTANI
+  Row 19: 9 | III-A | MS. RIYA SHEKHAWAT
+  Row 20: 10 | III-B | MS. NEHA KHILWANI
+  Row 21: 11 | III-C | MS. RASHMI BHARDWAJ
+  Row 22: 12 | III-D | MS. MONIKA ARORA
+  Row 23: 13 | III-E | MS. PRIYANKA PANDEY
+  Row 24: 14 | III-F | MS. DIVYA SHARMA
+  Row 25: 15 | III-G | MS. MAHIMA KHANDELWAL
+  Row 26: 16 | III-H | MS. AARUSHI ANSHU
+  Row 27: 17 | III-I | MS. KASHISH MEGHNANI
+  Row 28: 18 | IV-A | MS. ALKA SURI
+  Row 29: 19 | IV-B | MS. VIDHYA BHARTI
+
+--- Subject_Mapping --- (1000 rows)
+  Row 0: Grade & Section | Subject Name | Assigned Teacher | Periods per Week | Subject Type | Special Requirements | Preferred Timing | Double Period? (Yes/No)
+  Row 1: Mathematics | Mr. Anjanee Kumar | 8 | Theory | No | Morning Preferred
+  Row 2: Physics Lab | Mr. Abhishek Sharma | 2 | Practical | Yes (Back-to-back) | Lab Availability
+  Row 3: Games | Physical Instructor | 4 | Activity | Field Required | Last Period
+  Row 4: Skillizee | Skill Faculty | 2 | Skill | Computer Lab Preferred | Flexible
+
+--- Venue_Constraints --- (1007 rows)
+  Row 0: Venue | Constraint
+  Row 1: Games Field | Maximum 2 classes simultaneously
+  Row 2: Physics Lab | Only one class at a time
+  Row 3: Auditorium | Requires prior slot allocation
+  Row 7: SLOT LIST- II to X (2026-27)
+  Row 8: VI to X | II to V
+  Row 9: SUBJECT | X | IX | VIII | VII | VI | SUBJECT | V | IV | III | II
+  Row 10: ENGLISH | 7 | 7 | 7 | 6 | 6 | ENGLISH | 7 | 7 | 7 | 9
+  Row 11: HINDI | 7 | 6 | 6 | 6 | 6 | HINDI | 6 | 6 | 6 | 9
+  Row 12: SANS/FR. | - | - | 3 | 3 | 3 | MATHS | 8 | 8 | 9 | 10
+  Row 13: MATHS | 10 | 10 | 9 | 8 | 8 | SKILIZEE | 1 | 1 | 1 | 1
+  Row 14: SKILIZEE | - | 1 | 1 | 1 | 1 | SCIENCE | 6 | 6 | 7 | -
+  Row 15: SCI./(P/C/B) | 9 | 9 | 8 | 7 | 7 | SST. | 6 | 6 | - | -
+  Row 16: SST. (H/C/G/E) | 7 | 7 | 6 | 6 | 6 | COMPUTER | 2 | 2 | 2 | 1
+  Row 17: COMPUTER | 2 | 2 | 2 | 2 | 2 | LIFE SKILL | - | - | - | 1
+  Row 18: G.K. | - | - | - | - | - | G.K. /NEWS | - | - | 1 | 1
+  Row 19: ROBOTICS | - | - | - | 1 | 1 | READING | - | - | 2 | 2
+  Row 20: DRAWING | - | - | - | 1 | 1 | ROBOTIC | 1 | 1 | 1 | 1
+  Row 21: LIBRARY | 1 | 1 | 1 | 1 | 1 | DRAWING | 1 | 1 | 1 | 1
+  Row 22: DANCE /MUSIC/ 
+THEATRE | - | - | - | 1 | 1 | LIBRARY | 1 | 1 | 1 | 1
+  Row 23: GAMES | 1 | 1 | 1 | 1 | 1 | DANCE | 1 | 1 | 1 | 1
+  Row 24: HOBBY/
+CLUB | 3 | 3 | 3 | 3 | 3 | MUSIC | - | - | 1 | 1
+  Row 25: ASSEMBLY | 1 | 1 | 1 | 1 | 1 | GAMES | 1 | 1 | 1 | 2
+  Row 26: TOTAL | 48 | 48 | 48 | 48 | 48 | HOBBY /CLUB | 3 | 3 | 3 | 3
+  Row 27: CLASS | PHY. | CHE. | BIO. | GEO | HIS./
+ECO. | ASSEMBLY | 1 | 1 | 1 | 1
+  Row 28: VII | 2 | 2 | 3 | 2 | 4 | ZUMBA/
+SWIMMING | 1 | 1 | 1 | 1
+  Row 29: VIII | 3 | 2 | 3 | 2 | 4 | PRESEN. SKILL | 2 | 2 | 2 | 2
+
+--- Hard_Constraints --- (1000 rows)
+  Row 0: Constraint Type | Details
+  Row 1: Locked Slots | Wednesday 3P – Faculty Meeting – No Classes
+  Row 2: Saturday Rule | After 12 PM – No Academic Classes
+  Row 3: Mathematics Rule | Must be within first 4 periods
+  Row 4: PE Rule | Preferably last 2 periods
+  Row 5: Lab Rule | Must be consecutive periods
+  Row 8: CONDITIONS
+  Row 9: 1 | In a day max to max only 5P
+  Row 10: 2 | Periods can be in combination of 3+2 with gap of 2 to 3 period in between
+  Row 11: 3 | Avoid to have last period Maths and Science
+  Row 12: 4 | Everyday 1 period non Academic
+  Row 13: 5 | Games and Hobby should not be on same day
+  Row 14: 6 | Dance / Music / Hobby Period should not be on same day
+  Row 15: 7 | Two same subject should not be consequtive
+  Row 16: 8 | More then 2 period of same subject can not be on same day
+  Row 17: 9 | Just after lunch games should not be given
+  Row 18: 10 | At a time 2 Zumba period Should not be given
+  Row 19: 11 | Zumba period should not be given in 8p and 10 p
+  Row 20: 12 | II -VII classes should be alloted in between 3P to 10 Period
+  Row 21: 13 | Hobby classes should be allotted as per mentioned days and timings only
+  Row 22: 14 | Assembly and  Club Classes should be added as per the mentioned slot
+
+--- Teacher_Constraints --- (1006 rows)
+  Row 0: Teacher Name | Day | Unavailable Slots | Reason
+  Row 1: Consecutive Classes | Max 3 continuous periods
+  Row 2: Daily Load Limit | Max 6 periods per day
+  Row 3: Gap Preference | Avoid unnecessary idle gaps
+  Row 4: Senior Faculty Rules | No last-period allocation
+  Row 6: CLUB TIME TABLE-II-XII SESSION 2026-27 -(28/3/2026)
+  Row 7: CLASS | PERIOD | TIMINGS | DAY | LITERARY CLUB
+(ENGLISH)
+(II-XII) | TECHNOCRATS 
+(SCIENCE )
+(II-XII) | PYTHON /FINANCE 
+(MATHS) -(II-X)/
+FINANCIAL LITERACY(XI-XII) | QUIZZADERS / 
+(G.K.)-(II-X)
+BRAINIACS(XI-XII) | ROBOTICS
+(III-X)/
+ENTERPRENEURS CREW (XI-XII) | THEATRE CLUB(V-X)/
+RIGHTEOUS 
+CLUB(XI-XII) | CYBERSONIC 
+(IT-CLUB)
+VIII-X | TED-ED CLUB (VIII-X)/
+DEBATORS SOCIETY (XI-XII) | ECO CLUB(VIII-X)/
+AWARENESS CLUB (XI-XII) | COOKERY (VIII-X)/
+CREATIVE CREW
+(XI-XII)
+  Row 8: II | 4P | 10:30-
+11:20 | MONDAY | MS. NEHA 
+KHILWANI | MS. AYUSHI VYAS | MS. BHAVNA SHARMA | MS. DIVYA SHARMA | - | - | - | - | - | -
+  Row 9: III | 4P | 10:30-
+11:20 | TUESDAY | MS. NEHA KHILWANI | MS. PRIYANKA 
+PANDEY | MS.RIYA SHEKHAWAT / MS. ARUSHI ANSHU | MS. DIVYA SHARMA | MS SAKSHI SHARMA | - | - | - | - | -
+  Row 10: IV | 9P | 2.50- 3.40 | TUESDAY | MS.BIMLA CHOUDHARY | MS.MAHIMA MATHUR | MS.JAYA GANGWANI
+MS. SAKSHI SIKRI | MS. DIVYA SHARMA | MS SAKSHI SHARMA | - | - | - | - | -
+  Row 11: V | 9P | 2.50- 3.40 | MONDAY | MS. SHWETA KAUSHIK | MS.AYUSHI MONGIA | MS. KAJAL SEJWANI | MS. DIVYA SHARMA | MR. JATIN KUMAR | MR. VIKRAM/
+MR. RAVI 
+SHARMA | - | - | - | -
+  Row 12: VI | 10 P | 03:40-04:30 | MONDAY | MS.ANKITA BASU | MS. SHREEJA
+NAIR | MS. PRIYA JAIN | MS. AKANKSHA MATHUR/
+MS. KOSHLYA KUMAWAT | MR. JATIN KUMAR | MR. VIKRAM/
+MR. RAVI 
+SHARMA | - | - | - | -
+  Row 13: VII | 10 P | 03:40-04:30 | TUESDAY | MS. NEHA JACOB | MS.JAYA BHATIYA | MS. SHRUTI SACHDEVA | MS. AKANKSHA MATHUR/
+MS. KOSHLYA KUMAWAT | MR. JATIN KUMAR | MR. VIKRAM/
+MR. RAVI 
+SHARMA | - | - | - | -
+  Row 14: VIII | 8P | 02:00 - 2.50 | MONDAY | MS. POORVA JOSHI | MS. MEENAKSHI RATHORE | MS. BHAVNA SHARMA | MS. AKANKSHA MATHUR/
+MS. KOSHLYA KUMAWAT | MR. JATIN KUMAR | MR. VIKRAM/
+MR. RAVI 
+SHARMA | MS. RICHA SAXENA | MS. SHIPIKA JAIN | MS. CHINKY 
+YADAV | MS. ANKITA MEHAR
+  Row 15: IX-X | 8P | 02:00 - 2.50 | TUESDAY | MS. SHIKHA BEDI | MS. NISHA SHARMA | MS. EKTA JAISINGH | MS. AKANKSHA MATHUR/
+MS. KOSHLYA KUMAWAT | MR. JATIN KUMAR | MR. VIKRAM/
+MR. RAVI 
+SHARMA | MS. RICHA SAXENA | MS. SHIPIKA JAIN | MS. SWATI MEHTA | MS. ANKITA MEHAR
+  Row 16: XI-XII | 1P | 08:15-09:00 | THURSDAY | MS. SHILPI DUTTA | MR. ABHISHEK SHARMA | MS. TEJASWANI SHARMA
+/MR. ANKIT JAIN | MR. AJAY SINGH SAHU | MS. MANSI TANEJA | - | - | MS. MEENAKSHI BORDIA | MR. SANDEEP TRIPATHI | MS. SHIVANI RAJE
+
+--- Preferences --- (1000 rows)
+  Row 0: Prefrences | Example
+  Row 1: Balanced Daily Load | Avoid too many heavy subjects in one day
+  Row 2: Subject Rotation | Do not repeat same subject twice daily
+  Row 3: Teacher Comfort | Cluster classes in same building/floor
+  Row 4: Student Focus | Difficult subjects earlier in the day
+  Row 5: Activity Distribution | Spread sports/music evenly
+
+--- Submission_Checklist --- (1000 rows)
+  Row 0: Item | Status
+  Row 1: School Timing Structure | ☐
+  Row 2: Complete Teacher List | ☐
+  Row 3: Subject Allocation for Every Section | ☐
+  Row 4: Venue/Lab Constraints | ☐
+  Row 5: Institutional Rules | ☐
+  Row 6: Saturday Schedule (if applicable) | ☐
+  Row 7: Teacher Availability Constraints | ☐

@@ -51,12 +51,16 @@ export const initialMockData: MockData = {
   ],
 };
 
-let dataStore: MockData = JSON.parse(JSON.stringify(initialMockData));
+const globalForData = global as unknown as { _dataStore?: MockData };
+
+if (!globalForData._dataStore) {
+  globalForData._dataStore = JSON.parse(JSON.stringify(initialMockData));
+}
 
 export function getDataStore(): MockData {
-  return dataStore;
+  return globalForData._dataStore!;
 }
 
 export function updateDataStore(newData: MockData) {
-  dataStore = newData;
+  globalForData._dataStore = newData;
 }

@@ -143,8 +143,27 @@ export default function Dashboard() {
 
                 setData(result.data);
                 window.dispatchEvent(new Event('data-uploaded'));
-                btn.innerHTML = originalText;
-                alert(`Synced successfully! ${result.data.teachers.length} teachers, ${result.data.classes.length} classes, ${result.data.assignments.length} assignments loaded.`);
+
+                // ── Auto-generate timetable immediately ──
+                btn.textContent = 'GENERATING...';
+                try {
+                  const genRes = await fetch('/api/generate', { method: 'POST' });
+                  const genResult = await genRes.json();
+                  if (genRes.ok && genResult.success) {
+                    // Refresh data with generated timetable
+                    const dataRes = await fetch('/api/data');
+                    const dataResult = await dataRes.json();
+                    if (dataResult.success) setData(dataResult.data);
+                    btn.innerHTML = originalText;
+                    alert(`Synced & generated! ${result.data.teachers.length} teachers, ${result.data.classes.length} classes, ${result.data.assignments.length} assignments. Timetable ready.`);
+                  } else {
+                    btn.innerHTML = originalText;
+                    alert(`Synced successfully (${result.data.assignments.length} assignments) but generation had issues: ${genResult.message || 'Unknown'}`);
+                  }
+                } catch (genErr: any) {
+                  btn.innerHTML = originalText;
+                  alert(`Synced OK but auto-generate failed: ${genErr.message}. Go to Generate page manually.`);
+                }
               } catch (err: any) {
                 alert('Sync error: ' + err.message);
               }

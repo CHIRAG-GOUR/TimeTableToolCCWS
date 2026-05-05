@@ -1,0 +1,2432 @@
+{
+  "School_Timings": [
+    {
+      "Period No.": "0P",
+      "Period Name": "Mindfulness / Assembly",
+      "Start Time": "07:45 AM",
+      "End Time": "08:00 AM",
+      "Duration": "15 mins",
+      "Type": "Break / Assembly",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "CAMBRIDGE COURT WORLD SCHOOL": "SESSION 2026-27 (21/02/2026)",
+      "__EMPTY_2": "",
+      "__EMPTY_3": "",
+      "__EMPTY_4": "",
+      "__EMPTY_5": "",
+      "__EMPTY_6": "",
+      "__EMPTY_7": ""
+    },
+    {
+      "Period No.": "1P",
+      "Period Name": "1st Period",
+      "Start Time": "08:00 AM",
+      "End Time": "08:45 AM",
+      "Duration": "45 mins",
+      "Type": "Class",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "CAMBRIDGE COURT WORLD SCHOOL": "BELL SCHEDULE",
+      "__EMPTY_2": "",
+      "__EMPTY_3": "",
+      "__EMPTY_4": "HOBBY DAYS",
+      "__EMPTY_5": "",
+      "__EMPTY_6": "",
+      "__EMPTY_7": ""
+    },
+    {
+      "Period No.": "2P",
+      "Period Name": "2nd Period",
+      "Start Time": "08:45 AM",
+      "End Time": "09:30 AM",
+      "Duration": "45 mins",
+      "Type": "Class",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "CAMBRIDGE COURT WORLD SCHOOL": "PERIOD",
+      "__EMPTY_2": " TIMINGS",
+      "__EMPTY_3": "DURATION",
+      "__EMPTY_4": "PERIOD",
+      "__EMPTY_5": "TIMINGS",
+      "__EMPTY_6": "M/W/F",
+      "__EMPTY_7": "T/T/S"
+    },
+    {
+      "Period No.": "3P",
+      "Period Name": "3rd Period",
+      "Start Time": "09:30 AM",
+      "End Time": "10:15 AM",
+      "Duration": "45 mins",
+      "Type": "Class",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "CAMBRIDGE COURT WORLD SCHOOL": "FIRST 0P(VIII-XII)\n(Mindfulness)",
+      "__EMPTY_2": "08:00-08:15",
+      "__EMPTY_3": 15,
+      "__EMPTY_4": "4P",
+      "__EMPTY_5": "10:30-11:20",
+      "__EMPTY_6": "II",
+      "__EMPTY_7": "III"
+    },
+    {
+      "Period No.": "Break",
+      "Period Name": "Morning Break",
+      "Start Time": "10:15 AM",
+      "End Time": "10:30 AM",
+      "Duration": "15 mins",
+      "Type": "Break",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "CAMBRIDGE COURT WORLD SCHOOL": "1P",
+      "__EMPTY_2": "08:15-09:00",
+      "__EMPTY_3": 45,
+      "__EMPTY_4": "8P",
+      "__EMPTY_5": "02:00-02:50",
+      "__EMPTY_6": "VIII",
+      "__EMPTY_7": "IX-X"
+    },
+    {
+      "Period No.": "4P",
+      "Period Name": "4th Period",
+      "Start Time": "10:30 AM",
+      "End Time": "11:15 AM",
+      "Duration": "45 mins",
+      "Type": "Class",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "CAMBRIDGE COURT WORLD SCHOOL": "2P",
+      "__EMPTY_2": "09:00-09:50",
+      "__EMPTY_3": 50,
+      "__EMPTY_4": "9P",
+      "__EMPTY_5": "02:50-03:40",
+      "__EMPTY_6": "V",
+      "__EMPTY_7": "IV"
+    },
+    {
+      "Period No.": "Lunch",
+      "Period Name": "Lunch Break",
+      "Start Time": "11:15 AM",
+      "End Time": "11:45 AM",
+      "Duration": "30 mins",
+      "Type": "Lunch",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "CAMBRIDGE COURT WORLD SCHOOL": "FIRST 0P(II-VII)\n(Mindfulness)",
+      "__EMPTY_2": "09:30-09:50",
+      "__EMPTY_3": 20,
+      "__EMPTY_4": "10P",
+      "__EMPTY_5": "03:40-04:30",
+      "__EMPTY_6": "VI",
+      "__EMPTY_7": "VII"
+    },
+    {
+      "Period No.": "5P",
+      "Period Name": "5th Period",
+      "Start Time": "11:45 AM",
+      "End Time": "12:30 PM",
+      "Duration": "45 mins",
+      "Type": "Class",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "CAMBRIDGE COURT WORLD SCHOOL": "3P",
+      "__EMPTY_2": "09:50-10:30",
+      "__EMPTY_3": 40,
+      "__EMPTY_4": "ARRIVAL TIMINGS",
+      "__EMPTY_5": "",
+      "__EMPTY_6": "DEPARTURE TIMINGS",
+      "__EMPTY_7": ""
+    },
+    {
+      "Period No.": "6P",
+      "Period Name": "6th Period",
+      "Start Time": "12:30 PM",
+      "End Time": "01:15 PM",
+      "Duration": "45 mins",
+      "Type": "Class",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "CAMBRIDGE COURT WORLD SCHOOL": "4P",
+      "__EMPTY_2": "10:30-11:20",
+      "__EMPTY_3": 50,
+      "__EMPTY_4": "VIII -XII",
+      "__EMPTY_5": 0.3263888888888889,
+      "__EMPTY_6": "XI & XII\n(SCIENCE)",
+      "__EMPTY_7": 0.08333333333333333
+    },
+    {
+      "Period No.": "7P",
+      "Period Name": "7th Period",
+      "Start Time": "01:15 PM",
+      "End Time": "02:00 PM",
+      "Duration": "45 mins",
+      "Type": "Class",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "CAMBRIDGE COURT WORLD SCHOOL": "LUNCH",
+      "__EMPTY_2": "11:20-11:40",
+      "__EMPTY_3": 20,
+      "__EMPTY_4": "II -VII",
+      "__EMPTY_5": 0.3958333333333333,
+      "__EMPTY_6": "XI & XII\n(SCIENCE - INT.)\n",
+      "__EMPTY_7": 0.08333333333333333
+    },
+    {
+      "Period No.": "8P",
+      "Period Name": "8th Period",
+      "Start Time": "02:00 PM",
+      "End Time": "02:45 PM",
+      "Duration": "45 mins",
+      "Type": "Class",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "CAMBRIDGE COURT WORLD SCHOOL": "5P",
+      "__EMPTY_2": "11:40-12:25",
+      "__EMPTY_3": 45,
+      "__EMPTY_4": "LUNCH TIMINGS",
+      "__EMPTY_5": "",
+      "__EMPTY_6": "XI & XII\n(COM .& HUM.)",
+      "__EMPTY_7": 0.08333333333333333
+    },
+    {
+      "Period No.": "",
+      "Period Name": "",
+      "Start Time": "",
+      "End Time": "",
+      "Duration": "",
+      "Type": "",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "CAMBRIDGE COURT WORLD SCHOOL": "6P",
+      "__EMPTY_2": "12:25-01:10",
+      "__EMPTY_3": 45,
+      "__EMPTY_4": "II TO XII",
+      "__EMPTY_5": "11:20-11:40",
+      "__EMPTY_6": "VIII -X",
+      "__EMPTY_7": 0.125
+    },
+    {
+      "Period No.": "",
+      "Period Name": "",
+      "Start Time": "",
+      "End Time": "",
+      "Duration": "",
+      "Type": "",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "CAMBRIDGE COURT WORLD SCHOOL": "7P",
+      "__EMPTY_2": "01:10-02:00",
+      "__EMPTY_3": 50,
+      "__EMPTY_4": "",
+      "__EMPTY_5": "",
+      "__EMPTY_6": "II TO VII",
+      "__EMPTY_7": 0.1875
+    },
+    {
+      "Period No.": "",
+      "Period Name": "",
+      "Start Time": "",
+      "End Time": "",
+      "Duration": "",
+      "Type": "",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "CAMBRIDGE COURT WORLD SCHOOL": "FRUIT LUNCH\nII TO VII",
+      "__EMPTY_2": "02:00-02:10",
+      "__EMPTY_3": 10,
+      "__EMPTY_4": "INTERGRATED TIMING",
+      "__EMPTY_5": "",
+      "__EMPTY_6": "INTERGRATED LUNCH TIMING",
+      "__EMPTY_7": ""
+    },
+    {
+      "Period No.": "",
+      "Period Name": "",
+      "Start Time": "",
+      "End Time": "",
+      "Duration": "",
+      "Type": "",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "CAMBRIDGE COURT WORLD SCHOOL": "8P",
+      "__EMPTY_2": "02:00-02:50",
+      "__EMPTY_3": 50,
+      "__EMPTY_4": "VIII-X",
+      "__EMPTY_5": "09:00-12:20",
+      "__EMPTY_6": "IX-X",
+      "__EMPTY_7": "11:00-11:20"
+    },
+    {
+      "Period No.": "",
+      "Period Name": "",
+      "Start Time": "",
+      "End Time": "",
+      "Duration": "",
+      "Type": "",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "CAMBRIDGE COURT WORLD SCHOOL": "9P",
+      "__EMPTY_2": "02:50-03:40",
+      "__EMPTY_3": 50,
+      "__EMPTY_4": "XI-XII",
+      "__EMPTY_5": "08:15-12:25",
+      "__EMPTY_6": "XI-XII",
+      "__EMPTY_7": "11:40-12:00"
+    },
+    {
+      "Period No.": "",
+      "Period Name": "",
+      "Start Time": "",
+      "End Time": "",
+      "Duration": "",
+      "Type": "",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "CAMBRIDGE COURT WORLD SCHOOL": "10P",
+      "__EMPTY_2": "03:40-04:30",
+      "__EMPTY_3": 50,
+      "__EMPTY_4": "",
+      "__EMPTY_5": "",
+      "__EMPTY_6": "",
+      "__EMPTY_7": ""
+    },
+    {
+      "Period No.": "",
+      "Period Name": "",
+      "Start Time": "",
+      "End Time": "",
+      "Duration": "",
+      "Type": "",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "CAMBRIDGE COURT WORLD SCHOOL": "We Time (II-VII)",
+      "__EMPTY_2": "04:20-04:30",
+      "__EMPTY_3": 10,
+      "__EMPTY_4": "",
+      "__EMPTY_5": "",
+      "__EMPTY_6": "",
+      "__EMPTY_7": ""
+    },
+    {
+      "Period No.": "",
+      "Period Name": "",
+      "Start Time": "",
+      "End Time": "",
+      "Duration": "",
+      "Type": "",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "CAMBRIDGE COURT WORLD SCHOOL": "ASSEMBLY(II-XII) 2026-27",
+      "__EMPTY_2": "",
+      "__EMPTY_3": "",
+      "__EMPTY_4": "",
+      "__EMPTY_5": "",
+      "__EMPTY_6": "",
+      "__EMPTY_7": ""
+    },
+    {
+      "Period No.": "",
+      "Period Name": "",
+      "Start Time": "",
+      "End Time": "",
+      "Duration": "",
+      "Type": "",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "CAMBRIDGE COURT WORLD SCHOOL": " II",
+      "__EMPTY_2": "TUESDAY",
+      "__EMPTY_3": "3P",
+      "__EMPTY_4": "VI &VII",
+      "__EMPTY_5": "MONDAY",
+      "__EMPTY_6": "3P",
+      "__EMPTY_7": ""
+    },
+    {
+      "Period No.": "",
+      "Period Name": "",
+      "Start Time": "",
+      "End Time": "",
+      "Duration": "",
+      "Type": "",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "CAMBRIDGE COURT WORLD SCHOOL": "III",
+      "__EMPTY_2": "WEDNESDAY",
+      "__EMPTY_3": "3P",
+      "__EMPTY_4": "VIII-X",
+      "__EMPTY_5": "FRIDAY",
+      "__EMPTY_6": "1P",
+      "__EMPTY_7": ""
+    },
+    {
+      "Period No.": "",
+      "Period Name": "",
+      "Start Time": "",
+      "End Time": "",
+      "Duration": "",
+      "Type": "",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "CAMBRIDGE COURT WORLD SCHOOL": "IV",
+      "__EMPTY_2": "FRIDAY",
+      "__EMPTY_3": "3P",
+      "__EMPTY_4": "XI-XII",
+      "__EMPTY_5": "THURSDAY",
+      "__EMPTY_6": "1P",
+      "__EMPTY_7": ""
+    },
+    {
+      "Period No.": "",
+      "Period Name": "",
+      "Start Time": "",
+      "End Time": "",
+      "Duration": "",
+      "Type": "",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "CAMBRIDGE COURT WORLD SCHOOL": "V",
+      "__EMPTY_2": "THURSDAY",
+      "__EMPTY_3": "3P",
+      "__EMPTY_4": "",
+      "__EMPTY_5": "",
+      "__EMPTY_6": "",
+      "__EMPTY_7": ""
+    }
+  ],
+  "Teachers_Master": [
+    {
+      "Teacher ID": "T001",
+      "Teacher Name": "Ms. Shalini Singh",
+      "Designation": "PGT English",
+      "Primary Subject(s)": "English",
+      "Secondary Subject(s)": "Spoken English",
+      "Max Periods / Week": 32,
+      "Preferred Classes": "IX–XII",
+      "Off-Days / Constraints": "Not available Friday 6P–8P",
+      "Employment Type": "Full-Time",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": "T002",
+      "Teacher Name": "Mr. Anjanee Kumar",
+      "Designation": "PGT Mathematics",
+      "Primary Subject(s)": "Mathematics",
+      "Secondary Subject(s)": "Statistics",
+      "Max Periods / Week": 36,
+      "Preferred Classes": "IX–XII",
+      "Off-Days / Constraints": "Full-time",
+      "Employment Type": "Full-Time",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": "T003",
+      "Teacher Name": "Mr. Abhishek Sharma",
+      "Designation": "Lab Faculty",
+      "Primary Subject(s)": "Physics Lab",
+      "Secondary Subject(s)": "Science Practical",
+      "Max Periods / Week": 24,
+      "Preferred Classes": "XI–XII",
+      "Off-Days / Constraints": "Requires Lab Access",
+      "Employment Type": "Full-Time",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": " CLASS II-V (SYNOPSIS) (2026-27)    (TEACHERS TIMINGS - 08.45-04.30) (6/4/26)",
+      "Teacher Name": "",
+      "Designation": "",
+      "Primary Subject(s)": "",
+      "Secondary Subject(s)": "",
+      "Max Periods / Week": "",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": "S.NO.",
+      "Teacher Name": "SUBJECT",
+      "Designation": "TEACHERS NAME",
+      "Primary Subject(s)": "CLASSES & SECTION",
+      "Secondary Subject(s)": "TOTAL",
+      "Max Periods / Week": "C. T.",
+      "Preferred Classes": "OTHER",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 1,
+      "Teacher Name": "ENGLISH",
+      "Designation": "MS. SHALINI SINGH",
+      "Primary Subject(s)": "II A, II B",
+      "Secondary Subject(s)": 18,
+      "Max Periods / Week": "",
+      "Preferred Classes": "ARRANGEMENTS\n(08:45:03:30)",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 2,
+      "Teacher Name": "ENGLISH",
+      "Designation": "MS. ANJALI MEENA",
+      "Primary Subject(s)": "II C, II D, II E",
+      "Secondary Subject(s)": 28,
+      "Max Periods / Week": "II D",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 3,
+      "Teacher Name": "ENGLISH",
+      "Designation": "MS. LAVYA SINGH",
+      "Primary Subject(s)": "II F, II G, II H",
+      "Secondary Subject(s)": 28,
+      "Max Periods / Week": "II G",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 4,
+      "Teacher Name": "ENGLISH",
+      "Designation": "MS. NEHA KHILWANI",
+      "Primary Subject(s)": "III A, III B, III C, III E",
+      "Secondary Subject(s)": 26,
+      "Max Periods / Week": "III B",
+      "Preferred Classes": "LIT. CLUB- II & III",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 5,
+      "Teacher Name": "ENGLISH",
+      "Designation": "MS. MONIKA ARORA",
+      "Primary Subject(s)": " III D, III F, III G, III H",
+      "Secondary Subject(s)": 29,
+      "Max Periods / Week": "III D",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 6,
+      "Teacher Name": "ENGLISH",
+      "Designation": "MS. SURBHI GUPTA",
+      "Primary Subject(s)": "III I, IV A, IV B, IV C",
+      "Secondary Subject(s)": 28,
+      "Max Periods / Week": "",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 7,
+      "Teacher Name": "ENGLISH",
+      "Designation": "MS. MEENA BHATI",
+      "Primary Subject(s)": "IV D, IV E, IV F, IV G",
+      "Secondary Subject(s)": 28,
+      "Max Periods / Week": "",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 8,
+      "Teacher Name": "ENGLISH",
+      "Designation": "MS. BIMLA CHOUDHARY",
+      "Primary Subject(s)": "IV H, IV I,VA, VB",
+      "Secondary Subject(s)": 30,
+      "Max Periods / Week": "IV H",
+      "Preferred Classes": "LIT. CLUB- IV",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 9,
+      "Teacher Name": "ENGLISH",
+      "Designation": "MS. DURGA CHATWANI",
+      "Primary Subject(s)": " V C, V D",
+      "Secondary Subject(s)": 14,
+      "Max Periods / Week": "",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 10,
+      "Teacher Name": "ENGLISH",
+      "Designation": "MS. SHWETA KAUSHIK",
+      "Primary Subject(s)": "V E, V F, V G, V H",
+      "Secondary Subject(s)": 30,
+      "Max Periods / Week": "V G",
+      "Preferred Classes": "LIT. CLUB- V",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 11,
+      "Teacher Name": "READING",
+      "Designation": "MS. NIMMY NANCY",
+      "Primary Subject(s)": "II & III",
+      "Secondary Subject(s)": 35,
+      "Max Periods / Week": "II B",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 12,
+      "Teacher Name": "MATHS",
+      "Designation": "MS. BHAWNA SHARMA",
+      "Primary Subject(s)": "II A, II B, II C",
+      "Secondary Subject(s)": 31,
+      "Max Periods / Week": "II C",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 13,
+      "Teacher Name": "MATHS",
+      "Designation": "MS. AARTI KHANDAL",
+      "Primary Subject(s)": "II D, II E, II F",
+      "Secondary Subject(s)": 31,
+      "Max Periods / Week": "II E",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 14,
+      "Teacher Name": "MATHS",
+      "Designation": "MS. DEEPA BHAGTANI",
+      "Primary Subject(s)": "II G, II H",
+      "Secondary Subject(s)": 23,
+      "Max Periods / Week": "II H",
+      "Preferred Classes": "MATHS CLUB -II (2 CLUBS AS PER STRENGTH)",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 15,
+      "Teacher Name": "MATHS",
+      "Designation": "MS. RIYA SHEKHAWAT",
+      "Primary Subject(s)": "III A, III B, III C",
+      "Secondary Subject(s)": 29,
+      "Max Periods / Week": "III A",
+      "Preferred Classes": "MATHS CLUB-III",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 16,
+      "Teacher Name": "MATHS",
+      "Designation": "MS. MAHIMA KHANDELWAL",
+      "Primary Subject(s)": "III F, III G",
+      "Secondary Subject(s)": 19,
+      "Max Periods / Week": "",
+      "Preferred Classes": "III G",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 17,
+      "Teacher Name": "MATHS",
+      "Designation": "MS. AARUSHI ANSHU",
+      "Primary Subject(s)": "III D, III E, III H",
+      "Secondary Subject(s)": 29,
+      "Max Periods / Week": "III H",
+      "Preferred Classes": "MATHS CLUB-III",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 18,
+      "Teacher Name": "MATHS",
+      "Designation": "MS. KASHISH MEGHNANI",
+      "Primary Subject(s)": "III I, IV A, IV B",
+      "Secondary Subject(s)": 26,
+      "Max Periods / Week": "III I",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 19,
+      "Teacher Name": "MATHS",
+      "Designation": "MS. SAKSHI SIKRI",
+      "Primary Subject(s)": "IV C, IV D, IV E",
+      "Secondary Subject(s)": 26,
+      "Max Periods / Week": "IV D",
+      "Preferred Classes": "MATHS CLUB-IV",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 20,
+      "Teacher Name": "MATHS",
+      "Designation": "MS. JAYA GANGWANI",
+      "Primary Subject(s)": "IV F, IV G, IV H",
+      "Secondary Subject(s)": 26,
+      "Max Periods / Week": "IV G",
+      "Preferred Classes": "MATHS CLUB-IV",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 21,
+      "Teacher Name": "MATHS",
+      "Designation": "MS. KAJAL SEJWANI",
+      "Primary Subject(s)": "IV I, V A, V B",
+      "Secondary Subject(s)": 26,
+      "Max Periods / Week": "IV I",
+      "Preferred Classes": "MATHS CLUB-V",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 22,
+      "Teacher Name": "MATHS",
+      "Designation": "MS. ANISHA KHATRI",
+      "Primary Subject(s)": "V C, VD, VE",
+      "Secondary Subject(s)": 24,
+      "Max Periods / Week": "V E",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 23,
+      "Teacher Name": "MATHS",
+      "Designation": "MS. PRIYANKA PALIWAL",
+      "Primary Subject(s)": "V F, VG , VH",
+      "Secondary Subject(s)": 24,
+      "Max Periods / Week": "",
+      "Preferred Classes": "TIMINGS \n08:00-03:00",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 24,
+      "Teacher Name": "LIFE SKILL",
+      "Designation": "MS. AAYUSHI VYAS",
+      "Primary Subject(s)": "II A TO III B",
+      "Secondary Subject(s)": 24,
+      "Max Periods / Week": "II F",
+      "Preferred Classes": "SCIENCE CLUB-II",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 25,
+      "Teacher Name": "SCIENCE",
+      "Designation": "MS. PRIYANKA PANDEY",
+      "Primary Subject(s)": "III C , III D, III E, III F",
+      "Secondary Subject(s)": 30,
+      "Max Periods / Week": "III E",
+      "Preferred Classes": "SCIENCE CLUB-III",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 26,
+      "Teacher Name": "SCIENCE",
+      "Designation": "MS. ALKA SURI",
+      "Primary Subject(s)": "III G, III H, III I, IV A",
+      "Secondary Subject(s)": 28,
+      "Max Periods / Week": "IV A",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 27,
+      "Teacher Name": "SCIENCE",
+      "Designation": "MS. DIMPLE SINGH",
+      "Primary Subject(s)": "IV B, IV C, IV D, IV E",
+      "Secondary Subject(s)": 25,
+      "Max Periods / Week": "IV E",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 28,
+      "Teacher Name": "SCIENCE",
+      "Designation": "MS. MAHIMA MATHUR",
+      "Primary Subject(s)": "IV F, IV G, IV H, IV I",
+      "Secondary Subject(s)": 26,
+      "Max Periods / Week": "IV F",
+      "Preferred Classes": "SCIENCE CLUB-IV",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 29,
+      "Teacher Name": "SCIENCE",
+      "Designation": "MS. JYOTSANA SHARMA",
+      "Primary Subject(s)": "V A, V B, V C, V D",
+      "Secondary Subject(s)": 25,
+      "Max Periods / Week": "V D",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 30,
+      "Teacher Name": "SCIENCE",
+      "Designation": "MS. AAYUSHI MONGIA",
+      "Primary Subject(s)": "VE, V F, VG, VH",
+      "Secondary Subject(s)": 26,
+      "Max Periods / Week": "V F",
+      "Preferred Classes": "SCIENCE CLUB-V",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 31,
+      "Teacher Name": "G.K.",
+      "Designation": "MS. DIVYA SHARMA",
+      "Primary Subject(s)": "II & III",
+      "Secondary Subject(s)": 22,
+      "Max Periods / Week": "III F",
+      "Preferred Classes": "G. K. CLUB II, III. IV , V",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 32,
+      "Teacher Name": "SST",
+      "Designation": "MS. VIDHYA BHARTI",
+      "Primary Subject(s)": "IV A, IV B, IV C, IV D",
+      "Secondary Subject(s)": 25,
+      "Max Periods / Week": "IV B",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 33,
+      "Teacher Name": "SST",
+      "Designation": "MS. SHRADDHA MITTAL",
+      "Primary Subject(s)": "IV E, IV F, IVG, IV H, IV I",
+      "Secondary Subject(s)": 30,
+      "Max Periods / Week": "",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 34,
+      "Teacher Name": "SST",
+      "Designation": "MS. HARSHITA GALANI",
+      "Primary Subject(s)": "V A, V B, V C, V D",
+      "Secondary Subject(s)": 25,
+      "Max Periods / Week": "V C",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 35,
+      "Teacher Name": "SST",
+      "Designation": "MS. RACHNA SINHA",
+      "Primary Subject(s)": "V E, V F, V G, V H",
+      "Secondary Subject(s)": 24,
+      "Max Periods / Week": "",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 36,
+      "Teacher Name": "HINDI",
+      "Designation": "MS. LEELA TAILOR",
+      "Primary Subject(s)": "II A, II B, II C",
+      "Secondary Subject(s)": 28,
+      "Max Periods / Week": "II A",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 37,
+      "Teacher Name": "HINDI",
+      "Designation": "MS. AARTI JAIN",
+      "Primary Subject(s)": "II D, II E, II F",
+      "Secondary Subject(s)": 27,
+      "Max Periods / Week": "",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 38,
+      "Teacher Name": "HINDI",
+      "Designation": "MS. KAVITA SHARMA",
+      "Primary Subject(s)": "II G, II H",
+      "Secondary Subject(s)": 18,
+      "Max Periods / Week": "",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 39,
+      "Teacher Name": "HINDI",
+      "Designation": "MS. RASHMI BHARDWAJ",
+      "Primary Subject(s)": "III A, III B, III C, III D",
+      "Secondary Subject(s)": 25,
+      "Max Periods / Week": "III C",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 40,
+      "Teacher Name": "HINDI",
+      "Designation": "MS. MONA MATHUR",
+      "Primary Subject(s)": "III E, III F, III G, III H",
+      "Secondary Subject(s)": 24,
+      "Max Periods / Week": "",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 41,
+      "Teacher Name": "HINDI",
+      "Designation": "MS. ANURADHA VYAS",
+      "Primary Subject(s)": "III I, IV A, IV B, IV C, IV D",
+      "Secondary Subject(s)": 30,
+      "Max Periods / Week": "",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 42,
+      "Teacher Name": "HINDI",
+      "Designation": "MS. KIRAN PANCHAL",
+      "Primary Subject(s)": "IV E, IV F, IVG, IV H",
+      "Secondary Subject(s)": 24,
+      "Max Periods / Week": "",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 43,
+      "Teacher Name": "HINDI",
+      "Designation": "MS. YOGITA PAREEK",
+      "Primary Subject(s)": "IV I, V A, V B, V C",
+      "Secondary Subject(s)": 25,
+      "Max Periods / Week": " V A",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 44,
+      "Teacher Name": "HINDI",
+      "Designation": "MS. REKHA AGARWAL",
+      "Primary Subject(s)": "V D, VE, VF,VG, V H",
+      "Secondary Subject(s)": 30,
+      "Max Periods / Week": "",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 45,
+      "Teacher Name": "SKILLIZEE",
+      "Designation": "MS. KHUSHI GEORGE",
+      "Primary Subject(s)": "II TO IV",
+      "Secondary Subject(s)": 26,
+      "Max Periods / Week": "",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 46,
+      "Teacher Name": "SKILLIZEE",
+      "Designation": "MS. SAKSHI GEORGE",
+      "Primary Subject(s)": "V TO IX",
+      "Secondary Subject(s)": "",
+      "Max Periods / Week": "",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 47,
+      "Teacher Name": "COMPUTER",
+      "Designation": "MS SWATI SHARMA ",
+      "Primary Subject(s)": "II & III A TO III G",
+      "Secondary Subject(s)": 22,
+      "Max Periods / Week": "",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 48,
+      "Teacher Name": "COMPUTER",
+      "Designation": "MS. RINKY SHARMA",
+      "Primary Subject(s)": "III H, IV A TO IV G,VA,VB ",
+      "Secondary Subject(s)": 23,
+      "Max Periods / Week": "V B",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 49,
+      "Teacher Name": "COMPUTER",
+      "Designation": "MS. CHINKY SHARMA",
+      "Primary Subject(s)": "IV H, IV I, V C, VD, VE, VF, VG , VH",
+      "Secondary Subject(s)": 17,
+      "Max Periods / Week": "V H",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 50,
+      "Teacher Name": "COMPUTER\nLAB.",
+      "Designation": "MS. NEHA JANGID",
+      "Primary Subject(s)": "II-V",
+      "Secondary Subject(s)": "",
+      "Max Periods / Week": "",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 51,
+      "Teacher Name": "ROBOTICS",
+      "Designation": "MS. SAKSHI SHARMA",
+      "Primary Subject(s)": "II TO IV",
+      "Secondary Subject(s)": 29,
+      "Max Periods / Week": "IV A",
+      "Preferred Classes": "ROBOTICS CLUB\nIII & IV",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 52,
+      "Teacher Name": "ROBOTICS",
+      "Designation": "MR. JATIN KUMAR",
+      "Primary Subject(s)": "V TO VII ",
+      "Secondary Subject(s)": "",
+      "Max Periods / Week": "",
+      "Preferred Classes": "ROBOTICS CLUB \nV, VI. VII, VIII, IX-X\n",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 53,
+      "Teacher Name": "P. S. ",
+      "Designation": "MS.SHREYA PANDEY ",
+      "Primary Subject(s)": "II & III",
+      "Secondary Subject(s)": 34,
+      "Max Periods / Week": "",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 54,
+      "Teacher Name": "P. S. ",
+      "Designation": "MS. DIVYA",
+      "Primary Subject(s)": "IV & V",
+      "Secondary Subject(s)": 34,
+      "Max Periods / Week": "",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 55,
+      "Teacher Name": "DRAWING ",
+      "Designation": "MS. AMBIKA MATHUR",
+      "Primary Subject(s)": "II TO IV",
+      "Secondary Subject(s)": 26,
+      "Max Periods / Week": "",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 56,
+      "Teacher Name": "DRAWING ",
+      "Designation": "MS. DIPTI GUPTA",
+      "Primary Subject(s)": "V TO VII ",
+      "Secondary Subject(s)": 28,
+      "Max Periods / Week": "",
+      "Preferred Classes": "",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 57,
+      "Teacher Name": "ENGLISH ",
+      "Designation": "MS KESHAVI SARASWAT",
+      "Primary Subject(s)": "SPECIAL TEACHER",
+      "Secondary Subject(s)": 0,
+      "Max Periods / Week": "",
+      "Preferred Classes": "Along with Ms. Monika Arora",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 58,
+      "Teacher Name": "ENGLISH ",
+      "Designation": "MS PREETI GUPTA",
+      "Primary Subject(s)": "SPECIAL TEACHER",
+      "Secondary Subject(s)": 0,
+      "Max Periods / Week": "",
+      "Preferred Classes": "Along With Ms. Bimla Choudhary",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 59,
+      "Teacher Name": "HINDI",
+      "Designation": "MS. GARIMA JAISWAL",
+      "Primary Subject(s)": "SPECIAL TEACHER",
+      "Secondary Subject(s)": 0,
+      "Max Periods / Week": "",
+      "Preferred Classes": "Along With Ms. Yogita Pareek",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 60,
+      "Teacher Name": "MATHS",
+      "Designation": "MS. MEGHNA JAIN",
+      "Primary Subject(s)": "SPECIAL TEACHER",
+      "Secondary Subject(s)": 0,
+      "Max Periods / Week": "",
+      "Preferred Classes": "-",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 61,
+      "Teacher Name": "MATHS",
+      "Designation": "MS. RAKHI TOBARIA",
+      "Primary Subject(s)": "SPECIAL TEACHER",
+      "Secondary Subject(s)": 0,
+      "Max Periods / Week": "",
+      "Preferred Classes": "Along With Ms. Meghna Jain",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 62,
+      "Teacher Name": "MATHS",
+      "Designation": "MS JYOTI YADAV",
+      "Primary Subject(s)": "SPECIAL TEACHER",
+      "Secondary Subject(s)": 0,
+      "Max Periods / Week": "",
+      "Preferred Classes": "Along With Ms. Priyanka Paliwal",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 63,
+      "Teacher Name": "MATHS",
+      "Designation": "MS. RIYA SHARMA ",
+      "Primary Subject(s)": "SPECIAL TEACHER",
+      "Secondary Subject(s)": 0,
+      "Max Periods / Week": "",
+      "Preferred Classes": "Along With Ms. Meghna Jain",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 64,
+      "Teacher Name": "SST",
+      "Designation": "MS HIMA BINDU",
+      "Primary Subject(s)": "SPECIAL TEACHER",
+      "Secondary Subject(s)": 0,
+      "Max Periods / Week": "",
+      "Preferred Classes": "Along with Ms. Harshita Gilani",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    },
+    {
+      "Teacher ID": 65,
+      "Teacher Name": "SST",
+      "Designation": "MS SHILPA JAIN",
+      "Primary Subject(s)": "SPECIAL TEACHER",
+      "Secondary Subject(s)": 0,
+      "Max Periods / Week": "",
+      "Preferred Classes": "Along with Ms. Harshita Gilani",
+      "Off-Days / Constraints": "",
+      "Employment Type": "",
+      "Initials": ""
+    }
+  ],
+  "Classes_Master": [
+    {
+      "Field": "Class Name",
+      "Details": "",
+      "__EMPTY": ""
+    },
+    {
+      "Field": "Section",
+      "Details": "",
+      "__EMPTY": ""
+    },
+    {
+      "Field": "Stream (if applicable)",
+      "Details": "",
+      "__EMPTY": ""
+    },
+    {
+      "Field": "Class Teacher",
+      "Details": "",
+      "__EMPTY": ""
+    },
+    {
+      "Field": "Total Students",
+      "Details": "",
+      "__EMPTY": ""
+    },
+    {
+      "Field": "Classroom Number",
+      "Details": "",
+      "__EMPTY": ""
+    },
+    {
+      "Field": "CLASS TEACHERS -2026-27 (II-XII) ",
+      "Details": "",
+      "__EMPTY": ""
+    },
+    {
+      "Field": "S.N.",
+      "Details": "CLASS",
+      "__EMPTY": "CLASS TEACHER"
+    },
+    {
+      "Field": 1,
+      "Details": "II-A",
+      "__EMPTY": "MS. LEELA TAILOR "
+    },
+    {
+      "Field": 2,
+      "Details": "II-B",
+      "__EMPTY": "MS. NIMMY NANCY "
+    },
+    {
+      "Field": 3,
+      "Details": "II-C",
+      "__EMPTY": "MS. BHAWNA SHARMA"
+    },
+    {
+      "Field": 4,
+      "Details": "II-D",
+      "__EMPTY": "MS. ANJALI MEENA"
+    },
+    {
+      "Field": 5,
+      "Details": "II-E",
+      "__EMPTY": "MS. AARTI KHANDAL"
+    },
+    {
+      "Field": 6,
+      "Details": "II-F",
+      "__EMPTY": "MS. AAYUSHI VYAS"
+    },
+    {
+      "Field": 7,
+      "Details": "II-G",
+      "__EMPTY": "MS. LAVYA SINGH"
+    },
+    {
+      "Field": 8,
+      "Details": "II-H",
+      "__EMPTY": "MS. DEEPA BHAGTANI "
+    },
+    {
+      "Field": 9,
+      "Details": "III-A",
+      "__EMPTY": "MS. RIYA SHEKHAWAT"
+    },
+    {
+      "Field": 10,
+      "Details": "III-B",
+      "__EMPTY": "MS. NEHA KHILWANI"
+    },
+    {
+      "Field": 11,
+      "Details": "III-C",
+      "__EMPTY": "MS. RASHMI BHARDWAJ"
+    },
+    {
+      "Field": 12,
+      "Details": "III-D",
+      "__EMPTY": "MS. MONIKA ARORA"
+    },
+    {
+      "Field": 13,
+      "Details": "III-E",
+      "__EMPTY": "MS. PRIYANKA PANDEY"
+    },
+    {
+      "Field": 14,
+      "Details": "III-F",
+      "__EMPTY": "MS. DIVYA SHARMA"
+    },
+    {
+      "Field": 15,
+      "Details": "III-G",
+      "__EMPTY": "MS. MAHIMA KHANDELWAL "
+    },
+    {
+      "Field": 16,
+      "Details": "III-H",
+      "__EMPTY": "MS. AARUSHI ANSHU"
+    },
+    {
+      "Field": 17,
+      "Details": "III-I",
+      "__EMPTY": "MS. KASHISH MEGHNANI"
+    },
+    {
+      "Field": 18,
+      "Details": "IV-A",
+      "__EMPTY": "MS. ALKA SURI"
+    },
+    {
+      "Field": 19,
+      "Details": "IV-B",
+      "__EMPTY": "MS. VIDHYA BHARTI "
+    },
+    {
+      "Field": 20,
+      "Details": "IV-C",
+      "__EMPTY": "MS. SAKSHI SHARMA "
+    },
+    {
+      "Field": 21,
+      "Details": "IV-D",
+      "__EMPTY": "MS. SAKSHI SIKRI"
+    },
+    {
+      "Field": 22,
+      "Details": "IV-E",
+      "__EMPTY": "MS. DIMPLE SINGH"
+    },
+    {
+      "Field": 23,
+      "Details": "IV-F",
+      "__EMPTY": "MS. MAHIMA MATHUR"
+    },
+    {
+      "Field": 24,
+      "Details": "IV-G",
+      "__EMPTY": "MS. JAYA GANGWANI"
+    },
+    {
+      "Field": 25,
+      "Details": "IV-H",
+      "__EMPTY": "MS. BIMLA CHOUDHARY"
+    },
+    {
+      "Field": 26,
+      "Details": "IV-I",
+      "__EMPTY": "MS. KAJAL SEJWANI"
+    },
+    {
+      "Field": 27,
+      "Details": "V-A",
+      "__EMPTY": "MS. YOGITA PAREEK"
+    },
+    {
+      "Field": 28,
+      "Details": "V-B",
+      "__EMPTY": "MS. RINKY SHARMA "
+    },
+    {
+      "Field": 29,
+      "Details": "V-C",
+      "__EMPTY": "MS. HARSHITA GILANI"
+    },
+    {
+      "Field": 30,
+      "Details": "V-D",
+      "__EMPTY": "MS. JYOTSANA SHARMA"
+    },
+    {
+      "Field": 31,
+      "Details": "V-E ",
+      "__EMPTY": "MS ANISHA KHATRI"
+    },
+    {
+      "Field": 32,
+      "Details": "V-F",
+      "__EMPTY": "MS. AAYUSHI MONGIA"
+    },
+    {
+      "Field": 33,
+      "Details": "V-G",
+      "__EMPTY": "MS. SHWETA KAUSHIK"
+    },
+    {
+      "Field": 34,
+      "Details": "V-H",
+      "__EMPTY": "MS. CHINKY SHARMA"
+    },
+    {
+      "Field": 35,
+      "Details": "VI A",
+      "__EMPTY": "MS. ANKITA BASU"
+    },
+    {
+      "Field": 36,
+      "Details": "VI B",
+      "__EMPTY": "MS. SWATI BAGH"
+    },
+    {
+      "Field": 37,
+      "Details": "VI C",
+      "__EMPTY": "MS. PRIYA JAIN"
+    },
+    {
+      "Field": 38,
+      "Details": "VI D",
+      "__EMPTY": "MS. ARCHANA SHARMA"
+    },
+    {
+      "Field": 39,
+      "Details": "VI E",
+      "__EMPTY": "MS. NEHA JACOB"
+    },
+    {
+      "Field": 40,
+      "Details": "VI F",
+      "__EMPTY": "MS. TANISHA SHIHAG"
+    },
+    {
+      "Field": 41,
+      "Details": "VI G",
+      "__EMPTY": "MS. SHREEJA NAIR"
+    },
+    {
+      "Field": 42,
+      "Details": "VI H",
+      "__EMPTY": "MS. POORVI TANEJA"
+    },
+    {
+      "Field": 43,
+      "Details": "VII A",
+      "__EMPTY": "MS. REKHA KARNAWAT"
+    },
+    {
+      "Field": 44,
+      "Details": "VII B",
+      "__EMPTY": "MS. SHRUTI SACHDEVA"
+    },
+    {
+      "Field": 45,
+      "Details": "VII C",
+      "__EMPTY": "MS. NEHA SANKHLA"
+    },
+    {
+      "Field": 46,
+      "Details": "VII D",
+      "__EMPTY": "MS. BHAWNA SHARMA"
+    },
+    {
+      "Field": 47,
+      "Details": "VII E",
+      "__EMPTY": "MS. NIKITA SHARMA"
+    },
+    {
+      "Field": 48,
+      "Details": "VII F",
+      "__EMPTY": "MS. SONIA CHOUDHARY"
+    },
+    {
+      "Field": 49,
+      "Details": "VII G",
+      "__EMPTY": "MS. RAJNI CHAWLA"
+    },
+    {
+      "Field": 50,
+      "Details": "VIII A",
+      "__EMPTY": "MS. CHINKY YADAV"
+    },
+    {
+      "Field": 51,
+      "Details": "VIII B",
+      "__EMPTY": "MS. SURUCHI PIDIYAR"
+    },
+    {
+      "Field": 52,
+      "Details": "VIII C",
+      "__EMPTY": "MS. MINAXI RATHORE"
+    },
+    {
+      "Field": 53,
+      "Details": "VIII D",
+      "__EMPTY": "MS. TRIPTI SHARMA"
+    },
+    {
+      "Field": 54,
+      "Details": "VIII E",
+      "__EMPTY": "MR. SANDEEP SHARMA"
+    },
+    {
+      "Field": 55,
+      "Details": "VIII F",
+      "__EMPTY": "MS. SHIPIKA JAIN"
+    },
+    {
+      "Field": 56,
+      "Details": "IX A",
+      "__EMPTY": "MS. SARITA ACHARYA"
+    },
+    {
+      "Field": 57,
+      "Details": "IX B",
+      "__EMPTY": "MS. SWATI MEHTA"
+    },
+    {
+      "Field": 58,
+      "Details": "IX C",
+      "__EMPTY": "MS. POORVA JOSHI"
+    },
+    {
+      "Field": 59,
+      "Details": "IX D",
+      "__EMPTY": "MR. TEKCHANDRA BABBANI"
+    },
+    {
+      "Field": 60,
+      "Details": "X A",
+      "__EMPTY": "MS. SHIKHA BEDI"
+    },
+    {
+      "Field": 61,
+      "Details": "X B",
+      "__EMPTY": "MR. DEEPENDRA SINGH"
+    },
+    {
+      "Field": 62,
+      "Details": "X C",
+      "__EMPTY": "MS. SUNITA PAREEK"
+    },
+    {
+      "Field": 63,
+      "Details": "X D",
+      "__EMPTY": "MS. REKHA SHARMA"
+    },
+    {
+      "Field": 64,
+      "Details": "XI A",
+      "__EMPTY": "MR. ANJNEE SHARMA"
+    },
+    {
+      "Field": 65,
+      "Details": "XI B",
+      "__EMPTY": "MS. UJALA TIWARI"
+    },
+    {
+      "Field": 66,
+      "Details": "XI C",
+      "__EMPTY": "MS. MANSI TANEJA"
+    },
+    {
+      "Field": 67,
+      "Details": "XI D",
+      "__EMPTY": "MS. SHIVANI RAJE"
+    },
+    {
+      "Field": 68,
+      "Details": "XII A",
+      "__EMPTY": "MS. SOMITA MATHUR"
+    },
+    {
+      "Field": 69,
+      "Details": "XII B",
+      "__EMPTY": "MS. SHILPI DUTTA"
+    },
+    {
+      "Field": 70,
+      "Details": "XII C",
+      "__EMPTY": "MR. AKSHAT JAIN"
+    },
+    {
+      "Field": 71,
+      "Details": "XII D",
+      "__EMPTY": "MR. SANDEEP TRIPATHI"
+    }
+  ],
+  "Subject_Mapping": [
+    {
+      "Grade & Section": "",
+      "Subject Name": "Mathematics",
+      "Assigned Teacher": "Mr. Anjanee Kumar",
+      "Periods per Week": 8,
+      "Subject Type": "Theory",
+      "Special Requirements": "No",
+      "Preferred Timing": "Morning Preferred",
+      "Double Period? (Yes/No)": ""
+    },
+    {
+      "Grade & Section": "",
+      "Subject Name": "Physics Lab",
+      "Assigned Teacher": "Mr. Abhishek Sharma",
+      "Periods per Week": 2,
+      "Subject Type": "Practical",
+      "Special Requirements": "Yes (Back-to-back)",
+      "Preferred Timing": "Lab Availability",
+      "Double Period? (Yes/No)": ""
+    },
+    {
+      "Grade & Section": "",
+      "Subject Name": "Games",
+      "Assigned Teacher": "Physical Instructor",
+      "Periods per Week": 4,
+      "Subject Type": "Activity",
+      "Special Requirements": "Field Required",
+      "Preferred Timing": "Last Period",
+      "Double Period? (Yes/No)": ""
+    },
+    {
+      "Grade & Section": "",
+      "Subject Name": "Skillizee",
+      "Assigned Teacher": "Skill Faculty",
+      "Periods per Week": 2,
+      "Subject Type": "Skill",
+      "Special Requirements": "Computer Lab Preferred",
+      "Preferred Timing": "Flexible",
+      "Double Period? (Yes/No)": ""
+    }
+  ],
+  "Venue_Constraints": [
+    {
+      "Venue": "Games Field",
+      "Constraint": "Maximum 2 classes simultaneously",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "__EMPTY_2": "",
+      "__EMPTY_3": "",
+      "__EMPTY_4": "",
+      "__EMPTY_5": "",
+      "__EMPTY_6": "",
+      "__EMPTY_7": "",
+      "__EMPTY_8": "",
+      "__EMPTY_9": ""
+    },
+    {
+      "Venue": "Physics Lab",
+      "Constraint": "Only one class at a time",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "__EMPTY_2": "",
+      "__EMPTY_3": "",
+      "__EMPTY_4": "",
+      "__EMPTY_5": "",
+      "__EMPTY_6": "",
+      "__EMPTY_7": "",
+      "__EMPTY_8": "",
+      "__EMPTY_9": ""
+    },
+    {
+      "Venue": "Auditorium",
+      "Constraint": "Requires prior slot allocation",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "__EMPTY_2": "",
+      "__EMPTY_3": "",
+      "__EMPTY_4": "",
+      "__EMPTY_5": "",
+      "__EMPTY_6": "",
+      "__EMPTY_7": "",
+      "__EMPTY_8": "",
+      "__EMPTY_9": ""
+    },
+    {
+      "Venue": "SLOT LIST- II to X (2026-27) ",
+      "Constraint": "",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "__EMPTY_2": "",
+      "__EMPTY_3": "",
+      "__EMPTY_4": "",
+      "__EMPTY_5": "",
+      "__EMPTY_6": "",
+      "__EMPTY_7": "",
+      "__EMPTY_8": "",
+      "__EMPTY_9": ""
+    },
+    {
+      "Venue": "VI to X",
+      "Constraint": "",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "__EMPTY_2": "",
+      "__EMPTY_3": "",
+      "__EMPTY_4": "",
+      "__EMPTY_5": "II to V",
+      "__EMPTY_6": "",
+      "__EMPTY_7": "",
+      "__EMPTY_8": "",
+      "__EMPTY_9": ""
+    },
+    {
+      "Venue": "SUBJECT",
+      "Constraint": "X",
+      "__EMPTY": "IX",
+      "__EMPTY_1": "VIII",
+      "__EMPTY_2": "VII",
+      "__EMPTY_3": "VI",
+      "__EMPTY_4": "",
+      "__EMPTY_5": "SUBJECT",
+      "__EMPTY_6": "V",
+      "__EMPTY_7": "IV",
+      "__EMPTY_8": "III",
+      "__EMPTY_9": "II"
+    },
+    {
+      "Venue": "ENGLISH",
+      "Constraint": 7,
+      "__EMPTY": 7,
+      "__EMPTY_1": 7,
+      "__EMPTY_2": 6,
+      "__EMPTY_3": 6,
+      "__EMPTY_4": "",
+      "__EMPTY_5": "ENGLISH",
+      "__EMPTY_6": 7,
+      "__EMPTY_7": 7,
+      "__EMPTY_8": 7,
+      "__EMPTY_9": 9
+    },
+    {
+      "Venue": "HINDI",
+      "Constraint": 7,
+      "__EMPTY": 6,
+      "__EMPTY_1": 6,
+      "__EMPTY_2": 6,
+      "__EMPTY_3": 6,
+      "__EMPTY_4": "",
+      "__EMPTY_5": "HINDI",
+      "__EMPTY_6": 6,
+      "__EMPTY_7": 6,
+      "__EMPTY_8": 6,
+      "__EMPTY_9": 9
+    },
+    {
+      "Venue": "SANS/FR.",
+      "Constraint": "-",
+      "__EMPTY": "-",
+      "__EMPTY_1": 3,
+      "__EMPTY_2": 3,
+      "__EMPTY_3": 3,
+      "__EMPTY_4": "",
+      "__EMPTY_5": "MATHS",
+      "__EMPTY_6": 8,
+      "__EMPTY_7": 8,
+      "__EMPTY_8": 9,
+      "__EMPTY_9": 10
+    },
+    {
+      "Venue": "MATHS",
+      "Constraint": 10,
+      "__EMPTY": 10,
+      "__EMPTY_1": 9,
+      "__EMPTY_2": 8,
+      "__EMPTY_3": 8,
+      "__EMPTY_4": "",
+      "__EMPTY_5": "SKILIZEE",
+      "__EMPTY_6": 1,
+      "__EMPTY_7": 1,
+      "__EMPTY_8": 1,
+      "__EMPTY_9": 1
+    },
+    {
+      "Venue": "SKILIZEE",
+      "Constraint": "-",
+      "__EMPTY": 1,
+      "__EMPTY_1": 1,
+      "__EMPTY_2": 1,
+      "__EMPTY_3": 1,
+      "__EMPTY_4": "",
+      "__EMPTY_5": "SCIENCE",
+      "__EMPTY_6": 6,
+      "__EMPTY_7": 6,
+      "__EMPTY_8": 7,
+      "__EMPTY_9": "-"
+    },
+    {
+      "Venue": "SCI./(P/C/B)",
+      "Constraint": 9,
+      "__EMPTY": 9,
+      "__EMPTY_1": 8,
+      "__EMPTY_2": 7,
+      "__EMPTY_3": 7,
+      "__EMPTY_4": "",
+      "__EMPTY_5": "SST. ",
+      "__EMPTY_6": 6,
+      "__EMPTY_7": 6,
+      "__EMPTY_8": "-",
+      "__EMPTY_9": "-"
+    },
+    {
+      "Venue": "SST. (H/C/G/E)",
+      "Constraint": 7,
+      "__EMPTY": 7,
+      "__EMPTY_1": 6,
+      "__EMPTY_2": 6,
+      "__EMPTY_3": 6,
+      "__EMPTY_4": "",
+      "__EMPTY_5": "COMPUTER",
+      "__EMPTY_6": 2,
+      "__EMPTY_7": 2,
+      "__EMPTY_8": 2,
+      "__EMPTY_9": 1
+    },
+    {
+      "Venue": "COMPUTER",
+      "Constraint": 2,
+      "__EMPTY": 2,
+      "__EMPTY_1": 2,
+      "__EMPTY_2": 2,
+      "__EMPTY_3": 2,
+      "__EMPTY_4": "",
+      "__EMPTY_5": "LIFE SKILL",
+      "__EMPTY_6": "-",
+      "__EMPTY_7": "-",
+      "__EMPTY_8": "-",
+      "__EMPTY_9": 1
+    },
+    {
+      "Venue": "G.K.",
+      "Constraint": "-",
+      "__EMPTY": "-",
+      "__EMPTY_1": "-",
+      "__EMPTY_2": "-",
+      "__EMPTY_3": "-",
+      "__EMPTY_4": "",
+      "__EMPTY_5": "G.K. /NEWS",
+      "__EMPTY_6": "-",
+      "__EMPTY_7": "-",
+      "__EMPTY_8": 1,
+      "__EMPTY_9": 1
+    },
+    {
+      "Venue": "ROBOTICS",
+      "Constraint": "-",
+      "__EMPTY": "-",
+      "__EMPTY_1": "-",
+      "__EMPTY_2": 1,
+      "__EMPTY_3": 1,
+      "__EMPTY_4": "",
+      "__EMPTY_5": "READING",
+      "__EMPTY_6": "-",
+      "__EMPTY_7": "-",
+      "__EMPTY_8": 2,
+      "__EMPTY_9": 2
+    },
+    {
+      "Venue": "DRAWING",
+      "Constraint": "-",
+      "__EMPTY": "-",
+      "__EMPTY_1": "-",
+      "__EMPTY_2": 1,
+      "__EMPTY_3": 1,
+      "__EMPTY_4": "",
+      "__EMPTY_5": "ROBOTIC",
+      "__EMPTY_6": 1,
+      "__EMPTY_7": 1,
+      "__EMPTY_8": 1,
+      "__EMPTY_9": 1
+    },
+    {
+      "Venue": "LIBRARY",
+      "Constraint": 1,
+      "__EMPTY": 1,
+      "__EMPTY_1": 1,
+      "__EMPTY_2": 1,
+      "__EMPTY_3": 1,
+      "__EMPTY_4": "",
+      "__EMPTY_5": "DRAWING",
+      "__EMPTY_6": 1,
+      "__EMPTY_7": 1,
+      "__EMPTY_8": 1,
+      "__EMPTY_9": 1
+    },
+    {
+      "Venue": "DANCE /MUSIC/ \nTHEATRE",
+      "Constraint": "-",
+      "__EMPTY": "-",
+      "__EMPTY_1": "-",
+      "__EMPTY_2": 1,
+      "__EMPTY_3": 1,
+      "__EMPTY_4": "",
+      "__EMPTY_5": "LIBRARY",
+      "__EMPTY_6": 1,
+      "__EMPTY_7": 1,
+      "__EMPTY_8": 1,
+      "__EMPTY_9": 1
+    },
+    {
+      "Venue": "GAMES",
+      "Constraint": 1,
+      "__EMPTY": 1,
+      "__EMPTY_1": 1,
+      "__EMPTY_2": 1,
+      "__EMPTY_3": 1,
+      "__EMPTY_4": "",
+      "__EMPTY_5": "DANCE",
+      "__EMPTY_6": 1,
+      "__EMPTY_7": 1,
+      "__EMPTY_8": 1,
+      "__EMPTY_9": 1
+    },
+    {
+      "Venue": "HOBBY/\nCLUB",
+      "Constraint": 3,
+      "__EMPTY": 3,
+      "__EMPTY_1": 3,
+      "__EMPTY_2": 3,
+      "__EMPTY_3": 3,
+      "__EMPTY_4": "",
+      "__EMPTY_5": "MUSIC",
+      "__EMPTY_6": "-",
+      "__EMPTY_7": "-",
+      "__EMPTY_8": 1,
+      "__EMPTY_9": 1
+    },
+    {
+      "Venue": "ASSEMBLY",
+      "Constraint": 1,
+      "__EMPTY": 1,
+      "__EMPTY_1": 1,
+      "__EMPTY_2": 1,
+      "__EMPTY_3": 1,
+      "__EMPTY_4": "",
+      "__EMPTY_5": "GAMES",
+      "__EMPTY_6": 1,
+      "__EMPTY_7": 1,
+      "__EMPTY_8": 1,
+      "__EMPTY_9": 2
+    },
+    {
+      "Venue": "TOTAL",
+      "Constraint": 48,
+      "__EMPTY": 48,
+      "__EMPTY_1": 48,
+      "__EMPTY_2": 48,
+      "__EMPTY_3": 48,
+      "__EMPTY_4": "",
+      "__EMPTY_5": "HOBBY /CLUB",
+      "__EMPTY_6": 3,
+      "__EMPTY_7": 3,
+      "__EMPTY_8": 3,
+      "__EMPTY_9": 3
+    },
+    {
+      "Venue": "CLASS",
+      "Constraint": "PHY.",
+      "__EMPTY": "CHE.",
+      "__EMPTY_1": "BIO.",
+      "__EMPTY_2": "GEO",
+      "__EMPTY_3": "HIS./\nECO.",
+      "__EMPTY_4": "",
+      "__EMPTY_5": "ASSEMBLY",
+      "__EMPTY_6": 1,
+      "__EMPTY_7": 1,
+      "__EMPTY_8": 1,
+      "__EMPTY_9": 1
+    },
+    {
+      "Venue": "VII",
+      "Constraint": 2,
+      "__EMPTY": 2,
+      "__EMPTY_1": 3,
+      "__EMPTY_2": 2,
+      "__EMPTY_3": 4,
+      "__EMPTY_4": "",
+      "__EMPTY_5": "ZUMBA/\nSWIMMING",
+      "__EMPTY_6": 1,
+      "__EMPTY_7": 1,
+      "__EMPTY_8": 1,
+      "__EMPTY_9": 1
+    },
+    {
+      "Venue": "VIII",
+      "Constraint": 3,
+      "__EMPTY": 2,
+      "__EMPTY_1": 3,
+      "__EMPTY_2": 2,
+      "__EMPTY_3": 4,
+      "__EMPTY_4": "",
+      "__EMPTY_5": "PRESEN. SKILL",
+      "__EMPTY_6": 2,
+      "__EMPTY_7": 2,
+      "__EMPTY_8": 2,
+      "__EMPTY_9": 2
+    },
+    {
+      "Venue": "IX-X",
+      "Constraint": 3,
+      "__EMPTY": 3,
+      "__EMPTY_1": 3,
+      "__EMPTY_2": 2,
+      "__EMPTY_3": "4+1",
+      "__EMPTY_4": "",
+      "__EMPTY_5": "TOTAL",
+      "__EMPTY_6": 48,
+      "__EMPTY_7": 48,
+      "__EMPTY_8": 48,
+      "__EMPTY_9": 48
+    }
+  ],
+  "Hard_Constraints": [
+    {
+      "Constraint Type": "Locked Slots",
+      "Details": "Wednesday 3P – Faculty Meeting – No Classes"
+    },
+    {
+      "Constraint Type": "Saturday Rule",
+      "Details": "After 12 PM – No Academic Classes"
+    },
+    {
+      "Constraint Type": "Mathematics Rule",
+      "Details": "Must be within first 4 periods"
+    },
+    {
+      "Constraint Type": "PE Rule",
+      "Details": "Preferably last 2 periods"
+    },
+    {
+      "Constraint Type": "Lab Rule",
+      "Details": "Must be consecutive periods"
+    },
+    {
+      "Constraint Type": "CONDITIONS",
+      "Details": ""
+    },
+    {
+      "Constraint Type": 1,
+      "Details": "In a day max to max only 5P"
+    },
+    {
+      "Constraint Type": 2,
+      "Details": "Periods can be in combination of 3+2 with gap of 2 to 3 period in between"
+    },
+    {
+      "Constraint Type": 3,
+      "Details": "Avoid to have last period Maths and Science"
+    },
+    {
+      "Constraint Type": 4,
+      "Details": "Everyday 1 period non Academic"
+    },
+    {
+      "Constraint Type": 5,
+      "Details": "Games and Hobby should not be on same day"
+    },
+    {
+      "Constraint Type": 6,
+      "Details": "Dance / Music / Hobby Period should not be on same day"
+    },
+    {
+      "Constraint Type": 7,
+      "Details": "Two same subject should not be consequtive"
+    },
+    {
+      "Constraint Type": 8,
+      "Details": "More then 2 period of same subject can not be on same day "
+    },
+    {
+      "Constraint Type": 9,
+      "Details": "Just after lunch games should not be given"
+    },
+    {
+      "Constraint Type": 10,
+      "Details": "At a time 2 Zumba period Should not be given "
+    },
+    {
+      "Constraint Type": 11,
+      "Details": "Zumba period should not be given in 8p and 10 p"
+    },
+    {
+      "Constraint Type": 12,
+      "Details": "II -VII classes should be alloted in between 3P to 10 Period"
+    },
+    {
+      "Constraint Type": 13,
+      "Details": "Hobby classes should be allotted as per mentioned days and timings only"
+    },
+    {
+      "Constraint Type": 14,
+      "Details": "Assembly and  Club Classes should be added as per the mentioned slot"
+    }
+  ],
+  "Teacher_Constraints": [
+    {
+      "Teacher Name": "Consecutive Classes",
+      "Day": "Max 3 continuous periods",
+      "Unavailable Slots": "",
+      "Reason": "",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "__EMPTY_2": "",
+      "__EMPTY_3": "",
+      "__EMPTY_4": "",
+      "__EMPTY_5": "",
+      "__EMPTY_6": "",
+      "__EMPTY_7": "",
+      "__EMPTY_8": "",
+      "__EMPTY_9": ""
+    },
+    {
+      "Teacher Name": "Daily Load Limit",
+      "Day": "Max 6 periods per day",
+      "Unavailable Slots": "",
+      "Reason": "",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "__EMPTY_2": "",
+      "__EMPTY_3": "",
+      "__EMPTY_4": "",
+      "__EMPTY_5": "",
+      "__EMPTY_6": "",
+      "__EMPTY_7": "",
+      "__EMPTY_8": "",
+      "__EMPTY_9": ""
+    },
+    {
+      "Teacher Name": "Gap Preference",
+      "Day": "Avoid unnecessary idle gaps",
+      "Unavailable Slots": "",
+      "Reason": "",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "__EMPTY_2": "",
+      "__EMPTY_3": "",
+      "__EMPTY_4": "",
+      "__EMPTY_5": "",
+      "__EMPTY_6": "",
+      "__EMPTY_7": "",
+      "__EMPTY_8": "",
+      "__EMPTY_9": ""
+    },
+    {
+      "Teacher Name": "Senior Faculty Rules",
+      "Day": "No last-period allocation",
+      "Unavailable Slots": "",
+      "Reason": "",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "__EMPTY_2": "",
+      "__EMPTY_3": "",
+      "__EMPTY_4": "",
+      "__EMPTY_5": "",
+      "__EMPTY_6": "",
+      "__EMPTY_7": "",
+      "__EMPTY_8": "",
+      "__EMPTY_9": ""
+    },
+    {
+      "Teacher Name": "CLUB TIME TABLE-II-XII SESSION 2026-27 -(28/3/2026) ",
+      "Day": "",
+      "Unavailable Slots": "",
+      "Reason": "",
+      "__EMPTY": "",
+      "__EMPTY_1": "",
+      "__EMPTY_2": "",
+      "__EMPTY_3": "",
+      "__EMPTY_4": "",
+      "__EMPTY_5": "",
+      "__EMPTY_6": "",
+      "__EMPTY_7": "",
+      "__EMPTY_8": "",
+      "__EMPTY_9": ""
+    },
+    {
+      "Teacher Name": "CLASS",
+      "Day": "PERIOD",
+      "Unavailable Slots": "TIMINGS",
+      "Reason": "DAY",
+      "__EMPTY": "LITERARY CLUB\n(ENGLISH)\n(II-XII)",
+      "__EMPTY_1": "TECHNOCRATS \n(SCIENCE )\n(II-XII)",
+      "__EMPTY_2": "PYTHON /FINANCE \n(MATHS) -(II-X)/\nFINANCIAL LITERACY(XI-XII)",
+      "__EMPTY_3": "QUIZZADERS / \n(G.K.)-(II-X)\nBRAINIACS(XI-XII)",
+      "__EMPTY_4": "ROBOTICS\n(III-X)/\nENTERPRENEURS CREW (XI-XII)",
+      "__EMPTY_5": "THEATRE CLUB(V-X)/\nRIGHTEOUS \nCLUB(XI-XII)",
+      "__EMPTY_6": "CYBERSONIC \n(IT-CLUB)\nVIII-X",
+      "__EMPTY_7": "TED-ED CLUB (VIII-X)/\nDEBATORS SOCIETY (XI-XII)",
+      "__EMPTY_8": "ECO CLUB(VIII-X)/\nAWARENESS CLUB (XI-XII)",
+      "__EMPTY_9": "COOKERY (VIII-X)/\nCREATIVE CREW\n(XI-XII)"
+    },
+    {
+      "Teacher Name": "II",
+      "Day": "4P",
+      "Unavailable Slots": "10:30-\n11:20",
+      "Reason": "MONDAY",
+      "__EMPTY": "MS. NEHA \nKHILWANI",
+      "__EMPTY_1": "MS. AYUSHI VYAS",
+      "__EMPTY_2": "MS. BHAVNA SHARMA",
+      "__EMPTY_3": "MS. DIVYA SHARMA",
+      "__EMPTY_4": "-",
+      "__EMPTY_5": "-",
+      "__EMPTY_6": "-",
+      "__EMPTY_7": "-",
+      "__EMPTY_8": "-",
+      "__EMPTY_9": "-"
+    },
+    {
+      "Teacher Name": "III",
+      "Day": "4P",
+      "Unavailable Slots": "10:30-\n11:20",
+      "Reason": "TUESDAY",
+      "__EMPTY": "MS. NEHA KHILWANI",
+      "__EMPTY_1": "MS. PRIYANKA \nPANDEY",
+      "__EMPTY_2": "MS.RIYA SHEKHAWAT / MS. ARUSHI ANSHU",
+      "__EMPTY_3": "MS. DIVYA SHARMA",
+      "__EMPTY_4": "MS SAKSHI SHARMA",
+      "__EMPTY_5": "-",
+      "__EMPTY_6": "-",
+      "__EMPTY_7": "-",
+      "__EMPTY_8": "-",
+      "__EMPTY_9": "-"
+    },
+    {
+      "Teacher Name": "IV",
+      "Day": "9P",
+      "Unavailable Slots": "2.50- 3.40",
+      "Reason": "TUESDAY",
+      "__EMPTY": "MS.BIMLA CHOUDHARY",
+      "__EMPTY_1": "MS.MAHIMA MATHUR",
+      "__EMPTY_2": "MS.JAYA GANGWANI\nMS. SAKSHI SIKRI",
+      "__EMPTY_3": "MS. DIVYA SHARMA",
+      "__EMPTY_4": "MS SAKSHI SHARMA",
+      "__EMPTY_5": "-",
+      "__EMPTY_6": "-",
+      "__EMPTY_7": "-",
+      "__EMPTY_8": "-",
+      "__EMPTY_9": "-"
+    },
+    {
+      "Teacher Name": "V",
+      "Day": "9P",
+      "Unavailable Slots": "2.50- 3.40",
+      "Reason": "MONDAY",
+      "__EMPTY": "MS. SHWETA KAUSHIK",
+      "__EMPTY_1": "MS.AYUSHI MONGIA",
+      "__EMPTY_2": "MS. KAJAL SEJWANI",
+      "__EMPTY_3": "MS. DIVYA SHARMA",
+      "__EMPTY_4": "MR. JATIN KUMAR",
+      "__EMPTY_5": "MR. VIKRAM/\nMR. RAVI \nSHARMA",
+      "__EMPTY_6": "-",
+      "__EMPTY_7": "-",
+      "__EMPTY_8": "-",
+      "__EMPTY_9": "-"
+    },
+    {
+      "Teacher Name": "VI",
+      "Day": "10 P",
+      "Unavailable Slots": "03:40-04:30 ",
+      "Reason": "MONDAY",
+      "__EMPTY": "MS.ANKITA BASU",
+      "__EMPTY_1": "MS. SHREEJA\nNAIR",
+      "__EMPTY_2": "MS. PRIYA JAIN",
+      "__EMPTY_3": "MS. AKANKSHA MATHUR/\nMS. KOSHLYA KUMAWAT",
+      "__EMPTY_4": "MR. JATIN KUMAR",
+      "__EMPTY_5": "MR. VIKRAM/\nMR. RAVI \nSHARMA",
+      "__EMPTY_6": "-",
+      "__EMPTY_7": "-",
+      "__EMPTY_8": "-",
+      "__EMPTY_9": "-"
+    },
+    {
+      "Teacher Name": "VII",
+      "Day": "10 P",
+      "Unavailable Slots": "03:40-04:30 ",
+      "Reason": "TUESDAY",
+      "__EMPTY": "MS. NEHA JACOB",
+      "__EMPTY_1": "MS.JAYA BHATIYA",
+      "__EMPTY_2": "MS. SHRUTI SACHDEVA",
+      "__EMPTY_3": "MS. AKANKSHA MATHUR/\nMS. KOSHLYA KUMAWAT",
+      "__EMPTY_4": "MR. JATIN KUMAR",
+      "__EMPTY_5": "MR. VIKRAM/\nMR. RAVI \nSHARMA",
+      "__EMPTY_6": "-",
+      "__EMPTY_7": "-",
+      "__EMPTY_8": "-",
+      "__EMPTY_9": "-"
+    },
+    {
+      "Teacher Name": "VIII",
+      "Day": "8P",
+      "Unavailable Slots": "02:00 - 2.50 ",
+      "Reason": "MONDAY",
+      "__EMPTY": "\nMS. POORVA JOSHI",
+      "__EMPTY_1": "MS. MEENAKSHI RATHORE",
+      "__EMPTY_2": "MS. BHAVNA SHARMA",
+      "__EMPTY_3": "MS. AKANKSHA MATHUR/\nMS. KOSHLYA KUMAWAT",
+      "__EMPTY_4": "MR. JATIN KUMAR",
+      "__EMPTY_5": "MR. VIKRAM/\nMR. RAVI \nSHARMA",
+      "__EMPTY_6": "MS. RICHA SAXENA",
+      "__EMPTY_7": "MS. SHIPIKA JAIN",
+      "__EMPTY_8": "MS. CHINKY \nYADAV",
+      "__EMPTY_9": "MS. ANKITA MEHAR"
+    },
+    {
+      "Teacher Name": "IX-X",
+      "Day": "8P",
+      "Unavailable Slots": "02:00 - 2.50 ",
+      "Reason": "TUESDAY",
+      "__EMPTY": "MS. SHIKHA BEDI",
+      "__EMPTY_1": "MS. NISHA SHARMA",
+      "__EMPTY_2": "MS. EKTA JAISINGH",
+      "__EMPTY_3": "MS. AKANKSHA MATHUR/\nMS. KOSHLYA KUMAWAT",
+      "__EMPTY_4": "MR. JATIN KUMAR",
+      "__EMPTY_5": "MR. VIKRAM/\nMR. RAVI \nSHARMA",
+      "__EMPTY_6": "MS. RICHA SAXENA",
+      "__EMPTY_7": "MS. SHIPIKA JAIN",
+      "__EMPTY_8": "MS. SWATI MEHTA",
+      "__EMPTY_9": "MS. ANKITA MEHAR"
+    },
+    {
+      "Teacher Name": "XI-XII",
+      "Day": "1P",
+      "Unavailable Slots": "08:15-09:00",
+      "Reason": "THURSDAY",
+      "__EMPTY": "MS. SHILPI DUTTA",
+      "__EMPTY_1": "MR. ABHISHEK SHARMA",
+      "__EMPTY_2": "MS. TEJASWANI SHARMA\n/MR. ANKIT JAIN",
+      "__EMPTY_3": "MR. AJAY SINGH SAHU ",
+      "__EMPTY_4": "MS. MANSI TANEJA",
+      "__EMPTY_5": "-",
+      "__EMPTY_6": "-",
+      "__EMPTY_7": "MS. MEENAKSHI BORDIA",
+      "__EMPTY_8": "MR. SANDEEP TRIPATHI",
+      "__EMPTY_9": "MS. SHIVANI RAJE"
+    }
+  ],
+  "Preferences": [
+    {
+      "Preference Type": "Balanced Daily Load",
+      "Example": "Avoid too many heavy subjects in one day"
+    },
+    {
+      "Preference Type": "Subject Rotation",
+      "Example": "Do not repeat same subject twice daily"
+    },
+    {
+      "Preference Type": "Teacher Comfort",
+      "Example": "Cluster classes in same building/floor"
+    },
+    {
+      "Preference Type": "Student Focus",
+      "Example": "Difficult subjects earlier in the day"
+    },
+    {
+      "Preference Type": "Activity Distribution",
+      "Example": "Spread sports/music evenly"
+    }
+  ],
+  "Submission_Checklist": [
+    {
+      "Item": "School Timing Structure",
+      "Status": "☐"
+    },
+    {
+      "Item": "Complete Teacher List",
+      "Status": "☐"
+    },
+    {
+      "Item": "Subject Allocation for Every Section",
+      "Status": "☐"
+    },
+    {
+      "Item": "Venue/Lab Constraints",
+      "Status": "☐"
+    },
+    {
+      "Item": "Institutional Rules",
+      "Status": "☐"
+    },
+    {
+      "Item": "Saturday Schedule (if applicable)",
+      "Status": "☐"
+    },
+    {
+      "Item": "Teacher Availability Constraints",
+      "Status": "☐"
+    }
+  ]
+}

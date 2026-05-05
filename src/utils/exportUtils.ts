@@ -5,14 +5,7 @@ import * as XLSX from 'xlsx';
 import { TimetableEntry, Subject, Teacher, Period } from '@/data/mockData';
 
 // ── Filler map for empty teaching slots ──
-const DAY_FILLER: Record<string, string> = {
-  Monday: 'Hobby',
-  Tuesday: 'Games',
-  Wednesday: 'Hobby',
-  Thursday: 'Games',
-  Friday: 'Hobby',
-  Saturday: 'Games',
-};
+// Empty slots now show as FREE instead of fake hobby/games labels
 
 function getCellText(
   day: string,
@@ -29,9 +22,7 @@ function getCellText(
     const teacher = teachers.find(t => t.id === entry.teacherId);
     return `${subject?.name || '?'}\n${teacher?.name || ''}`;
   }
-  // Empty slot → fill with activity
-  const filler = DAY_FILLER[day] || 'Hobby';
-  return filler === 'Hobby' ? 'Hobby Period' : 'Games / Sports';
+  return 'Empty';
 }
 
 // ── IMAGE EXPORT ──
@@ -180,17 +171,21 @@ export const exportToPDF = async (
         return;
       }
 
-      // Style filler (Hobby/Games) cells for empty slots
+      // Style filler/free cells and activity cells
       if (data.column.index > 0 && period.type === 'Class') {
         const cellText = String(data.cell.raw || '');
-        if (cellText.includes('Hobby')) {
+        if (cellText === 'Empty') {
+          data.cell.styles.fillColor = [241, 245, 249]; // slate-100
+          data.cell.styles.textColor = [148, 163, 184]; // slate-400
+          data.cell.styles.fontStyle = 'italic';
+        } else if (cellText.includes('Hobby')) {
           data.cell.styles.fillColor = [245, 243, 255]; // violet-50
           data.cell.styles.textColor = [109, 40, 217]; // violet-700
-          data.cell.styles.fontStyle = 'italic';
-        } else if (cellText.includes('Games')) {
+          data.cell.styles.fontStyle = 'bold';
+        } else if (cellText.includes('Games') || cellText.includes('Sport')) {
           data.cell.styles.fillColor = [236, 253, 245]; // emerald-50
           data.cell.styles.textColor = [5, 150, 105]; // emerald-600
-          data.cell.styles.fontStyle = 'italic';
+          data.cell.styles.fontStyle = 'bold';
         }
       }
     },
@@ -266,4 +261,126 @@ export const exportToExcel = (
   const workbook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(workbook, worksheet, 'Timetable');
   XLSX.writeFile(workbook, `${filename}.xlsx`);
+};
+
+// ── TEACHER PDF EXPORT ──
+import { ClassSection } from '@/data/mockData';
+
+export const exportTeacherPDF = async (
+  teacherName: string,
+  days: string[],
+  periods: Period[],
+  entries: TimetableEntry[],
+  subjects: Subject[],
+  classes: ClassSection[],
+  filename: string
+) => {
+  const pdf = new jsPDF({
+    orientation: 'landscape',
+    unit: 'mm',
+    format: 'a4',
+  });
+
+  const pageWidth = pdf.internal.pageSize.getWidth();
+
+  // Header
+  pdf.setFontSize(18);
+  pdf.setFont('helvetica', 'bold');
+  pdf.text('TEACHER TIMETABLE', pageWidth / 2, 16, { align: 'center' });
+
+  pdf.setFontSize(12);
+  pdf.setFont('helvetica', 'normal');
+  pdf.text(teacherName, pageWidth / 2, 24, { align: 'center' });
+
+  const firstPeriod = periods[0];
+  const lastPeriod = periods[periods.length - 1];
+  const timeRange = firstPeriod && lastPeriod
+    ? `${firstPeriod.startTime} – ${lastPeriod.endTime}`
+    : '9:30 AM – 4:30 PM';
+
+  pdf.setFontSize(8);
+  pdf.setTextColor(120, 120, 120);
+  pdf.text(`Academic Year 2026-27  |  Weekly Schedule (${timeRange})`, pageWidth / 2, 30, { align: 'center' });
+  pdf.setTextColor(0, 0, 0);
+
+  // Build table
+  const head = [['Period / Time', ...days]];
+  const body: any[][] = [];
+
+  for (const period of periods) {
+    const timeLabel = `${period.name}\n${period.startTime} – ${period.endTime}`;
+    const row: any[] = [timeLabel];
+
+    for (const day of days) {
+      if (period.type !== 'Class') {
+        row.push(period.name.toUpperCase());
+      } else {
+        const entry = entries.find(e => e.day === day && e.periodId === period.id);
+        if (entry) {
+          const subject = subjects.find(s => s.id === entry.subjectId);
+          const cls = classes.find(c => c.id === entry.classId);
+          row.push(`${subject?.name || '?'}\n${cls?.name || ''}`);
+        } else {
+          row.push('FREE');
+        }
+      }
+    }
+    body.push(row);
+  }
+
+  autoTable(pdf, {
+    startY: 34,
+    head,
+    body,
+    theme: 'grid',
+    headStyles: {
+      fillColor: [234, 88, 12],
+      textColor: [255, 255, 255],
+      fontStyle: 'bold',
+      fontSize: 8,
+      halign: 'center',
+      valign: 'middle',
+      cellPadding: 3,
+    },
+    styles: {
+      fontSize: 7,
+      cellPadding: 2.5,
+      valign: 'middle',
+      lineColor: [226, 232, 240],
+      lineWidth: 0.3,
+    },
+    columnStyles: {
+      0: { cellWidth: 28, fontStyle: 'bold', fontSize: 7, halign: 'left', fillColor: [248, 250, 252] },
+    },
+    bodyStyles: { halign: 'center' },
+    alternateRowStyles: { fillColor: [255, 255, 255] },
+    didParseCell: (data: any) => {
+      if (data.section !== 'body') return;
+      const period = periods[data.row.index];
+      if (!period) return;
+      if (period.type !== 'Class') {
+        data.cell.styles.fillColor = [241, 245, 249];
+        data.cell.styles.textColor = [148, 163, 184];
+        data.cell.styles.fontStyle = 'bold';
+        data.cell.styles.fontSize = 6;
+        return;
+      }
+      if (data.column.index > 0) {
+        const cellText = String(data.cell.raw || '');
+        if (cellText === 'FREE') {
+          data.cell.styles.fillColor = [241, 245, 249];
+          data.cell.styles.textColor = [148, 163, 184];
+          data.cell.styles.fontStyle = 'italic';
+        }
+      }
+    },
+    margin: { left: 10, right: 10 },
+  });
+
+  const finalY = (pdf as any).lastAutoTable?.finalY || 180;
+  pdf.setFontSize(7);
+  pdf.setTextColor(160, 160, 160);
+  pdf.text('Generated by Chronos — Smart Timetable System', 10, finalY + 8);
+
+  pdf.save(`${filename}.pdf`);
 };
