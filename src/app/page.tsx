@@ -104,7 +104,7 @@ export default function Dashboard() {
           <h1 className="text-3xl font-bold tracking-tight text-slate-900">Dashboard Overview</h1>
           <p className="mt-2 text-slate-500">Welcome back, Admin. Here's what's happening today.</p>
         </div>
-        <div className="flex flex-wrap items-center gap-3">
+        <div id="tour-upload" className="flex flex-wrap items-center gap-3">
           <div className="relative">
             <input 
               type="text" 
@@ -142,6 +142,7 @@ export default function Dashboard() {
                 }
 
                 setData(result.data);
+                window.dispatchEvent(new Event('data-uploaded'));
                 btn.innerHTML = originalText;
                 alert(`Synced successfully! ${result.data.teachers.length} teachers, ${result.data.classes.length} classes, ${result.data.assignments.length} assignments loaded.`);
               } catch (err: any) {
@@ -197,6 +198,7 @@ export default function Dashboard() {
                 if (res.ok) {
                   const result = await res.json();
                   setData(result.data);
+                  window.dispatchEvent(new Event('data-uploaded'));
                   alert('School data successfully imported and analyzed!');
                 } else {
                   const error = await res.json();

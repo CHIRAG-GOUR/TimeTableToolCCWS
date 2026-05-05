@@ -51,10 +51,16 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* Hamburger toggle – always visible */}
+      {/* Persistent Toggle Button */}
       <button
+        onMouseEnter={() => setIsCollapsed(false)}
         onClick={() => setIsCollapsed(!isCollapsed)}
-        className="fixed top-4 left-4 z-50 flex h-10 w-10 items-center justify-center rounded-xl bg-orange-600 text-white shadow-lg shadow-orange-600/20 hover:bg-orange-500 transition-all print:hidden"
+        className={cn(
+          "fixed top-4 left-4 z-50 flex h-10 w-10 items-center justify-center rounded-xl transition-all duration-300 print:hidden shadow-lg",
+          isCollapsed 
+            ? "bg-orange-600 text-white shadow-orange-600/20 hover:bg-orange-500" 
+            : "bg-white/20 text-white backdrop-blur-md border border-white/20 hover:bg-white/30"
+        )}
         aria-label="Toggle sidebar"
       >
         {isCollapsed ? <Menu className="h-5 w-5" /> : <X className="h-5 w-5" />}
@@ -75,27 +81,41 @@ export default function Sidebar() {
 
       {/* Sidebar panel */}
       <aside
+        onMouseEnter={() => setIsCollapsed(false)}
+        onMouseLeave={() => setIsCollapsed(true)}
         className={cn(
-          "fixed left-0 top-0 z-40 h-screen border-r border-orange-900/10 bg-gradient-to-b from-orange-700 to-orange-800 text-white transition-all duration-300 print:hidden",
+          "fixed left-0 top-0 z-40 h-screen border-r border-orange-900/10 bg-gradient-to-b from-orange-700 to-orange-800 text-white transition-all duration-300 print:hidden shadow-2xl",
           isCollapsed ? "-translate-x-full" : "translate-x-0 w-64"
         )}
       >
         <div className="flex h-full flex-col px-3 py-4">
-          {/* Logo */}
-          <div className="mb-10 flex items-center px-4 pt-8">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 shadow-lg">
-              <CalendarDays className="h-6 w-6 text-white" />
+          {/* Logo & Toggle Button */}
+          <div className="mb-10 flex items-center justify-between px-4 pt-8">
+            <div className="flex items-center">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 shadow-lg">
+                <CalendarDays className="h-6 w-6 text-white" />
+              </div>
+              <span className="ml-3 text-xl font-bold tracking-tight text-white">Chronos</span>
             </div>
-            <span className="ml-3 text-xl font-bold tracking-tight text-white">Chronos</span>
+            
+            {/* Hamburger inside sidebar */}
+            <button
+              onClick={() => setIsCollapsed(!isCollapsed)}
+              className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-white hover:bg-white/20 transition-all lg:hidden"
+              aria-label="Close sidebar"
+            >
+              <X className="h-4 w-4" />
+            </button>
           </div>
           
-          <nav className="flex-1 space-y-1">
+          <nav id="sidebar-nav" className="flex-1 space-y-1">
             {navItems.map((item) => {
               const isActive = pathname === item.href;
               return (
                 <Link
                   key={item.name}
                   href={item.href}
+                  id={item.name === 'Generator' ? 'tour-generator' : (['Teachers', 'Subjects', 'Classes', 'Constraints'].includes(item.name) ? 'tour-data-tabs' : undefined)}
                   onClick={() => setIsCollapsed(true)}
                   className={cn(
                     "group flex items-center rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200",

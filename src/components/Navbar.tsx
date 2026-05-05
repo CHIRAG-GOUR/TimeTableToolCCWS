@@ -1,13 +1,18 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Search, Bell, Plus, X, Calendar, User, BookOpen, School, Clock, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Search, Bell, Plus, X, Calendar, User, BookOpen, School, Clock, CheckCircle2, AlertCircle, Menu, Globe, MapPin } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MockData, TimetableEntry } from '@/data/mockData';
+import { SidebarContext } from './Sidebar';
+import { useContext } from 'react';
 
 export default function Navbar() {
+  const { isCollapsed, setIsCollapsed } = useContext(SidebarContext);
   const [isAdding, setIsAdding] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+  const [notificationTab, setNotificationTab] = useState<'system' | 'news'>('system');
+  const [selectedNews, setSelectedNews] = useState<any>(null);
   const [data, setData] = useState<MockData | null>(null);
   const [entry, setEntry] = useState({
     classId: '',
@@ -20,8 +25,87 @@ export default function Navbar() {
   const notifications = [
     { id: 1, title: 'AI Generation Complete', time: '2 mins ago', icon: CheckCircle2, color: 'text-emerald-500' },
     { id: 2, title: 'Teacher Conflict Detected', time: '1 hour ago', icon: AlertCircle, color: 'text-amber-500' },
-    { id: 3, title: 'New Class Added: IX-C', time: '5 hours ago', icon: School, color: 'text-orange-500' },
   ];
+  
+  const [newsItems, setNewsItems] = useState([
+    { 
+      id: 1, 
+      title: 'Summer Vacation 2026', 
+      content: 'The Rajasthan Secondary Education Department has officially announced summer holidays for all state and private schools.', 
+      location: 'Rajasthan', 
+      source: 'Education Dept.', 
+      time: 'Just now', 
+      timestamp: Date.now(),
+      factCheck: 'VERIFIED: Holidays are scheduled from May 17 to June 30, 2026. This matches the official Shivira calendar for the current academic session.'
+    },
+    { 
+      id: 2, 
+      title: 'Revised School Timings', 
+      content: 'Due to severe heatwave conditions, all schools in Rajasthan will now operate on a revised single-shift schedule.', 
+      location: 'Statewide', 
+      source: 'DM Jaipur', 
+      time: '2 mins ago', 
+      timestamp: Date.now() - 120000,
+      factCheck: 'VERIFIED: New timings are 7:30 AM to 12:00 PM. This applies to students only; teachers must follow regular hours until 1:00 PM.'
+    },
+    { 
+      id: 3, 
+      title: 'Class 5 & 8 Results Update', 
+      content: 'Preliminary reports suggest the RBSE Class 5 and 8 results are entering the final tabulation phase.', 
+      location: 'Rajasthan', 
+      source: 'RBSE Board', 
+      time: '15 mins ago', 
+      timestamp: Date.now() - 900000,
+      factCheck: 'VERIFIED: Results are expected by the last week of May. Official portal will host results for over 25 lakh students.'
+    },
+  ]);
+  const [isSyncingNews, setIsSyncingNews] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Simulate real-time relative time updates
+      setNewsItems(prev => prev.map(item => {
+        const diff = Math.floor((Date.now() - item.timestamp) / 60000);
+        let timeLabel = 'Just now';
+        if (diff > 0 && diff < 60) timeLabel = `${diff} mins ago`;
+        else if (diff >= 60) timeLabel = `${Math.floor(diff/60)} hours ago`;
+        return { ...item, time: timeLabel };
+      }));
+    }, 30000); // Update every 30s
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Simulate new news arrival
+  useEffect(() => {
+    if (!isNotificationsOpen || notificationTab !== 'news') return;
+
+    const syncTimer = setTimeout(() => {
+      setIsSyncingNews(true);
+      setTimeout(() => {
+        setIsSyncingNews(false);
+        // Occasionally add a "Breaking" news item if not already there
+        setNewsItems(prev => {
+          if (prev.some(n => n.title.includes('District Collector'))) return prev;
+          return [
+            { 
+              id: Date.now(), 
+              title: 'District Collector Heatwave Alert', 
+              content: 'District administrations in Udaipur, Jodhpur, and Bikaner have issued a yellow alert for heatwaves.', 
+              location: 'West Rajasthan', 
+              source: 'IMD Alert', 
+              time: 'Just now', 
+              timestamp: Date.now(),
+              factCheck: 'VERIFIED: Temperatures are forecasted to cross 45°C. Collectors have been authorized to announce temporary school closures if needed.'
+            },
+            ...prev
+          ];
+        });
+      }, 2000);
+    }, 5000);
+
+    return () => clearTimeout(syncTimer);
+  }, [isNotificationsOpen, notificationTab]);
 
   useEffect(() => {
     if (isAdding) {
@@ -102,22 +186,72 @@ export default function Navbar() {
                   exit={{ opacity: 0, y: 10, scale: 0.95 }}
                   className="absolute right-0 mt-2 w-80 bg-white rounded-2xl shadow-2xl border border-slate-100 z-50 overflow-hidden"
                 >
-                  <div className="p-4 border-b border-slate-100 flex items-center justify-between">
-                    <h3 className="font-bold text-slate-900">Notifications</h3>
-                    <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-2 py-0.5 rounded-full uppercase tracking-wider">3 New</span>
+                  <div className="p-4 border-b border-slate-100 flex flex-col gap-3">
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-bold text-slate-900">Notifications</h3>
+                      <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-2 py-0.5 rounded-full uppercase tracking-wider">{notificationTab === 'system' ? '3 New' : '5 Updates'}</span>
+                    </div>
+                    <div className="flex p-1 bg-slate-100 rounded-xl">
+                      <button 
+                        onClick={() => setNotificationTab('system')}
+                        className={`flex-1 flex items-center justify-center gap-2 py-1.5 text-xs font-bold rounded-lg transition-all ${notificationTab === 'system' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+                      >
+                        <Bell className="h-3 w-3" /> System
+                      </button>
+                      <button 
+                        onClick={() => setNotificationTab('news')}
+                        className={`flex-1 flex items-center justify-center gap-2 py-1.5 text-xs font-bold rounded-lg transition-all ${notificationTab === 'news' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+                      >
+                        <Globe className={`h-3 w-3 ${notificationTab === 'news' ? 'text-orange-600' : ''}`} /> Rajasthan News
+                        <span className="flex h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" />
+                      </button>
+                    </div>
                   </div>
-                  <div className="max-h-96 overflow-y-auto">
-                    {notifications.map(n => (
-                      <div key={n.id} className="p-4 flex gap-4 hover:bg-slate-50 transition-colors border-b border-slate-50 last:border-none cursor-pointer">
-                        <div className={`h-10 w-10 rounded-xl bg-slate-50 flex items-center justify-center shrink-0`}>
-                          <n.icon className={`h-5 w-5 ${n.color}`} />
-                        </div>
-                        <div className="space-y-0.5">
-                          <p className="text-sm font-bold text-slate-900">{n.title}</p>
-                          <p className="text-xs text-slate-400">{n.time}</p>
-                        </div>
+                  <div className="max-h-96 overflow-y-auto no-scrollbar">
+                    {isSyncingNews && (
+                      <div className="p-3 bg-orange-50/50 border-b border-orange-100 flex items-center justify-center gap-2">
+                        <div className="h-3 w-3 border-2 border-orange-500 border-t-transparent rounded-full animate-spin" />
+                        <span className="text-[10px] font-bold text-orange-600 uppercase tracking-widest">Checking for updates...</span>
                       </div>
-                    ))}
+                    )}
+                    {notificationTab === 'system' ? (
+                      notifications.map(n => (
+                        <div key={n.id} className="p-4 flex gap-4 hover:bg-slate-50 transition-colors border-b border-slate-50 last:border-none cursor-pointer">
+                          <div className={`h-10 w-10 rounded-xl bg-slate-50 flex items-center justify-center shrink-0`}>
+                            <n.icon className={`h-5 w-5 ${n.color}`} />
+                          </div>
+                          <div className="space-y-0.5">
+                            <p className="text-sm font-bold text-slate-900">{n.title}</p>
+                            <p className="text-xs text-slate-400">{n.time}</p>
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      newsItems.map(item => (
+                        <div 
+                          key={item.id} 
+                          onClick={() => setSelectedNews(item)}
+                          className="p-4 flex flex-col gap-2 hover:bg-slate-50 transition-colors border-b border-slate-50 last:border-none cursor-pointer group"
+                        >
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-1.5">
+                              <div className="h-5 w-5 rounded-md bg-orange-100 flex items-center justify-center">
+                                <MapPin className="h-3 w-3 text-orange-600" />
+                              </div>
+                              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{item.location}</span>
+                            </div>
+                            <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-2 py-0.5 rounded-full">{item.source}</span>
+                          </div>
+                          <div className="space-y-1">
+                            <p className="text-sm font-bold text-slate-900 group-hover:text-orange-600 transition-colors">{item.title}</p>
+                            <p className="text-xs text-slate-500 leading-relaxed">{item.content}</p>
+                          </div>
+                          <div className="flex items-center gap-1 text-[10px] text-slate-400 font-medium pt-1">
+                            <Clock className="h-3 w-3" /> {item.time}
+                          </div>
+                        </div>
+                      ))
+                    )}
                   </div>
                   <button className="w-full p-3 text-xs font-bold text-orange-600 bg-slate-50 hover:bg-slate-100 transition-colors uppercase tracking-widest">
                     View All Activity
@@ -129,15 +263,103 @@ export default function Navbar() {
         </div>
       </div>
     </header>
-    <NewEntryModal 
-      isOpen={isAdding} 
-      onClose={() => setIsAdding(false)} 
-      data={data} 
-      entry={entry} 
-      setEntry={setEntry} 
-      onSubmit={handleSubmit} 
-    />
+      <NewEntryModal 
+        isOpen={isAdding} 
+        onClose={() => setIsAdding(false)} 
+        data={data} 
+        entry={entry} 
+        setEntry={setEntry} 
+        onSubmit={handleSubmit} 
+      />
+
+      <NewsDetailModal 
+        news={selectedNews} 
+        onClose={() => setSelectedNews(null)} 
+      />
     </>
+  );
+}
+
+function NewsDetailModal({ news, onClose }: { news: any, onClose: () => void }) {
+  if (!news) return null;
+
+  return (
+    <AnimatePresence>
+      <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
+        <motion.div 
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: 1 }} 
+          exit={{ opacity: 0 }}
+          onClick={onClose}
+          className="absolute inset-0 bg-slate-950/40 backdrop-blur-sm"
+        />
+        <motion.div 
+          initial={{ scale: 0.9, opacity: 0, y: 20 }} 
+          animate={{ scale: 1, opacity: 1, y: 0 }} 
+          exit={{ scale: 0.9, opacity: 0, y: 20 }}
+          className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100"
+        >
+          <div className="h-32 bg-gradient-to-r from-orange-500 to-orange-600 relative p-8">
+            <div className="flex justify-between items-start">
+              <div className="flex items-center gap-2 px-3 py-1 bg-white/20 backdrop-blur-md rounded-full border border-white/20">
+                <Globe className="h-3 w-3 text-white" />
+                <span className="text-[10px] font-bold text-white uppercase tracking-widest">{news.source}</span>
+              </div>
+              <button 
+                onClick={onClose}
+                className="p-2 rounded-xl bg-white/20 text-white hover:bg-white/30 transition-colors"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            <h2 className="text-2xl font-bold text-white mt-4 line-clamp-2">{news.title}</h2>
+          </div>
+          
+          <div className="p-8">
+            <div className="flex items-center gap-2 mb-4 px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full w-fit border border-emerald-100">
+              <CheckCircle2 className="h-3 w-3" />
+              <span className="text-[10px] font-bold uppercase tracking-widest">Fact Checked & Verified</span>
+            </div>
+
+            <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100 text-slate-700 leading-relaxed mb-6 font-medium">
+              {news.content}
+            </div>
+
+            <div className="bg-emerald-50/30 rounded-2xl p-6 border border-emerald-100/50 mb-8">
+              <h4 className="text-[10px] font-black text-emerald-800 uppercase tracking-tighter mb-2 flex items-center gap-1.5">
+                <Search className="h-3 w-3" /> Verification Details
+              </h4>
+              <p className="text-sm text-emerald-900/80 leading-relaxed italic">
+                &quot;{news.factCheck}&quot;
+              </p>
+            </div>
+            
+            <div className="flex items-center gap-4 mb-8">
+              <div className="flex items-center gap-1.5 text-slate-400">
+                <MapPin className="h-4 w-4" />
+                <span className="text-xs font-bold uppercase tracking-wider">{news.location}</span>
+              </div>
+              <div className="h-4 w-px bg-slate-100" />
+              <div className="flex items-center gap-1.5 text-slate-400">
+                <Clock className="h-4 w-4" />
+                <span className="text-xs font-medium">{news.time}</span>
+              </div>
+            </div>
+            
+            <p className="text-sm text-slate-500 leading-relaxed mb-6">
+              Full official directive issued by {news.location} administrative authorities. Schools are advised to monitor local weather warnings daily. Updates will be reflected in the Chronos generator automatically.
+            </p>
+
+            <button 
+              onClick={onClose}
+              className="w-full py-4 bg-orange-600 text-white rounded-2xl font-bold hover:bg-orange-700 transition-all shadow-lg shadow-orange-600/20 active:scale-95"
+            >
+              Understood
+            </button>
+          </div>
+        </motion.div>
+      </div>
+    </AnimatePresence>
   );
 }
 

@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar, { SidebarContext } from "@/components/Sidebar";
 import Navbar from "@/components/Navbar";
+import OnboardingModal from "@/components/OnboardingModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body className={`${inter.className} h-full antialiased selection:bg-orange-500/30 transition-colors duration-300`}>
         <SidebarContext.Provider value={{ isCollapsed, setIsCollapsed }}>
           <div className="relative flex min-h-full overflow-hidden">
+            <OnboardingModal />
             {/* Background Gradient */}
             <div className="fixed inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-orange-500/5 via-transparent to-transparent opacity-30" />
             <div className="fixed inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-purple-500/5 via-transparent to-transparent opacity-30" />
